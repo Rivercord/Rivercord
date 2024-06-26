@@ -14,19 +14,10 @@ export interface Dev {
     badge?: boolean;
 }
 
-/**
- * If you made a plugin or substantial contribution, add yourself here.
- * This object is used for the plugin author list, as well as to add a contributor badge to your profile.
- * If you wish to stay fully anonymous, feel free to set ID to 0n.
- * If you are fine with attribution but don't want the badge, add badge: false
- */
-export const Devs = /* #__PURE__*/ Object.freeze({
+
+const developers = /* #__PURE__*/ Object.freeze({
     Nobody: {
         name: "Nobody",
-        id: 0n,
-    },
-    Max: {
-        name: "Max",
         id: 0n,
     },
     TheArmagan: {
@@ -563,6 +554,12 @@ export const Devs = /* #__PURE__*/ Object.freeze({
         id: 861631850681729045n,
     },
 } satisfies Record<string, Dev>);
+
+export const Devs = new Proxy({}, {
+    get(target, prop) {
+        return developers[prop as string] ?? developers.Nobody;
+    }
+}) as Record<string, Dev>;
 
 // iife so #__PURE__ works correctly
 export const DevsById = /* #__PURE__*/ (() =>

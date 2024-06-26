@@ -23,6 +23,7 @@ import { useSettings } from "@api/Settings";
 import { classNameFactory } from "@api/Styles";
 import ErrorBoundary from "@components/ErrorBoundary";
 import { Flex } from "@components/Flex";
+import { User } from "@discord-types/general";
 import { gitRemote } from "@shared/rivercordUserAgent";
 import { proxyLazy } from "@utils/lazy";
 import { Margins } from "@utils/margins";
@@ -31,7 +32,6 @@ import { ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalProps, M
 import { OptionType, Plugin } from "@utils/types";
 import { findByPropsLazy, findComponentByCodeLazy } from "@webpack";
 import { Button, Clickable, FluxDispatcher, Forms, React, Text, Tooltip, UserStore, UserUtils } from "@webpack/common";
-import { User } from "@discord-types/general";
 import { Constructor } from "type-fest";
 
 import { PluginMeta } from "~plugins";
@@ -101,10 +101,10 @@ export default function PluginModal({ plugin, onRestartNeeded, onClose, transiti
     React.useEffect(() => {
         (async () => {
             for (const user of plugin.authors.slice(0, 6)) {
-                const author = user.id
+                const author = user?.id
                     ? await UserUtils.getUser(`${user.id}`)
                         .catch(() => makeDummyUser({ username: user.name }))
-                    : makeDummyUser({ username: user.name });
+                    : makeDummyUser({ username: user?.name || "Unknown" });
 
                 setAuthors(a => [...a, author]);
             }
