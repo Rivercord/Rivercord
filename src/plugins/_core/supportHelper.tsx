@@ -39,7 +39,7 @@ import plugins, { PluginMeta } from "~plugins";
 
 import settings from "./settings";
 
-const VENCORD_GUILD_ID = "1015060230222131221";
+const RIVERCORD_GUILD_ID = "1015060230222131221";
 const VENBOT_USER_ID = "1017176847865352332";
 const KNOWN_ISSUES_CHANNEL_ID = "1222936386626129920";
 const CodeBlockRe = /```js\n(.+?)```/s;
@@ -191,7 +191,7 @@ export default definePlugin({
             }
 
             // @ts-ignore outdated type
-            const roles = GuildMemberStore.getSelfMember(VENCORD_GUILD_ID)?.roles;
+            const roles = GuildMemberStore.getSelfMember(RIVERCORD_GUILD_ID)?.roles;
             if (!roles || TrustedRolesIds.some(id => roles.includes(id))) return;
 
             if (!IS_WEB && IS_UPDATER_DISABLED) {

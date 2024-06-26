@@ -18,7 +18,7 @@
 
 import { Settings } from "@api/Settings";
 import { debounce } from "@shared/debounce";
-import { VENCORD_USER_AGENT } from "@shared/vencordUserAgent";
+import { RIVERCORD_USER_AGENT } from "@shared/rivercordUserAgent";
 import { getCurrentChannel } from "@utils/discord";
 import { useAwaiter } from "@utils/react";
 import { UserProfileStore, UserStore } from "@webpack/common";
@@ -130,7 +130,7 @@ async function bulkFetchPronouns(ids: string[]): Promise<PronounsResponse> {
             method: "GET",
             headers: {
                 "Accept": "application/json",
-                "X-PronounDB-Source": VENCORD_USER_AGENT
+                "X-PronounDB-Source": RIVERCORD_USER_AGENT
             }
         });
         return await req.json()

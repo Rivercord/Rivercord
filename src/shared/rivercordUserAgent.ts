@@ -9,4 +9,4 @@ import gitRemote from "~git-remote";
 
 export { gitHash, gitRemote };
 
-export const VENCORD_USER_AGENT = `Rivercord/${gitHash}${gitRemote ? ` (https://github.com/${gitRemote})` : ""}`;
+export const RIVERCORD_USER_AGENT = `Rivercord/${gitHash}${gitRemote ? ` (https://github.com/${gitRemote})` : ""}`;

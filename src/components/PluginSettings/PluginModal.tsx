@@ -23,7 +23,7 @@ import { useSettings } from "@api/Settings";
 import { classNameFactory } from "@api/Styles";
 import ErrorBoundary from "@components/ErrorBoundary";
 import { Flex } from "@components/Flex";
-import { gitRemote } from "@shared/vencordUserAgent";
+import { gitRemote } from "@shared/rivercordUserAgent";
 import { proxyLazy } from "@utils/lazy";
 import { Margins } from "@utils/margins";
 import { classes, isObjectEmpty } from "@utils/misc";
@@ -193,7 +193,7 @@ export default function PluginModal({ plugin, onRestartNeeded, onClose, transiti
     function switchToPopout() {
         onClose();
 
-        const PopoutKey = `DISCORD_VENCORD_PLUGIN_SETTINGS_MODAL_${plugin.name}`;
+        const PopoutKey = `DISCORD_RIVERCORD_PLUGIN_SETTINGS_MODAL_${plugin.name}`;
         PopoutActions.open(
             PopoutKey,
             () => <PluginModal

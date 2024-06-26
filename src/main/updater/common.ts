@@ -16,7 +16,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-export const VENCORD_FILES = [
+export const RIVERCORD_FILES = [
     IS_DISCORD_DESKTOP ? "patcher.js" : "rivercordDesktopMain.js",
     IS_DISCORD_DESKTOP ? "preload.js" : "rivercordDesktopPreload.js",
     IS_DISCORD_DESKTOP ? "renderer.js" : "rivercordDesktopRenderer.js",
