@@ -18,3 +18,8 @@
     align-items: center;
     justify-content: center;
 }
+
+.pi-indicator svg {
+    width: 14px;
+    height: 14px;
+}
