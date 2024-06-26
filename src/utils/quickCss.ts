@@ -36,13 +36,13 @@ async function initSystemValues() {
         .map(([k, v]) => `--${k}: ${v};`)
         .join("");
 
-    createStyle("vencord-os-theme-values").textContent = `:root{${variables}}`;
+    createStyle("rivercord-os-theme-values").textContent = `:root{${variables}}`;
 }
 
 export async function toggle(isEnabled: boolean) {
     if (!style) {
         if (isEnabled) {
-            style = createStyle("vencord-custom-css");
+            style = createStyle("rivercord-custom-css");
             RivercordNative.quickCss.addChangeListener(css => {
                 style.textContent = css;
                 // At the time of writing this, changing textContent resets the disabled state
@@ -55,7 +55,7 @@ export async function toggle(isEnabled: boolean) {
 }
 
 async function initThemes() {
-    themesStyle ??= createStyle("vencord-themes");
+    themesStyle ??= createStyle("rivercord-themes");
 
     const { themeLinks, enabledThemes } = Settings;
 

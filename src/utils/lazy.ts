@@ -35,8 +35,8 @@ const unconfigurable = ["arguments", "caller", "prototype"];
 
 const handler: ProxyHandler<any> = {};
 
-export const SYM_LAZY_GET = Symbol.for("vencord.lazy.get");
-export const SYM_LAZY_CACHED = Symbol.for("vencord.lazy.cached");
+export const SYM_LAZY_GET = Symbol.for("rivercord.lazy.get");
+export const SYM_LAZY_CACHED = Symbol.for("rivercord.lazy.cached");
 
 for (const method of [
     "apply",

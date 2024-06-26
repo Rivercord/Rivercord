@@ -11,9 +11,9 @@ Welcome to Megu's Installation Guide! In this file, you will learn about how to 
 - [Installation Guide](#installation-guide)
   - [Sections](#sections)
   - [Dependencies](#dependencies)
-  - [Installing Rivercord](#installing-vencord)
-  - [Updating Rivercord](#updating-vencord)
-  - [Uninstalling Rivercord](#uninstalling-vencord)
+  - [Installing Rivercord](#installing-rivercord)
+  - [Updating Rivercord](#updating-rivercord)
+  - [Uninstalling Rivercord](#uninstalling-rivercord)
 
 ## Dependencies
 
@@ -51,7 +51,7 @@ Build Rivercord:
 pnpm build
 ```
 
-Inject vencord into your client:
+Inject rivercord into your client:
 
 ```shell
 pnpm inject
@@ -71,9 +71,9 @@ To pull latest changes:
 git pull
 ```
 
-If this fails, you likely need to reset your local changes to vencord to resolve merge errors:
+If this fails, you likely need to reset your local changes to rivercord to resolve merge errors:
 
-> :exclamation: This command will remove any local changes you've made to vencord. Make sure you back up if you made any code changes you don't want to lose!
+> :exclamation: This command will remove any local changes you've made to rivercord. Make sure you back up if you made any code changes you don't want to lose!
 
 ```shell
 git reset --hard

@@ -3,9 +3,9 @@
 Typings for Rivercord's api, published to npm
 
 ```sh
-npm i @vencord/types
+npm i @rivercord/types
 
-yarn add @vencord/types
+yarn add @rivercord/types
 
-pnpm add @vencord/types
+pnpm add @rivercord/types
 ```

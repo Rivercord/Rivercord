@@ -149,13 +149,13 @@ export default definePlugin({
 
     commands: [
         {
-            name: "vencord-debug",
+            name: "rivercord-debug",
             description: "Send Rivercord debug info",
             predicate: ctx => isPluginDev(UserStore.getCurrentUser()?.id) || AllowedChannelIds.includes(ctx.channel.id),
             execute: async () => ({ content: await generateDebugInfoMessage() })
         },
         {
-            name: "vencord-plugins",
+            name: "rivercord-plugins",
             description: "Send Rivercord plugin list",
             predicate: ctx => isPluginDev(UserStore.getCurrentUser()?.id) || AllowedChannelIds.includes(ctx.channel.id),
             execute: () => ({ content: generatePluginList() })
@@ -238,7 +238,7 @@ export default definePlugin({
     }, { noop: true }),
 
     start() {
-        addAccessory("vencord-debug", props => {
+        addAccessory("rivercord-debug", props => {
             const buttons = [] as JSX.Element[];
 
             const shouldAddUpdateButton =
@@ -272,19 +272,19 @@ export default definePlugin({
             }
 
             if (props.channel.id === SUPPORT_CHANNEL_ID) {
-                if (props.message.content.includes("/vencord-debug") || props.message.content.includes("/vencord-plugins")) {
+                if (props.message.content.includes("/rivercord-debug") || props.message.content.includes("/rivercord-plugins")) {
                     buttons.push(
                         <Button
                             key="rc-dbg"
                             onClick={async () => sendMessage(props.channel.id, { content: await generateDebugInfoMessage() })}
                         >
-                            Run /vencord-debug
+                            Run /rivercord-debug
                         </Button>,
                         <Button
                             key="rc-plg-list"
                             onClick={async () => sendMessage(props.channel.id, { content: generatePluginList() })}
                         >
-                            Run /vencord-plugins
+                            Run /rivercord-plugins
                         </Button>
                     );
                 }

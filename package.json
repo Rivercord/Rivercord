@@ -26,7 +26,7 @@
         "watch": "pnpm build --watch",
         "watchWeb": "pnpm buildWeb --watch",
         "generatePluginJson": "tsx scripts/generatePluginList.ts",
-        "generateTypes": "tspc --emitDeclarationOnly --declaration --outDir packages/vencord-types",
+        "generateTypes": "tspc --emitDeclarationOnly --declaration --outDir packages/rivercord-types",
         "inject": "node scripts/runInstaller.mjs",
         "uninject": "node scripts/runInstaller.mjs",
         "lint": "eslint . --ext .js,.jsx,.ts,.tsx --ignore-pattern src/userplugins",

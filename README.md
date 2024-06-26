@@ -6,7 +6,7 @@ The cutest Discord client mod
 
 | ![image](https://github.com/Rivercord/Rivercord/assets/45497981/706722b1-32de-4d99-bee9-93993b504334) |
 | :--------------------------------------------------------------------------------------------------: |
-|   A screenshot of vencord showcasing the [vencord-theme](https://github.com/synqat/vencord-theme)    |
+|   A screenshot of rivercord showcasing the [rivercord-theme](https://github.com/synqat/rivercord-theme)    |
 
 ## Features
 

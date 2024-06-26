@@ -4,7 +4,7 @@
     "ignorePatterns": [
         "dist",
         "browser",
-        "packages/vencord-types"
+        "packages/rivercord-types"
     ],
     "plugins": [
         "@typescript-eslint",

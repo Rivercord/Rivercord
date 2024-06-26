@@ -31,7 +31,7 @@ if (location.protocol !== "data:") {
     const rendererCss = join(__dirname, IS_VESKTOP ? "rivercordDesktopRenderer.css" : "renderer.css");
 
     const style = document.createElement("style");
-    style.id = "vencord-css-core";
+    style.id = "rivercord-css-core";
     style.textContent = readFileSync(rendererCss, "utf-8");
 
     if (document.readyState === "complete") {
@@ -46,7 +46,7 @@ if (location.protocol !== "data:") {
         // persistent means keep process running if watcher is the only thing still running
         // which we obviously don't want
         watch(rendererCss, { persistent: false }, () => {
-            document.getElementById("vencord-css-core")!.textContent = readFileSync(rendererCss, "utf-8");
+            document.getElementById("rivercord-css-core")!.textContent = readFileSync(rendererCss, "utf-8");
         });
     }
     // #endregion

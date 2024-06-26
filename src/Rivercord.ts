@@ -131,7 +131,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (IS_DISCORD_DESKTOP && Settings.winNativeTitleBar && navigator.platform.toLowerCase().startsWith("win")) {
         document.head.append(Object.assign(document.createElement("style"), {
-            id: "vencord-native-titlebar-style",
+            id: "rivercord-native-titlebar-style",
             textContent: "[class*=titleBar]{display: none!important}"
         }));
     }

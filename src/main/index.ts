@@ -28,7 +28,7 @@ if (IS_VESKTOP || !IS_VANILLA) {
     app.whenReady().then(() => {
         // Source Maps! Maybe there's a better way but since the renderer is executed
         // from a string I don't think any other form of sourcemaps would work
-        protocol.registerFileProtocol("vencord", ({ url: unsafeUrl }, cb) => {
+        protocol.registerFileProtocol("rivercord", ({ url: unsafeUrl }, cb) => {
             let url = unsafeUrl.slice("rivercord://".length);
             if (url.endsWith("/")) url = url.slice(0, -1);
             if (url.startsWith("/themes/")) {

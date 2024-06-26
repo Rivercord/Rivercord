@@ -185,7 +185,7 @@ const appendCssRuntime = readFile("dist/Rivercord.user.css", "utf-8").then(conte
 ;document.addEventListener("DOMContentLoaded", () => document.documentElement.appendChild(
     Object.assign(document.createElement("style"), {
         textContent: \`${content.replaceAll("`", "\\`")}\`,
-        id: "vencord-css-core"
+        id: "rivercord-css-core"
     })
 ), { once: true });
 `;
