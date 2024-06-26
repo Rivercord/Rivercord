@@ -25,7 +25,7 @@ import { canonicalizeMatch } from "@utils/patches";
 import definePlugin, { OptionType } from "@utils/types";
 import { findByPropsLazy } from "@webpack";
 import { ChannelStore, PermissionsBits, PermissionStore, Tooltip } from "@webpack/common";
-import type { Channel, Role } from "discord-types/general";
+import type { Channel, Role } from "@discord-types/general";
 
 import HiddenChannelLockScreen from "./components/HiddenChannelLockScreen";
 

@@ -22,7 +22,7 @@ import { Devs } from "@utils/constants";
 import definePlugin from "@utils/types";
 import { findByCodeLazy } from "@webpack";
 import { ChannelStore, i18n, Menu, PermissionsBits, PermissionStore, SelectedChannelStore } from "@webpack/common";
-import { Message } from "discord-types/general";
+import { Message } from "@discord-types/general";
 
 
 const replyToMessage = findByCodeLazy(".TEXTAREA_FOCUS)", "showMentionToggle:");

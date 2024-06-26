@@ -12,7 +12,7 @@ import { Devs } from "@utils/constants";
 import definePlugin, { OptionType } from "@utils/types";
 import { findComponentLazy } from "@webpack";
 import { ChannelStore, GuildMemberStore, i18n, Text, Tooltip } from "@webpack/common";
-import { Message } from "discord-types/general";
+import { Message } from "@discord-types/general";
 import { FunctionComponent, ReactNode } from "react";
 
 const CountDown = findComponentLazy(m => m.prototype?.render?.toString().includes(".MAX_AGE_NEVER"));

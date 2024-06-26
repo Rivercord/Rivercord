@@ -22,7 +22,7 @@ import { Devs } from "@utils/constants";
 import { sleep } from "@utils/misc";
 import definePlugin, { OptionType } from "@utils/types";
 import { RelationshipStore, SelectedChannelStore, UserStore } from "@webpack/common";
-import { Message, ReactionEmoji } from "discord-types/general";
+import { Message, ReactionEmoji } from "@discord-types/general";
 
 interface IMessageCreate {
     type: "MESSAGE_CREATE";

@@ -21,7 +21,7 @@ import { ExpandableHeader } from "@components/ExpandableHeader";
 import { classes } from "@utils/misc";
 import { filters, findBulk, proxyLazyWebpack } from "@webpack";
 import { i18n, PermissionsBits, Text, Tooltip, useMemo, UserStore } from "@webpack/common";
-import type { Guild, GuildMember } from "discord-types/general";
+import type { Guild, GuildMember } from "@discord-types/general";
 
 import { PermissionsSortOrder, settings } from "..";
 import { cl, getPermissionString, getSortedRoles, sortUserRoles } from "../utils";

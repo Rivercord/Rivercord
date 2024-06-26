@@ -17,7 +17,7 @@
 */
 
 import { Logger } from "@utils/Logger";
-import { Channel, Message } from "discord-types/general";
+import { Channel, Message } from "@discord-types/general";
 import type { MouseEventHandler } from "react";
 
 const logger = new Logger("MessagePopover");

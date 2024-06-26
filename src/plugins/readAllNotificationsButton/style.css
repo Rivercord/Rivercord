@@ -1,11 +1,17 @@
 .rc-ranb-button {
-    color: var(--interactive-normal);
-    padding: 0 0.5em;
-    margin-bottom: 0.5em;
-    width: 100%;
-    box-sizing: border-box;
+    margin: 8px;
+    padding: 4px;
+    border-radius: 4px;
+    color: whitesmoke;
+    font-size: 12px;
+    text-align: center;
+    background-color: #2b2d31;
+    cursor: pointer;
+    transition: border 0.1s ease-in-out;
+    border: 1px solid var(--background-accent);
 }
 
 .rc-ranb-button:hover {
-    color: var(--interactive-active);
+    border: 1px solid var(--brand-500);
 }
+  

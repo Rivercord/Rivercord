@@ -16,7 +16,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-import { Channel } from "discord-types/general";
+import { Channel } from "@discord-types/general";
 
 export interface ChannelDelete {
     type: "CHANNEL_DELETE";

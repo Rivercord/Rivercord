@@ -22,7 +22,7 @@ import { Devs } from "@utils/constants";
 import { openUserProfile } from "@utils/discord";
 import definePlugin, { OptionType } from "@utils/types";
 import { Avatar, GuildMemberStore, React, RelationshipStore } from "@webpack/common";
-import { User } from "discord-types/general";
+import { User } from "@discord-types/general";
 
 const settings = definePluginSettings({
     showAvatars: {

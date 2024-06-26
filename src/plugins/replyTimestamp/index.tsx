@@ -11,7 +11,7 @@ import { Devs } from "@utils/constants";
 import definePlugin from "@utils/types";
 import { filters, findByPropsLazy, mapMangledModuleLazy } from "@webpack";
 import { Timestamp } from "@webpack/common";
-import type { Message } from "discord-types/general";
+import type { Message } from "@discord-types/general";
 import type { HTMLAttributes } from "react";
 
 const { calendarFormat, dateFormat, isSameDay } = mapMangledModuleLazy("millisecondsInUnit:", {

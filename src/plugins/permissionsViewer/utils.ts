@@ -19,7 +19,7 @@
 import { classNameFactory } from "@api/Styles";
 import { wordsToTitle } from "@utils/text";
 import { GuildStore, i18n, Parser } from "@webpack/common";
-import { Guild, GuildMember, Role } from "discord-types/general";
+import { Guild, GuildMember, Role } from "@discord-types/general";
 import type { ReactNode } from "react";
 
 import { PermissionsSortOrder, settings } from ".";

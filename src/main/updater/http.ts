@@ -26,7 +26,7 @@ import gitHash from "~git-hash";
 import gitRemote from "~git-remote";
 
 import { get } from "../utils/simpleGet";
-import { serializeErrors, RIVERCORD_FILES } from "./common";
+import { RIVERCORD_FILES,serializeErrors } from "./common";
 
 const API_BASE = `https://api.github.com/repos/${gitRemote}`;
 let PendingUpdates = [] as [string, string][];

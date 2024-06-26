@@ -25,7 +25,7 @@ import { OpenExternalIcon } from "@components/Icons";
 import { Devs } from "@utils/constants";
 import definePlugin from "@utils/types";
 import { Alerts, Menu, Parser, useState } from "@webpack/common";
-import { Guild, User } from "discord-types/general";
+import { Guild, User } from "@discord-types/general";
 
 import { Auth, initAuth, updateAuth } from "./auth";
 import { openReviewsModal } from "./components/ReviewModal";

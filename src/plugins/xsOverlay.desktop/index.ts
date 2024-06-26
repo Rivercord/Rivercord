@@ -11,7 +11,7 @@ import { Logger } from "@utils/Logger";
 import definePlugin, { OptionType, PluginNative, ReporterTestable } from "@utils/types";
 import { findByCodeLazy, findLazy } from "@webpack";
 import { ChannelStore, GuildStore, UserStore } from "@webpack/common";
-import type { Channel, Embed, GuildMember, MessageAttachment, User } from "discord-types/general";
+import type { Channel, Embed, GuildMember, MessageAttachment, User } from "@discord-types/general";
 
 const ChannelTypes = findLazy(m => m.ANNOUNCEMENT_THREAD === 10);
 

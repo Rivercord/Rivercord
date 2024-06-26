@@ -23,11 +23,11 @@ import { addDecorator, removeDecorator } from "@api/MemberListDecorators";
 import { addDecoration, removeDecoration } from "@api/MessageDecorations";
 import { Settings } from "@api/Settings";
 import ErrorBoundary from "@components/ErrorBoundary";
+import { User } from "@discord-types/general";
 import { Devs } from "@utils/constants";
 import definePlugin, { OptionType } from "@utils/types";
 import { findByPropsLazy, findStoreLazy } from "@webpack";
 import { PresenceStore, Tooltip, UserStore } from "@webpack/common";
-import { User } from "discord-types/general";
 
 const SessionsStore = findStoreLazy("SessionsStore");
 

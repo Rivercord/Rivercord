@@ -23,7 +23,7 @@ import { Devs } from "@utils/constants";
 import { openImageModal } from "@utils/discord";
 import definePlugin, { OptionType } from "@utils/types";
 import { GuildMemberStore, IconUtils, Menu } from "@webpack/common";
-import type { Channel, Guild, User } from "discord-types/general";
+import type { Channel, Guild, User } from "@discord-types/general";
 
 
 interface UserContextProps {

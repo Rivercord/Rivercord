@@ -31,7 +31,7 @@ import { ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalProps, M
 import { OptionType, Plugin } from "@utils/types";
 import { findByPropsLazy, findComponentByCodeLazy } from "@webpack";
 import { Button, Clickable, FluxDispatcher, Forms, React, Text, Tooltip, UserStore, UserUtils } from "@webpack/common";
-import { User } from "discord-types/general";
+import { User } from "@discord-types/general";
 import { Constructor } from "type-fest";
 
 import { PluginMeta } from "~plugins";

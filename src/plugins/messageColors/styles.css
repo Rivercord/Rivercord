@@ -1,0 +1,35 @@
+.rc-color-block {
+    aspect-ratio: 1/1;
+    background: var(--color);
+    height: 1rem;
+    vertical-align: middle;
+    border-radius: 4px;
+    display: inline-block;
+    user-select: none;
+    margin-left: 2px;
+}
+
+.rc-chat-color-picker {
+    background-color: var(--background-secondary);
+    border-radius: 8px;
+    box-shadow: var(--elevation-stroke), var(--elevation-high);
+    padding: 1rem 1.5rem;
+}
+
+.rc-chat-color-picker > button {
+    margin-top: 0.5rem;
+}
+
+.rc-chat-color-picker [class^="defaultContainer"] {
+    display: none;
+}
+
+.rc-color-bg {
+    background: var(--color);
+}
+
+/* Light color in dark theme */
+.theme-dark .rc-color-bg.rc-color-bg-invert,
+.theme-light .rc-color-bg:not(.rc-color-bg-invert) {
+    color: var(--background-tertiary);
+}

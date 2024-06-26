@@ -21,7 +21,7 @@ import { LinkIcon } from "@components/Icons";
 import { Devs } from "@utils/constants";
 import definePlugin from "@utils/types";
 import { Clipboard, Menu } from "@webpack/common";
-import type { Channel, User } from "discord-types/general";
+import type { Channel, User } from "@discord-types/general";
 
 interface UserContextProps {
     channel: Channel;

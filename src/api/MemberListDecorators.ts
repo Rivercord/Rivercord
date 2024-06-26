@@ -16,7 +16,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-import { Channel, User } from "discord-types/general/index.js";
+import { Channel, User } from "@discord-types/general/index.js";
 
 interface DecoratorProps {
     activities: any[];

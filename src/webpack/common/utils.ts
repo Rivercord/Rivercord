@@ -17,7 +17,7 @@
 */
 
 import { canonicalizeMatch } from "@utils/patches";
-import type { Channel } from "discord-types/general";
+import type { Channel } from "@discord-types/general";
 
 // eslint-disable-next-line path-alias/no-relative
 import { _resolveReady, filters, findByCodeLazy, findByPropsLazy, findLazy, mapMangledModuleLazy, waitFor } from "../webpack";

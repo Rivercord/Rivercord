@@ -17,7 +17,7 @@
 */
 
 import { Parser, useEffect, useState } from "@webpack/common";
-import { Message } from "discord-types/general";
+import { Message } from "@discord-types/general";
 
 import { Languages } from "./languages";
 import { TranslateIcon } from "./TranslateIcon";

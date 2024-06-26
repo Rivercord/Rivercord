@@ -28,7 +28,7 @@ import { useAwaiter } from "@utils/react";
 import definePlugin, { OptionType } from "@utils/types";
 import { extractAndLoadChunksLazy, findComponentByCodeLazy } from "@webpack";
 import { Button, Flex, Forms, React, Text, UserProfileStore, UserStore, useState } from "@webpack/common";
-import { User } from "discord-types/general";
+import { User } from "@discord-types/general";
 import virtualMerge from "virtual-merge";
 
 interface UserProfile extends User {

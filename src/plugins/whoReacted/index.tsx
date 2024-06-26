@@ -25,7 +25,7 @@ import definePlugin from "@utils/types";
 import { findByPropsLazy, findComponentByCodeLazy } from "@webpack";
 import { ChannelStore, Constants, FluxDispatcher, React, RestAPI, Tooltip } from "@webpack/common";
 import { CustomEmoji } from "@webpack/types";
-import { Message, ReactionEmoji, User } from "discord-types/general";
+import { Message, ReactionEmoji, User } from "@discord-types/general";
 
 const UserSummaryItem = findComponentByCodeLazy("defaultRenderUser", "showDefaultAvatarsForNullUsers");
 const AvatarStyles = findByPropsLazy("moreUsers", "emptyUser", "avatarContainer", "clickableAvatar");

@@ -25,7 +25,7 @@ import { Devs } from "@utils/constants";
 import { getStegCloak } from "@utils/dependencies";
 import definePlugin, { OptionType, ReporterTestable } from "@utils/types";
 import { ChannelStore, Constants, RestAPI, Tooltip } from "@webpack/common";
-import { Message } from "discord-types/general";
+import { Message } from "@discord-types/general";
 
 import { buildDecModal } from "./components/DecryptionModal";
 import { buildEncModal } from "./components/EncryptionModal";

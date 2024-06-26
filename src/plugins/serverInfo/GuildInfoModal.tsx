@@ -13,7 +13,7 @@ import { ModalRoot, ModalSize, openModal } from "@utils/modal";
 import { useAwaiter } from "@utils/react";
 import { findByPropsLazy, findComponentByCodeLazy } from "@webpack";
 import { FluxDispatcher, Forms, GuildChannelStore, GuildMemberStore, GuildStore, IconUtils, Parser, PresenceStore, RelationshipStore, ScrollerThin, SnowflakeUtils, TabBar, Timestamp, useEffect, UserStore, UserUtils, useState, useStateFromStores } from "@webpack/common";
-import { Guild, User } from "discord-types/general";
+import { Guild, User } from "@discord-types/general";
 
 const IconClasses = findByPropsLazy("icon", "acronym", "childWrapper");
 const FriendRow = findComponentByCodeLazy(".listName,discriminatorClass");

@@ -19,7 +19,7 @@
 import { mergeDefaults } from "@utils/mergeDefaults";
 import { findByCodeLazy } from "@webpack";
 import { MessageActions, SnowflakeUtils } from "@webpack/common";
-import { Message } from "discord-types/general";
+import { Message } from "@discord-types/general";
 import type { PartialDeep } from "type-fest";
 
 import { Argument } from "./types";

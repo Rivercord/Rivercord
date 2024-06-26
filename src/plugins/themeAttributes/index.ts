@@ -7,7 +7,7 @@
 import { Devs } from "@utils/constants";
 import definePlugin from "@utils/types";
 import { UserStore } from "@webpack/common";
-import { Message } from "discord-types/general";
+import { Message } from "@discord-types/general";
 
 
 export default definePlugin({

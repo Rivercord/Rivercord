@@ -24,7 +24,7 @@ import definePlugin, { OptionType } from "@utils/types";
 import { findByCodeLazy, findLazy } from "@webpack";
 import { Card, ChannelStore, Forms, GuildStore, PermissionsBits, Switch, TextInput, Tooltip, useState } from "@webpack/common";
 import type { Permissions, RC } from "@webpack/types";
-import type { Channel, Guild, Message, User } from "discord-types/general";
+import type { Channel, Guild, Message, User } from "@discord-types/general";
 
 interface Tag {
     // name used for identifying, must be alphanumeric + underscores

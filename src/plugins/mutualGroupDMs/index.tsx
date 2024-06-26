@@ -22,7 +22,7 @@ import { isNonNullish } from "@utils/guards";
 import definePlugin from "@utils/types";
 import { findByPropsLazy } from "@webpack";
 import { Avatar, ChannelStore, Clickable, IconUtils, RelationshipStore, ScrollerThin, UserStore } from "@webpack/common";
-import { Channel, User } from "discord-types/general";
+import { Channel, User } from "@discord-types/general";
 
 const SelectedChannelActionCreators = findByPropsLazy("selectPrivateChannel");
 const UserUtils = findByPropsLazy("getGlobalName");

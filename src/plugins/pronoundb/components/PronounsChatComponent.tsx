@@ -20,7 +20,7 @@ import ErrorBoundary from "@components/ErrorBoundary";
 import { classes } from "@utils/misc";
 import { findByPropsLazy } from "@webpack";
 import { UserStore } from "@webpack/common";
-import { Message } from "discord-types/general";
+import { Message } from "@discord-types/general";
 
 import { useFormattedPronouns } from "../pronoundbUtils";
 import { settings } from "../settings";

@@ -22,7 +22,7 @@ import { Devs } from "@utils/constants";
 import definePlugin, { OptionType } from "@utils/types";
 import { findStoreLazy } from "@webpack";
 import { ChannelStore, GuildStore, UserStore } from "@webpack/common";
-import { User } from "discord-types/general";
+import { User } from "@discord-types/general";
 
 import { VoiceChannelSection } from "./components/VoiceChannelSection";
 

@@ -20,7 +20,7 @@ import { makeLazy, proxyLazy } from "@utils/lazy";
 import { LazyComponent } from "@utils/lazyReact";
 import { Logger } from "@utils/Logger";
 import { canonicalizeMatch } from "@utils/patches";
-import type { WebpackInstance } from "discord-types/other";
+import type { WebpackInstance } from "@discord-types/other";
 
 import { traceFunction } from "../debug/Tracer";
 

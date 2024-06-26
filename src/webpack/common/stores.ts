@@ -16,7 +16,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-import type * as Stores from "discord-types/stores";
+import type * as Stores from "@discord-types/stores";
 
 // eslint-disable-next-line path-alias/no-relative
 import { findByCodeLazy, findByPropsLazy } from "../webpack";
@@ -47,10 +47,7 @@ export let SelectedChannelStore: Stores.SelectedChannelStore & t.FluxStore;
 export let SelectedGuildStore: t.FluxStore & Record<string, any>;
 export let ChannelStore: Stores.ChannelStore & t.FluxStore;
 export let GuildMemberStore: Stores.GuildMemberStore & t.FluxStore;
-export let RelationshipStore: Stores.RelationshipStore & t.FluxStore & {
-    /** Get the date (as a string) that the relationship was created */
-    getSince(userId: string): string;
-};
+export let RelationshipStore: Stores.RelationshipStore & t.FluxStore;
 
 export let EmojiStore: t.EmojiStore;
 export let WindowStore: t.WindowStore;

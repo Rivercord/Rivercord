@@ -21,7 +21,7 @@ import { Devs } from "@utils/constants";
 import { Logger } from "@utils/Logger";
 import definePlugin, { OptionType } from "@utils/types";
 import { findByPropsLazy } from "@webpack";
-import { Message } from "discord-types/general";
+import { Message } from "@discord-types/general";
 
 const RelationshipStore = findByPropsLazy("getRelationships", "isBlocked");
 

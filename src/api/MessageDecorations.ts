@@ -16,7 +16,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-import { Channel, Message } from "discord-types/general/index.js";
+import { Channel, Message } from "@discord-types/general/index.js";
 
 interface DecorationProps {
     author: {

@@ -4,7 +4,8 @@
     "ignorePatterns": [
         "dist",
         "browser",
-        "packages/rivercord-types"
+        "packages/rivercord-types",
+        "src/types/discord-types"
     ],
     "plugins": [
         "@typescript-eslint",

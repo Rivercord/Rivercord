@@ -40,7 +40,7 @@ import {
     Text,
     UserStore
 } from "@webpack/common";
-import { Channel, Message } from "discord-types/general";
+import { Channel, Message } from "@discord-types/general";
 
 const messageCache = new Map<string, {
     message?: Message;

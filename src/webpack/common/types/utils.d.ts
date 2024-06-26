@@ -16,7 +16,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-import { Guild, GuildMember } from "discord-types/general";
+import { Guild, GuildMember } from "@discord-types/general";
 import type { ReactNode } from "react";
 import { LiteralUnion } from "type-fest";
 

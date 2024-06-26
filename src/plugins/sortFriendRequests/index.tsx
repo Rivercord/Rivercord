@@ -21,7 +21,7 @@ import { Flex } from "@components/Flex";
 import { Devs } from "@utils/constants";
 import definePlugin, { OptionType } from "@utils/types";
 import { RelationshipStore } from "@webpack/common";
-import { User } from "discord-types/general";
+import { User } from "@discord-types/general";
 
 const settings = definePluginSettings({
     showDates: {

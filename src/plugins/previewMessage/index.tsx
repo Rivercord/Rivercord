@@ -22,7 +22,7 @@ import { Devs } from "@utils/constants";
 import definePlugin, { StartAt } from "@utils/types";
 import { findByPropsLazy } from "@webpack";
 import { DraftStore, DraftType, SelectedChannelStore, UserStore, useStateFromStores } from "@webpack/common";
-import { MessageAttachment } from "discord-types/general";
+import { MessageAttachment } from "@discord-types/general";
 
 const UploadStore = findByPropsLazy("getUploads");
 

@@ -21,7 +21,7 @@ import { Devs } from "@utils/constants";
 import definePlugin, { OptionType } from "@utils/types";
 import { findByPropsLazy } from "@webpack";
 import { ChannelStore, FluxDispatcher as Dispatcher, MessageStore, PermissionsBits, PermissionStore, SelectedChannelStore, UserStore } from "@webpack/common";
-import { Message } from "discord-types/general";
+import { Message } from "@discord-types/general";
 
 const Kangaroo = findByPropsLazy("jumpToMessage");
 const RelationshipStore = findByPropsLazy("getRelationships", "isBlocked");

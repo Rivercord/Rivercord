@@ -31,7 +31,7 @@ import { isPluginDev } from "@utils/misc";
 import { closeModal, Modals, openModal } from "@utils/modal";
 import definePlugin from "@utils/types";
 import { Forms, Toasts, UserStore } from "@webpack/common";
-import { User } from "discord-types/general";
+import { User } from "@discord-types/general";
 
 const CONTRIBUTOR_BADGE = "https://vencord.dev/assets/favicon.png";
 

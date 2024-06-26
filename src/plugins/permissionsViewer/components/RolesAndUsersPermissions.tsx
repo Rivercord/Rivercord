@@ -22,7 +22,7 @@ import { InfoIcon, OwnerCrownIcon } from "@components/Icons";
 import { getUniqueUsername } from "@utils/discord";
 import { ModalCloseButton, ModalContent, ModalHeader, ModalProps, ModalRoot, ModalSize, openModal } from "@utils/modal";
 import { Clipboard, ContextMenuApi, FluxDispatcher, GuildMemberStore, GuildStore, i18n, Menu, PermissionsBits, Text, Tooltip, useEffect, UserStore, useState, useStateFromStores } from "@webpack/common";
-import type { Guild } from "discord-types/general";
+import type { Guild } from "@discord-types/general";
 
 import { settings } from "..";
 import { cl, getPermissionDescription, getPermissionString } from "../utils";

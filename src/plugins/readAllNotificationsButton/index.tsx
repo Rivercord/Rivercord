@@ -20,11 +20,11 @@ import "./style.css";
 
 import { addServerListElement, removeServerListElement, ServerListRenderPosition } from "@api/ServerList";
 import ErrorBoundary from "@components/ErrorBoundary";
+import { Channel } from "@discord-types/general";
 import { Devs } from "@utils/constants";
 import definePlugin from "@utils/types";
 import { findStoreLazy } from "@webpack";
-import { Button, FluxDispatcher, GuildChannelStore, GuildStore, React, ReadStateStore } from "@webpack/common";
-import { Channel } from "discord-types/general";
+import { Button, ChannelStore, FluxDispatcher, GuildChannelStore, GuildStore, React, ReadStateStore } from "@webpack/common";
 
 interface ThreadJoined {
     channel: Channel;
@@ -42,6 +42,16 @@ const ActiveJoinedThreadsStore: ActiveJoinedThreadsStore = findStoreLazy("Active
 
 function onClick() {
     const channels: Array<any> = [];
+
+    ChannelStore.getChannelIds().forEach(channelId => {
+        if (!ReadStateStore.hasUnread(channelId)) return;
+
+        channels.push({
+            channelId,
+            messageId: ReadStateStore.lastMessageId(channelId),
+            readStateType: 0
+        });
+    });
 
     Object.values(GuildStore.getGuilds()).forEach(guild => {
         GuildChannelStore.getChannels(guild.id).SELECTABLE // Array<{ channel, comparator }>

@@ -20,7 +20,7 @@ import { WEBPACK_CHUNK } from "@utils/constants";
 import { Logger } from "@utils/Logger";
 import { canonicalizeMatch, canonicalizeReplacement } from "@utils/patches";
 import { PatchReplacement } from "@utils/types";
-import { WebpackInstance } from "discord-types/other";
+import { WebpackInstance } from "@discord-types/other";
 
 import { traceFunction } from "../debug/Tracer";
 import { patches } from "../plugins";

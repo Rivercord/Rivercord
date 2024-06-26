@@ -20,7 +20,7 @@ import "./VoiceChannelSection.css";
 
 import { findByCodeLazy, findByPropsLazy } from "@webpack";
 import { Button, Forms, PermissionStore, Toasts } from "@webpack/common";
-import { Channel } from "discord-types/general";
+import { Channel } from "@discord-types/general";
 
 const ChannelActions = findByPropsLazy("selectChannel", "selectVoiceChannel");
 const UserPopoutSection = findByCodeLazy(".lastSection", "children:");
