@@ -94,7 +94,6 @@ function RivercordSettings() {
 
     return (
         <SettingsTab title="Rivercord Settings">
-            <DonateCard image={donateImage} />
             <Forms.FormSection title="Quick Actions">
                 <Card className={cl("quick-actions-card")}>
                     <React.Fragment>

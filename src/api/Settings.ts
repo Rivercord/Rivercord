@@ -206,6 +206,7 @@ export function useSettings(paths?: UseSettings<Settings>[]) {
 }
 
 export function migratePluginSettings(name: string, ...oldNames: string[]) {
+    return;
     const { plugins } = SettingsStore.plain;
     if (name in plugins) return;
 

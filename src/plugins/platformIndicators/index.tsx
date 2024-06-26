@@ -16,6 +16,8 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
+import "./styles.css";
+
 import { addBadge, BadgePosition, ProfileBadge, removeBadge } from "@api/Badges";
 import { addDecorator, removeDecorator } from "@api/MemberListDecorators";
 import { addDecoration, removeDecoration } from "@api/MessageDecorations";
@@ -30,18 +32,19 @@ import { User } from "discord-types/general";
 const SessionsStore = findStoreLazy("SessionsStore");
 
 function Icon(path: string, opts?: { viewBox?: string; width?: number; height?: number; }) {
-    return ({ color, tooltip, small }: { color: string; tooltip: string; small: boolean; }) => (
+    return ({ color, tooltip }: { color: string; tooltip: string; }) => (
         <Tooltip text={tooltip} >
             {(tooltipProps: any) => (
-                <svg
-                    {...tooltipProps}
-                    height={(opts?.height ?? 20) - (small ? 3 : 0)}
-                    width={(opts?.width ?? 20) - (small ? 3 : 0)}
-                    viewBox={opts?.viewBox ?? "0 0 24 24"}
-                    fill={color}
-                >
-                    <path d={path} />
-                </svg>
+                <div {...tooltipProps} className="pi-indicator">
+                    <svg
+                        height={(opts?.height ?? 14)}
+                        width={(opts?.width ?? 14)}
+                        viewBox={opts?.viewBox ?? "0 0 24 24"}
+                        fill={color}
+                    >
+                        <path d={path} />
+                    </svg>
+                </div>
             )}
         </Tooltip>
     );
@@ -57,19 +60,19 @@ type Platform = keyof typeof Icons;
 
 const StatusUtils = findByPropsLazy("useStatusFillColor", "StatusTypes");
 
-const PlatformIcon = ({ platform, status, small }: { platform: Platform, status: string; small: boolean; }) => {
+const PlatformIcon = ({ platform, status }: { platform: Platform, status: string; }) => {
     const tooltip = platform === "embedded"
         ? "Console"
         : platform[0].toUpperCase() + platform.slice(1);
 
     const Icon = Icons[platform] ?? Icons.desktop;
 
-    return <Icon color={StatusUtils.useStatusFillColor(status)} tooltip={tooltip} small={small} />;
+    return <Icon color={StatusUtils.useStatusFillColor(status)} tooltip={tooltip} />;
 };
 
 const getStatus = (id: string): Record<Platform, string> => PresenceStore.getState()?.clientStatuses?.[id];
 
-const PlatformIndicator = ({ user, wantMargin = true, wantTopMargin = false, small = false }: { user: User; wantMargin?: boolean; wantTopMargin?: boolean; small?: boolean; }) => {
+const PlatformIndicators = ({ user, padding = false }: { user: User; padding?: boolean; }) => {
     if (!user || user.bot) return null;
 
     if (user.id === UserStore.getCurrentUser().id) {
@@ -102,35 +105,22 @@ const PlatformIndicator = ({ user, wantMargin = true, wantTopMargin = false, sma
             key={platform}
             platform={platform as Platform}
             status={status}
-            small={small}
         />
     ));
 
     if (!icons.length) return null;
 
     return (
-        <span
-            className="rc-platform-indicator"
-            style={{
-                display: "inline-flex",
-                justifyContent: "center",
-                alignItems: "center",
-                marginLeft: wantMargin ? 4 : 0,
-                verticalAlign: "top",
-                position: "relative",
-                top: wantTopMargin ? 2 : 0,
-                padding: !wantMargin ? 1 : 0,
-                gap: 2
-            }}
-
+        <div
+            className={`pi-indicators ${padding ? "pi-padding" : ""}`}
         >
             {icons}
-        </span>
+        </div>
     );
 };
 
 const badge: ProfileBadge = {
-    component: p => <PlatformIndicator {...p} user={UserStore.getUser(p.userId)} wantMargin={false} />,
+    component: p => <PlatformIndicators {...p} user={UserStore.getUser(p.userId)} />,
     position: BadgePosition.START,
     shouldShow: userInfo => !!Object.keys(getStatus(userInfo.userId) ?? {}).length,
     key: "indicator"
@@ -141,7 +131,7 @@ const indicatorLocations = {
         description: "In the member list",
         onEnable: () => addDecorator("platform-indicator", props =>
             <ErrorBoundary noop>
-                <PlatformIndicator user={props.user} small={true} />
+                <PlatformIndicators user={props.user} padding />
             </ErrorBoundary>
         ),
         onDisable: () => removeDecorator("platform-indicator")
@@ -155,7 +145,7 @@ const indicatorLocations = {
         description: "Inside messages",
         onEnable: () => addDecoration("platform-indicator", props =>
             <ErrorBoundary noop>
-                <PlatformIndicator user={props.message?.author} wantTopMargin={true} />
+                <PlatformIndicators user={props.message?.author} padding />
             </ErrorBoundary>
         ),
         onDisable: () => removeDecoration("platform-indicator")
@@ -165,7 +155,7 @@ const indicatorLocations = {
 export default definePlugin({
     name: "PlatformIndicators",
     description: "Adds platform indicators (Desktop, Mobile, Web...) to users",
-    authors: [Devs.kemo, Devs.TheSun, Devs.Nuckyz, Devs.Ven],
+    authors: [Devs.TheArmagan],
     dependencies: ["MessageDecorationsAPI", "MemberListDecoratorsAPI"],
 
     start() {

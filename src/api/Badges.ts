@@ -19,7 +19,6 @@
 import ErrorBoundary from "@components/ErrorBoundary";
 import { ComponentType, HTMLProps } from "react";
 
-import Plugins from "~plugins";
 
 export const enum BadgePosition {
     START,
@@ -71,6 +70,7 @@ export function removeBadge(badge: ProfileBadge) {
  */
 export function _getBadges(args: BadgeUserArgs) {
     const badges = [] as ProfileBadge[];
+
     for (const badge of Badges) {
         if (!badge.shouldShow || badge.shouldShow(args)) {
             badge.position === BadgePosition.START
@@ -78,8 +78,6 @@ export function _getBadges(args: BadgeUserArgs) {
                 : badges.push({ ...badge, ...args });
         }
     }
-    const donorBadges = (Plugins.BadgeAPI as unknown as typeof import("../plugins/_api/badges").default).getDonorBadges(args.userId);
-    if (donorBadges) badges.unshift(...donorBadges);
 
     return badges;
 }
