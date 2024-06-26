@@ -1,5 +1,5 @@
 /*
- * Vencord, a modification for Discord's desktop app
+ * Rivercord, a modification for Discord's desktop app
  * Copyright (c) 2022 Vendicated and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -98,7 +98,7 @@ function TypingIndicator({ channelId }: { channelId: string; }) {
         return (
             <Tooltip text={tooltipText!}>
                 {props => (
-                    <div className="vc-typing-indicator" {...props}>
+                    <div className="rc-typing-indicator" {...props}>
                         {((settings.store.indicatorMode & IndicatorMode.Avatars) === IndicatorMode.Avatars) && (
                             <UserSummaryItem
                                 users={typingUsersArray.map(id => UserStore.getUser(id))}
@@ -108,11 +108,11 @@ function TypingIndicator({ channelId }: { channelId: string; }) {
                                 showDefaultAvatarsForNullUsers
                                 showUserPopout
                                 size={16}
-                                className="vc-typing-indicator-avatars"
+                                className="rc-typing-indicator-avatars"
                             />
                         )}
                         {((settings.store.indicatorMode & IndicatorMode.Dots) === IndicatorMode.Dots) && (
-                            <div className="vc-typing-indicator-dots">
+                            <div className="rc-typing-indicator-dots">
                                 <ThreeDots dotRadius={3} themed={true} />
                             </div>
                         )}

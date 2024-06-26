@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * Rivercord, a Discord client mod
  * Copyright (c) 2024 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -125,7 +125,7 @@ export default definePlugin({
             find: ".FRIENDS},\"friends\"",
             replacement: {
                 match: /(?<=\i=\i=>{).{1,100}premiumTabSelected.{1,800}showDMHeader:.+?,/,
-                replace: "let forceUpdate = Vencord.Util.useForceUpdater();$&_forceUpdate:forceUpdate,"
+                replace: "let forceUpdate = Rivercord.Util.useForceUpdater();$&_forceUpdate:forceUpdate,"
             }
         },
 
@@ -257,7 +257,7 @@ export default definePlugin({
 
         return (
             <h2
-                className={classes(headerClasses.privateChannelsHeaderContainer, "vc-pindms-section-container", category.collapsed ? "vc-pindms-collapsed" : "")}
+                className={classes(headerClasses.privateChannelsHeaderContainer, "rc-pindms-section-container", category.collapsed ? "rc-pindms-collapsed" : "")}
                 style={{ color: `#${category.color.toString(16).padStart(6, "0")}` }}
                 onClick={async () => {
                     await collapseCategory(category.id, !category.collapsed);
@@ -266,13 +266,13 @@ export default definePlugin({
                 onContextMenu={e => {
                     ContextMenuApi.openContextMenu(e, () => (
                         <Menu.Menu
-                            navId="vc-pindms-header-menu"
+                            navId="rc-pindms-header-menu"
                             onClose={() => FluxDispatcher.dispatch({ type: "CONTEXT_MENU_CLOSE" })}
                             color="danger"
                             aria-label="Pin DMs Category Menu"
                         >
                             <Menu.MenuItem
-                                id="vc-pindms-edit-category"
+                                id="rc-pindms-edit-category"
                                 label="Edit Category"
                                 action={() => openCategoryModal(category.id, null)}
                             />
@@ -282,14 +282,14 @@ export default definePlugin({
                                     <>
                                         {
                                             canMoveCategoryInDirection(category.id, -1) && <Menu.MenuItem
-                                                id="vc-pindms-move-category-up"
+                                                id="rc-pindms-move-category-up"
                                                 label="Move Up"
                                                 action={() => moveCategory(category.id, -1).then(() => forceUpdate())}
                                             />
                                         }
                                         {
                                             canMoveCategoryInDirection(category.id, 1) && <Menu.MenuItem
-                                                id="vc-pindms-move-category-down"
+                                                id="rc-pindms-move-category-down"
                                                 label="Move Down"
                                                 action={() => moveCategory(category.id, 1).then(() => forceUpdate())}
                                             />
@@ -301,7 +301,7 @@ export default definePlugin({
 
                             <Menu.MenuSeparator />
                             <Menu.MenuItem
-                                id="vc-pindms-delete-category"
+                                id="rc-pindms-delete-category"
                                 color="danger"
                                 label="Delete Category"
                                 action={() => removeCategory(category.id).then(() => forceUpdate())}
@@ -315,7 +315,7 @@ export default definePlugin({
                 <span className={headerClasses.headerText}>
                     {category?.name ?? "uh oh"}
                 </span>
-                <svg className="vc-pindms-collapse-icon" aria-hidden="true" role="img" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                <svg className="rc-pindms-collapse-icon" aria-hidden="true" role="img" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                     <path fill="currentColor" d="M9.3 5.3a1 1 0 0 0 0 1.4l5.29 5.3-5.3 5.3a1 1 0 1 0 1.42 1.4l6-6a1 1 0 0 0 0-1.4l-6-6a1 1 0 0 0-1.42 0Z"></path>
                 </svg>
             </h2>

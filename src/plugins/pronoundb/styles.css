@@ -1,8 +1,8 @@
-.vc-pronoundb-compact {
+.rc-pronoundb-compact {
     display: none;
 }
 
-[class*="compact"] .vc-pronoundb-compact {
+[class*="compact"] .rc-pronoundb-compact {
     display: inline-block;
     margin-left: -2px;
     margin-right: 0.25rem;

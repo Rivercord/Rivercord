@@ -1,5 +1,5 @@
 /*
- * Vencord, a modification for Discord's desktop app
+ * Rivercord, a modification for Discord's desktop app
  * Copyright (c) 2022 Vendicated and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -30,7 +30,7 @@ function createStyle(id: string) {
 }
 
 async function initSystemValues() {
-    const values = await VencordNative.themes.getSystemValues();
+    const values = await RivercordNative.themes.getSystemValues();
     const variables = Object.entries(values)
         .filter(([, v]) => v !== "#")
         .map(([k, v]) => `--${k}: ${v};`)
@@ -43,12 +43,12 @@ export async function toggle(isEnabled: boolean) {
     if (!style) {
         if (isEnabled) {
             style = createStyle("vencord-custom-css");
-            VencordNative.quickCss.addChangeListener(css => {
+            RivercordNative.quickCss.addChangeListener(css => {
                 style.textContent = css;
                 // At the time of writing this, changing textContent resets the disabled state
                 style.disabled = !Settings.useQuickCss;
             });
-            style.textContent = await VencordNative.quickCss.get();
+            style.textContent = await RivercordNative.quickCss.get();
         }
     } else
         style.disabled = !isEnabled;
@@ -63,13 +63,13 @@ async function initThemes() {
 
     if (IS_WEB) {
         for (const theme of enabledThemes) {
-            const themeData = await VencordNative.themes.getThemeData(theme);
+            const themeData = await RivercordNative.themes.getThemeData(theme);
             if (!themeData) continue;
             const blob = new Blob([themeData], { type: "text/css" });
             links.push(URL.createObjectURL(blob));
         }
     } else {
-        const localThemes = enabledThemes.map(theme => `vencord:///themes/${theme}?v=${Date.now()}`);
+        const localThemes = enabledThemes.map(theme => `rivercord:///themes/${theme}?v=${Date.now()}`);
         links.push(...localThemes);
     }
 
@@ -87,5 +87,5 @@ document.addEventListener("DOMContentLoaded", () => {
     SettingsStore.addChangeListener("enabledThemes", initThemes);
 
     if (!IS_WEB)
-        VencordNative.quickCss.addThemeChangeListener(initThemes);
+        RivercordNative.quickCss.addThemeChangeListener(initThemes);
 });

@@ -1,5 +1,5 @@
 /*
- * Vencord, a modification for Discord's desktop app
+ * Rivercord, a modification for Discord's desktop app
  * Copyright (c) 2022 Vendicated and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -31,7 +31,7 @@ export default definePlugin({
             replace: (m, makeElement) => {
                 const msg = m.match(/message:(.{1,3}),/)?.[1];
                 if (!msg) throw new Error("Could not find message variable");
-                return `...Vencord.Api.MessagePopover._buildPopoverElements(${msg},${makeElement}),${m}`;
+                return `...Rivercord.Api.MessagePopover._buildPopoverElements(${msg},${makeElement}),${m}`;
             }
         }
     }],

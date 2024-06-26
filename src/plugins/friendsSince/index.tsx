@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * Rivercord, a Discord client mod
  * Copyright (c) 2024 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -19,7 +19,7 @@ const getCreatedAtDate = findByCodeLazy('month:"short",day:"numeric"');
 const locale = findByPropsLazy("getLocale");
 const lastSection = findByPropsLazy("lastSection");
 
-const cl = classNameFactory("vc-friendssince-");
+const cl = classNameFactory("rc-friendssince-");
 
 export default definePlugin({
     name: "FriendsSince",

@@ -1,5 +1,5 @@
 /*
- * Vencord, a modification for Discord's desktop app
+ * Rivercord, a modification for Discord's desktop app
  * Copyright (c) 2023 Vendicated and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -25,7 +25,7 @@ import type { ReactNode } from "react";
 import { PermissionsSortOrder, settings } from ".";
 import { PermissionType } from "./components/RolesAndUsersPermissions";
 
-export const cl = classNameFactory("vc-permviewer-");
+export const cl = classNameFactory("rc-permviewer-");
 
 function formatPermissionWithoutMatchingString(permission: string) {
     return wordsToTitle(permission.toLowerCase().split("_"));

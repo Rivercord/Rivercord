@@ -1,5 +1,5 @@
 /*
- * Vencord, a modification for Discord's desktop app
+ * Rivercord, a modification for Discord's desktop app
  * Copyright (c) 2022 Vendicated and Megumin
  *
  * This program is free software: you can redistribute it and/or modify
@@ -17,13 +17,13 @@
 */
 
 import { Settings } from "@api/Settings";
-import BackupAndRestoreTab from "@components/VencordSettings/BackupAndRestoreTab";
-import CloudTab from "@components/VencordSettings/CloudTab";
-import PatchHelperTab from "@components/VencordSettings/PatchHelperTab";
-import PluginsTab from "@components/VencordSettings/PluginsTab";
-import ThemesTab from "@components/VencordSettings/ThemesTab";
-import UpdaterTab from "@components/VencordSettings/UpdaterTab";
-import VencordTab from "@components/VencordSettings/VencordTab";
+import BackupAndRestoreTab from "@components/RivercordSettings/BackupAndRestoreTab";
+import CloudTab from "@components/RivercordSettings/CloudTab";
+import PatchHelperTab from "@components/RivercordSettings/PatchHelperTab";
+import PluginsTab from "@components/RivercordSettings/PluginsTab";
+import RivercordTab from "@components/RivercordSettings/RivercordTab";
+import ThemesTab from "@components/RivercordSettings/ThemesTab";
+import UpdaterTab from "@components/RivercordSettings/UpdaterTab";
 import { Devs } from "@utils/constants";
 import definePlugin, { OptionType } from "@utils/types";
 import { i18n, React } from "@webpack/common";
@@ -84,50 +84,50 @@ export default definePlugin({
         return [
             {
                 section: SectionTypes.HEADER,
-                label: "Vencord",
-                className: "vc-settings-header"
+                label: "Rivercord",
+                className: "rc-settings-header"
             },
             {
-                section: "VencordSettings",
-                label: "Vencord",
-                element: VencordTab,
-                className: "vc-settings"
+                section: "RivercordSettings",
+                label: "Rivercord",
+                element: RivercordTab,
+                className: "rc-settings"
             },
             {
-                section: "VencordPlugins",
+                section: "RivercordPlugins",
                 label: "Plugins",
                 element: PluginsTab,
-                className: "vc-plugins"
+                className: "rc-plugins"
             },
             {
-                section: "VencordThemes",
+                section: "RivercordThemes",
                 label: "Themes",
                 element: ThemesTab,
-                className: "vc-themes"
+                className: "rc-themes"
             },
             !IS_UPDATER_DISABLED && {
-                section: "VencordUpdater",
+                section: "RivercordUpdater",
                 label: "Updater",
                 element: UpdaterTab,
-                className: "vc-updater"
+                className: "rc-updater"
             },
             {
-                section: "VencordCloud",
+                section: "RivercordCloud",
                 label: "Cloud",
                 element: CloudTab,
-                className: "vc-cloud"
+                className: "rc-cloud"
             },
             {
-                section: "VencordSettingsSync",
+                section: "RivercordSettingsSync",
                 label: "Backup & Restore",
                 element: BackupAndRestoreTab,
-                className: "vc-backup-restore"
+                className: "rc-backup-restore"
             },
             IS_DEV && {
-                section: "VencordPatchHelper",
+                section: "RivercordPatchHelper",
                 label: "Patch Helper",
                 element: PatchHelperTab,
-                className: "vc-patch-helper"
+                className: "rc-patch-helper"
             },
             ...this.customSections.map(func => func(SectionTypes)),
             {
@@ -184,7 +184,7 @@ export default definePlugin({
     options: {
         settingsLocation: {
             type: OptionType.SELECT,
-            description: "Where to put the Vencord settings section",
+            description: "Where to put the Rivercord settings section",
             options: [
                 { label: "At the very top", value: "top" },
                 { label: "Above the Nitro section", value: "aboveNitro", default: true },
@@ -197,12 +197,12 @@ export default definePlugin({
     },
 
     get electronVersion() {
-        return VencordNative.native.getVersions().electron || window.armcord?.electron || null;
+        return RivercordNative.native.getVersions().electron || window.armcord?.electron || null;
     },
 
     get chromiumVersion() {
         try {
-            return VencordNative.native.getVersions().chrome
+            return RivercordNative.native.getVersions().chrome
                 // @ts-ignore Typescript will add userAgentData IMMEDIATELY
                 || navigator.userAgentData?.brands?.find(b => b.brand === "Chromium" || b.brand === "Google Chrome")?.version
                 || null;
@@ -222,7 +222,7 @@ export default definePlugin({
     getInfoRows() {
         const { electronVersion, chromiumVersion, additionalInfo } = this;
 
-        const rows = [`Vencord ${gitHash}${additionalInfo}`];
+        const rows = [`Rivercord ${gitHash}${additionalInfo}`];
 
         if (electronVersion) rows.push(`Electron ${electronVersion}`);
         if (chromiumVersion) rows.push(`Chromium ${chromiumVersion}`);

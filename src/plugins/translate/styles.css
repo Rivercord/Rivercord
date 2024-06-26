@@ -1,41 +1,41 @@
-.vc-trans-modal-content {
+.rc-trans-modal-content {
     padding: 1em;
 }
 
-.vc-trans-modal-header {
+.rc-trans-modal-header {
     justify-content: space-between;
     align-content: center;
 }
 
-.vc-trans-modal-header h1 {
+.rc-trans-modal-header h1 {
     margin: 0;
 }
 
-.vc-trans-accessory {
+.rc-trans-accessory {
     color: var(--text-muted);
     margin-top: 0.5em;
     font-style: italic;
     font-weight: 400;
 }
 
-.vc-trans-accessory svg {
+.rc-trans-accessory svg {
     margin-right: 0.25em;
 }
 
-.vc-trans-dismiss {
+.rc-trans-dismiss {
     all: unset;
     cursor: pointer;
     color: var(--text-link);
 }
 
-.vc-trans-dismiss:is(:hover, :focus) {
+.rc-trans-dismiss:is(:hover, :focus) {
     text-decoration: underline;
 }
 
-.vc-trans-auto-translate {
+.rc-trans-auto-translate {
     color: var(--green-360);
 }
 
-.vc-trans-chat-button {
+.rc-trans-chat-button {
     scale: 1.085;
 }

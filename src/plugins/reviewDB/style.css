@@ -1,13 +1,13 @@
-[class|="section"]:not([class|="lastSection"]) + .vc-rdb-view {
+[class|="section"]:not([class|="lastSection"]) + .rc-rdb-view {
     margin-top: 12px;
 }
 
-.vc-rdb-badge {
+.rc-rdb-badge {
     vertical-align: middle;
     margin-left: 4px;
 }
 
-.vc-rdb-input {
+.rc-rdb-input {
     margin-top: 6px;
     margin-bottom: 12px;
     resize: none;
@@ -16,64 +16,64 @@
     border: 1px solid var(--profile-message-input-border-color);
 }
 
-.vc-rdb-modal-footer > div {
+.rc-rdb-modal-footer > div {
     width: 100%;
     margin: 6px 16px;
 }
 
 /* When input becomes disabled(while sending review), input adds unneccesary padding to left, this prevents it */
-.vc-rdb-input > div > div {
+.rc-rdb-input > div > div {
     padding-left: 0 !important;
 }
 
-.vc-rdb-placeholder {
+.rc-rdb-placeholder {
     margin-bottom: 4px;
     font-weight: bold;
     font-style: italic;
     color: var(--text-muted);
 }
 
-.vc-rdb-input * {
+.rc-rdb-input * {
     font-size: 14px;
 }
 
-.vc-rdb-modal-footer {
+.rc-rdb-modal-footer {
     padding: 0;
 }
 
-.vc-rdb-modal-footer .vc-rdb-input {
+.rc-rdb-modal-footer .rc-rdb-input {
     margin-bottom: 0;
     background: var(--input-background);
 }
 
-.vc-rdb-modal-footer [class|="pageControlContainer"] {
+.rc-rdb-modal-footer [class|="pageControlContainer"] {
     margin-top: 0;
 }
 
-.vc-rdb-modal-header {
+.rc-rdb-modal-header {
     flex-grow: 1;
 }
 
-.vc-rdb-modal-reviews {
+.rc-rdb-modal-reviews {
     margin-top: 16px;
 }
 
-.vc-rdb-review {
+.rc-rdb-review {
     padding-top: 8px !important;
     padding-bottom: 8px !important;
     padding-right: 32px !important;
 }
 
-.vc-rdb-review:hover {
+.rc-rdb-review:hover {
     background: var(--background-message-hover) !important;
     border-radius: 8px;
 }
 
-.vc-rdb-review-comment img {
+.rc-rdb-review-comment img {
     vertical-align: text-top;
 }
 
-.vc-rdb-review-comment {
+.rc-rdb-review-comment {
     overflow-y: hidden;
     margin-top: 1px;
     margin-bottom: 8px;
@@ -81,23 +81,23 @@
     font-size: 15px;
 }
 
-.vc-rdb-blocked-badge {
+.rc-rdb-blocked-badge {
     cursor: pointer;
 }
 
-.vc-rdb-block-modal-header {
+.rc-rdb-block-modal-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.vc-rdb-block-modal {
+.rc-rdb-block-modal {
     padding: 1em;
     display: grid;
     gap: 0.75em;
 }
 
-.vc-rdb-button-grid {
+.rc-rdb-button-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 10px;
@@ -105,25 +105,25 @@
 
 /* stylelint-disable-next-line media-feature-range-notation */
 @media (max-width: 600px) {
-    .vc-rdb-button-grid {
+    .rc-rdb-button-grid {
         grid-template-columns: 1fr;
     }
 }
 
-.vc-rdb-block-modal-row {
+.rc-rdb-block-modal-row {
     display: flex;
     height: 2em;
     gap: 0.5em;
     align-items: center;
 }
 
-.vc-rdb-block-modal-row img {
+.rc-rdb-block-modal-row img {
     border-radius: 50%;
     height: 2em;
     width: 2em;
 }
 
-.vc-rdb-block-modal img::before {
+.rc-rdb-block-modal img::before {
     content: "";
     display: block;
     width: 100%;
@@ -131,10 +131,10 @@
     background-color: var(--background-modifier-accent);
 }
 
-.vc-rdb-block-modal-username {
+.rc-rdb-block-modal-username {
     flex-grow: 1;
 }
 
-.vc-rdb-block-modal-unblock {
+.rc-rdb-block-modal-unblock {
     cursor: pointer;
 }

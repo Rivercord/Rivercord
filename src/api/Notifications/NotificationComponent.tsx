@@ -1,5 +1,5 @@
 /*
- * Vencord, a modification for Discord's desktop app
+ * Rivercord, a modification for Discord's desktop app
  * Copyright (c) 2023 Vendicated and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -64,7 +64,7 @@ export default ErrorBoundary.wrap(function NotificationComponent({
 
     return (
         <button
-            className={classes("vc-notification-root", className)}
+            className={classes("rc-notification-root", className)}
             style={position === "bottom-right" ? { bottom: "1rem" } : { top: "3rem" }}
             onClick={() => {
                 onClick?.();
@@ -79,13 +79,13 @@ export default ErrorBoundary.wrap(function NotificationComponent({
             onMouseEnter={() => setIsHover(true)}
             onMouseLeave={() => setIsHover(false)}
         >
-            <div className="vc-notification">
-                {icon && <img className="vc-notification-icon" src={icon} alt="" />}
-                <div className="vc-notification-content">
-                    <div className="vc-notification-header">
-                        <h2 className="vc-notification-title">{title}</h2>
+            <div className="rc-notification">
+                {icon && <img className="rc-notification-icon" src={icon} alt="" />}
+                <div className="rc-notification-content">
+                    <div className="rc-notification-header">
+                        <h2 className="rc-notification-title">{title}</h2>
                         <button
-                            className="vc-notification-close-btn"
+                            className="rc-notification-close-btn"
                             onClick={e => {
                                 e.preventDefault();
                                 e.stopPropagation();
@@ -97,22 +97,22 @@ export default ErrorBoundary.wrap(function NotificationComponent({
                                 height="24"
                                 viewBox="0 0 24 24"
                                 role="img"
-                                aria-labelledby="vc-notification-dismiss-title"
+                                aria-labelledby="rc-notification-dismiss-title"
                             >
-                                <title id="vc-notification-dismiss-title">Dismiss Notification</title>
+                                <title id="rc-notification-dismiss-title">Dismiss Notification</title>
                                 <path fill="currentColor" d="M18.4 4L12 10.4L5.6 4L4 5.6L10.4 12L4 18.4L5.6 20L12 13.6L18.4 20L20 18.4L13.6 12L20 5.6L18.4 4Z" />
                             </svg>
                         </button>
                     </div>
                     <div>
-                        {richBody ?? <p className="vc-notification-p">{body}</p>}
+                        {richBody ?? <p className="rc-notification-p">{body}</p>}
                     </div>
                 </div>
             </div>
-            {image && <img className="vc-notification-img" src={image} alt="" />}
+            {image && <img className="rc-notification-img" src={image} alt="" />}
             {timeout !== 0 && !permanent && (
                 <div
-                    className="vc-notification-progressbar"
+                    className="rc-notification-progressbar"
                     style={{ width: `${(1 - timeoutProgress) * 100}%`, backgroundColor: color || "var(--brand-500)" }}
                 />
             )}

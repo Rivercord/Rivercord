@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * Rivercord, a Discord client mod
  * Copyright (c) 2024 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -26,7 +26,7 @@ export default definePlugin({
     renderDownload(src: string) {
         return (
             <a
-                className="vc-voice-download"
+                className="rc-voice-download"
                 href={src}
                 onClick={e => e.stopPropagation()}
                 aria-label="Download voice message"

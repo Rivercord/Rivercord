@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * Rivercord, a Discord client mod
  * Copyright (c) 2024 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -16,7 +16,7 @@ export default definePlugin({
         find: '"sticker")',
         replacement: {
             match: /return\(!\i\.\i&&(?=\(\i\.isDM.+?(\i)\.push\(.{0,50}"gift")/,
-            replace: "$&(Vencord.Api.ChatButtons._injectButtons($1,arguments[0]),true)&&"
+            replace: "$&(Rivercord.Api.ChatButtons._injectButtons($1,arguments[0]),true)&&"
         }
     }]
 });

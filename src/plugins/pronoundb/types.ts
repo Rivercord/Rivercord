@@ -1,5 +1,5 @@
 /*
- * Vencord, a modification for Discord's desktop app
+ * Rivercord, a modification for Discord's desktop app
  * Copyright (c) 2022 Vendicated and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -29,14 +29,14 @@ export interface PronounsResponse {
     [id: string]: {
         sets?: {
             [locale: string]: PronounCode[];
-        }
-    }
+        };
+    };
 }
 
 export interface CachePronouns {
     sets?: {
         [locale: string]: PronounCode[];
-    }
+    };
 }
 
 export type PronounCode = keyof typeof PronounMapping;

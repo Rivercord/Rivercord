@@ -1,6 +1,6 @@
 #!/usr/bin/node
 /*
- * Vencord, a modification for Discord's desktop app
+ * Rivercord, a modification for Discord's desktop app
  * Copyright (c) 2022 Vendicated and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -30,8 +30,8 @@ import { BUILD_TIMESTAMP, commonOpts, globPlugins, IS_DEV, IS_REPORTER, VERSION 
  */
 const commonOptions = {
     ...commonOpts,
-    entryPoints: ["browser/Vencord.ts"],
-    globalName: "Vencord",
+    entryPoints: ["browser/Rivercord.ts"],
+    globalName: "Rivercord",
     format: "iife",
     external: ["~plugins", "~git-hash", "/assets/*"],
     plugins: [
@@ -88,7 +88,7 @@ await Promise.all(
         esbuild.build({
             ...commonOptions,
             outfile: "dist/browser.js",
-            footer: { js: "//# sourceURL=VencordWeb" }
+            footer: { js: "//# sourceURL=RivercordWeb" }
         }),
         esbuild.build({
             ...commonOptions,
@@ -97,7 +97,7 @@ await Promise.all(
                 ...commonOptions?.define,
                 IS_EXTENSION: true,
             },
-            footer: { js: "//# sourceURL=VencordWeb" }
+            footer: { js: "//# sourceURL=RivercordWeb" }
         }),
         esbuild.build({
             ...commonOptions,
@@ -106,13 +106,13 @@ await Promise.all(
                 ...(commonOptions?.define),
                 window: "unsafeWindow",
             },
-            outfile: "dist/Vencord.user.js",
+            outfile: "dist/Rivercord.user.js",
             banner: {
                 js: readFileSync("browser/userscript.meta.js", "utf-8").replace("%version%", `${VERSION}.${new Date().getTime()}`)
             },
             footer: {
-                // UserScripts get wrapped in an iife, so define Vencord prop on window that returns our local
-                js: "Object.defineProperty(unsafeWindow,'Vencord',{get:()=>Vencord});"
+                // UserScripts get wrapped in an iife, so define Rivercord prop on window that returns our local
+                js: "Object.defineProperty(unsafeWindow,'Rivercord',{get:()=>Rivercord});"
             }
         })
     ]
@@ -148,8 +148,8 @@ async function loadDir(dir, basePath = "") {
  */
 async function buildExtension(target, files) {
     const entries = {
-        "dist/Vencord.js": await readFile("dist/extension.js"),
-        "dist/Vencord.css": await readFile("dist/extension.css"),
+        "dist/Rivercord.js": await readFile("dist/extension.js"),
+        "dist/Rivercord.css": await readFile("dist/extension.css"),
         ...await loadDir("dist/monaco"),
         ...Object.fromEntries(await Promise.all(RnNoiseFiles.map(async file =>
             [`third-party/rnnoise/${file.replace(/^dist\//, "")}`, await readFile(`node_modules/@sapphi-red/web-noise-suppressor/${file}`)]
@@ -180,7 +180,7 @@ async function buildExtension(target, files) {
     console.info("Unpacked Extension written to dist/" + target);
 }
 
-const appendCssRuntime = readFile("dist/Vencord.user.css", "utf-8").then(content => {
+const appendCssRuntime = readFile("dist/Rivercord.user.css", "utf-8").then(content => {
     const cssRuntime = `
 ;document.addEventListener("DOMContentLoaded", () => document.documentElement.appendChild(
     Object.assign(document.createElement("style"), {
@@ -190,7 +190,7 @@ const appendCssRuntime = readFile("dist/Vencord.user.css", "utf-8").then(content
 ), { once: true });
 `;
 
-    return appendFile("dist/Vencord.user.js", cssRuntime);
+    return appendFile("dist/Rivercord.user.js", cssRuntime);
 });
 
 if (!process.argv.includes("--skip-extension")) {

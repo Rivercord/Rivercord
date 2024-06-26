@@ -7,7 +7,7 @@ on:
 
 jobs:
     TestPlugins:
-        if: github.repository == 'Vendicated/Vencord'
+        if: github.repository == 'Rivercord/Rivercord'
         runs-on: ubuntu-latest
 
         steps:
@@ -37,7 +37,7 @@ jobs:
               with:
                   chrome-version: stable
 
-            - name: Build Vencord Reporter Version
+            - name: Build Rivercord Reporter Version
               run: pnpm buildReporter
 
             - name: Create Report

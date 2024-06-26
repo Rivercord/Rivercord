@@ -1,8 +1,8 @@
-.vc-dearrow-toggle-off svg {
+.rc-dearrow-toggle-off svg {
     filter: grayscale(1);
 }
 
-.vc-dearrow-toggle-on, .vc-dearrow-toggle-off {
+.rc-dearrow-toggle-on, .rc-dearrow-toggle-off {
     all: unset;
     display: inline;
     cursor: pointer;

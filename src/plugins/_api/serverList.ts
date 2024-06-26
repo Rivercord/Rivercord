@@ -1,5 +1,5 @@
 /*
- * Vencord, a modification for Discord's desktop app
+ * Rivercord, a modification for Discord's desktop app
  * Copyright (c) 2022 Vendicated and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -28,14 +28,14 @@ export default definePlugin({
             find: "Messages.DISCODO_DISABLED",
             replacement: {
                 match: /(?<=Messages\.DISCODO_DISABLED.+?return)(\(.{0,75}?tutorialContainer.+?}\))(?=}function)/,
-                replace: "[$1].concat(Vencord.Api.ServerList.renderAll(Vencord.Api.ServerList.ServerListRenderPosition.Above))"
+                replace: "[$1].concat(Rivercord.Api.ServerList.renderAll(Rivercord.Api.ServerList.ServerListRenderPosition.Above))"
             }
         },
         {
             find: "Messages.SERVERS,children",
             replacement: {
                 match: /(?<=Messages\.SERVERS,children:).+?default:return null\}\}\)/,
-                replace: "Vencord.Api.ServerList.renderAll(Vencord.Api.ServerList.ServerListRenderPosition.In).concat($&)"
+                replace: "Rivercord.Api.ServerList.renderAll(Rivercord.Api.ServerList.ServerListRenderPosition.In).concat($&)"
             }
         }
     ]

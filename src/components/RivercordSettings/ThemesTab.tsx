@@ -1,5 +1,5 @@
 /*
- * Vencord, a modification for Discord's desktop app
+ * Rivercord, a modification for Discord's desktop app
  * Copyright (c) 2022 Vendicated and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -47,7 +47,7 @@ const InviteActions = findByPropsLazy("resolveInvite");
 const FileInput: FileInput = findLazy(m => m.prototype?.activateUploadDialogue && m.prototype.setRef);
 const TextAreaProps = findLazy(m => typeof m.textarea === "string");
 
-const cl = classNameFactory("vc-settings-theme-");
+const cl = classNameFactory("rc-settings-theme-");
 
 function Validator({ link }: { link: string; }) {
     const [res, err, pending] = useAwaiter(() => fetch(link).then(res => {
@@ -152,14 +152,14 @@ function ThemesTab() {
     const [currentTab, setCurrentTab] = useState(ThemeTab.LOCAL);
     const [themeText, setThemeText] = useState(settings.themeLinks.join("\n"));
     const [userThemes, setUserThemes] = useState<UserThemeHeader[] | null>(null);
-    const [themeDir, , themeDirPending] = useAwaiter(VencordNative.themes.getThemesDir);
+    const [themeDir, , themeDirPending] = useAwaiter(RivercordNative.themes.getThemesDir);
 
     useEffect(() => {
         refreshLocalThemes();
     }, []);
 
     async function refreshLocalThemes() {
-        const themes = await VencordNative.themes.getThemesList();
+        const themes = await RivercordNative.themes.getThemesList();
         setUserThemes(themes);
     }
 
@@ -186,7 +186,7 @@ function ThemesTab() {
             return new Promise<void>((resolve, reject) => {
                 const reader = new FileReader();
                 reader.onload = () => {
-                    VencordNative.themes.uploadTheme(name, reader.result as string)
+                    RivercordNative.themes.uploadTheme(name, reader.result as string)
                         .then(resolve)
                         .catch(reject);
                 };
@@ -201,7 +201,7 @@ function ThemesTab() {
     function renderLocalThemes() {
         return (
             <>
-                <Card className="vc-settings-card">
+                <Card className="rc-settings-card">
                     <Forms.FormTitle tag="h5">Find Themes:</Forms.FormTitle>
                     <div style={{ marginBottom: ".5em", display: "flex", flexDirection: "column" }}>
                         <Link style={{ marginRight: ".5em" }} href="https://betterdiscord.app/themes">
@@ -213,7 +213,7 @@ function ThemesTab() {
                 </Card>
 
                 <Forms.FormSection title="Local Themes">
-                    <Card className="vc-settings-quick-actions-card">
+                    <Card className="rc-settings-quick-actions-card">
                         <>
                             {IS_WEB ?
                                 (
@@ -245,18 +245,18 @@ function ThemesTab() {
                                 Load missing Themes
                             </Button>
                             <Button
-                                onClick={() => VencordNative.quickCss.openEditor()}
+                                onClick={() => RivercordNative.quickCss.openEditor()}
                                 size={Button.Sizes.SMALL}
                             >
                                 Edit QuickCSS
                             </Button>
 
-                            {Vencord.Settings.plugins.ClientTheme.enabled && (
+                            {Rivercord.Settings.plugins.ClientTheme.enabled && (
                                 <Button
                                     onClick={() => openModal(modalProps => (
                                         <PluginModal
                                             {...modalProps}
-                                            plugin={Vencord.Plugins.plugins.ClientTheme}
+                                            plugin={Rivercord.Plugins.plugins.ClientTheme}
                                             onRestartNeeded={() => { }}
                                         />
                                     ))}
@@ -276,7 +276,7 @@ function ThemesTab() {
                                 onChange={enabled => onLocalThemeChange(theme.fileName, enabled)}
                                 onDelete={async () => {
                                     onLocalThemeChange(theme.fileName, false);
-                                    await VencordNative.themes.deleteTheme(theme.fileName);
+                                    await RivercordNative.themes.deleteTheme(theme.fileName);
                                     refreshLocalThemes();
                                 }}
                                 theme={theme}
@@ -302,7 +302,7 @@ function ThemesTab() {
     function renderOnlineThemes() {
         return (
             <>
-                <Card className="vc-settings-card vc-text-selectable">
+                <Card className="rc-settings-card rc-text-selectable">
                     <Forms.FormTitle tag="h5">Paste links to css files here</Forms.FormTitle>
                     <Forms.FormText>One link per line</Forms.FormText>
                     <Forms.FormText>Make sure to use direct links to files (raw or github.io)!</Forms.FormText>
@@ -312,7 +312,7 @@ function ThemesTab() {
                     <TextArea
                         value={themeText}
                         onChange={setThemeText}
-                        className={classes(TextAreaProps.textarea, "vc-settings-theme-links")}
+                        className={classes(TextAreaProps.textarea, "rc-settings-theme-links")}
                         placeholder="Theme Links"
                         spellCheck={false}
                         onBlur={onBlur}
@@ -329,18 +329,18 @@ function ThemesTab() {
             <TabBar
                 type="top"
                 look="brand"
-                className="vc-settings-tab-bar"
+                className="rc-settings-tab-bar"
                 selectedItem={currentTab}
                 onItemSelect={setCurrentTab}
             >
                 <TabBar.Item
-                    className="vc-settings-tab-bar-item"
+                    className="rc-settings-tab-bar-item"
                     id={ThemeTab.LOCAL}
                 >
                     Local Themes
                 </TabBar.Item>
                 <TabBar.Item
-                    className="vc-settings-tab-bar-item"
+                    className="rc-settings-tab-bar-item"
                     id={ThemeTab.ONLINE}
                 >
                     Online Themes

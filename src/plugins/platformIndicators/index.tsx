@@ -1,5 +1,5 @@
 /*
- * Vencord, a modification for Discord's desktop app
+ * Rivercord, a modification for Discord's desktop app
  * Copyright (c) 2022 Vendicated and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -110,7 +110,7 @@ const PlatformIndicator = ({ user, wantMargin = true, wantTopMargin = false, sma
 
     return (
         <span
-            className="vc-platform-indicator"
+            className="rc-platform-indicator"
             style={{
                 display: "inline-flex",
                 justifyContent: "center",

@@ -1,5 +1,5 @@
 /*
- * Vencord, a modification for Discord's desktop app
+ * Rivercord, a modification for Discord's desktop app
  * Copyright (c) 2023 Vendicated and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -80,7 +80,7 @@ function SettingsSyncSection() {
             >
                 Settings Sync
             </Switch>
-            <div className="vc-cloud-settings-sync-grid">
+            <div className="rc-cloud-settings-sync-grid">
                 <Button
                     size={Button.Sizes.SMALL}
                     disabled={!sectionEnabled}
@@ -113,12 +113,12 @@ function CloudTab() {
     const settings = useSettings(["cloud.authenticated", "cloud.url"]);
 
     return (
-        <SettingsTab title="Vencord Cloud">
+        <SettingsTab title="Rivercord Cloud">
             <Forms.FormSection title="Cloud Settings" className={Margins.top16}>
                 <Forms.FormText variant="text-md/normal" className={Margins.bottom20}>
-                    Vencord comes with a cloud integration that adds goodies like settings sync across devices.
+                    Rivercord comes with a cloud integration that adds goodies like settings sync across devices.
                     It <Link href="https://vencord.dev/cloud/privacy">respects your privacy</Link>, and
-                    the <Link href="https://github.com/Vencord/Backend">source code</Link> is AGPL 3.0 licensed so you
+                    the <Link href="https://github.com/Rivercord/Backend">source code</Link> is AGPL 3.0 licensed so you
                     can host it yourself.
                 </Forms.FormText>
                 <Switch
@@ -149,7 +149,7 @@ function CloudTab() {
                         body: "Once your data is erased, we cannot recover it. There's no going back!",
                         onConfirm: eraseAllData,
                         confirmText: "Erase it!",
-                        confirmColor: "vc-cloud-erase-data-danger-btn",
+                        confirmColor: "rc-cloud-erase-data-danger-btn",
                         cancelText: "Nevermind"
                     })}
                 >Erase All Data</Button>

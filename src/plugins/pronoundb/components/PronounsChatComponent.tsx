@@ -1,5 +1,5 @@
 /*
- * Vencord, a modification for Discord's desktop app
+ * Rivercord, a modification for Discord's desktop app
  * Copyright (c) 2022 Vendicated and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -70,7 +70,7 @@ export const CompactPronounsChatComponent = ErrorBoundary.wrap(({ message }: { m
     return result
         ? (
             <span
-                className={classes(styles.timestampInline, styles.timestamp, "vc-pronoundb-compact")}
+                className={classes(styles.timestampInline, styles.timestamp, "rc-pronoundb-compact")}
             >• {result}</span>
         )
         : null;

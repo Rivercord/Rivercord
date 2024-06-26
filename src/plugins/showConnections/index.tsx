@@ -1,5 +1,5 @@
 /*
- * Vencord, a modification for Discord's desktop app
+ * Rivercord, a modification for Discord's desktop app
  * Copyright (c) 2023 Vendicated and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -152,8 +152,8 @@ function CompactConnectionComponent({ connection, theme }: { connection: Connect
     return (
         <Tooltip
             text={
-                <span className="vc-sc-tooltip">
-                    <span className="vc-sc-connection-name">{connection.name}</span>
+                <span className="rc-sc-tooltip">
+                    <span className="rc-sc-connection-name">{connection.name}</span>
                     {connection.verified && <VerifiedIcon />}
                     <TooltipIcon height={16} width={16} />
                 </span>
@@ -164,12 +164,12 @@ function CompactConnectionComponent({ connection, theme }: { connection: Connect
                 url
                     ? <a
                         {...tooltipProps}
-                        className="vc-user-connection"
+                        className="rc-user-connection"
                         href={url}
                         target="_blank"
                         onClick={e => {
-                            if (Vencord.Plugins.isPluginEnabled("OpenInApp")) {
-                                const OpenInApp = Vencord.Plugins.plugins.OpenInApp as any as typeof import("../openInApp").default;
+                            if (Rivercord.Plugins.isPluginEnabled("OpenInApp")) {
+                                const OpenInApp = Rivercord.Plugins.plugins.OpenInApp as any as typeof import("../openInApp").default;
                                 // handleLink will .preventDefault() if applicable
                                 OpenInApp.handleLink(e.currentTarget, e);
                             }
@@ -179,7 +179,7 @@ function CompactConnectionComponent({ connection, theme }: { connection: Connect
                     </a>
                     : <button
                         {...tooltipProps}
-                        className="vc-user-connection"
+                        className="rc-user-connection"
                         onClick={() => copyWithToast(connection.name)}
                     >
                         {img}

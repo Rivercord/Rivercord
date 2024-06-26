@@ -1,5 +1,5 @@
 /*
- * Vencord, a modification for Discord's desktop app
+ * Rivercord, a modification for Discord's desktop app
  * Copyright (c) 2022 Vendicated and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -48,7 +48,7 @@ import {
 import { openContributorModal } from "./ContributorModal";
 import { GithubButton, WebsiteButton } from "./LinkIconButton";
 
-const cl = classNameFactory("vc-plugin-modal-");
+const cl = classNameFactory("rc-plugin-modal-");
 
 const UserSummaryItem = findComponentByCodeLazy("defaultRenderUser", "showDefaultAvatarsForNullUsers");
 const AvatarStyles = findByPropsLazy("moreUsers", "emptyUser", "avatarContainer", "clickableAvatar");
@@ -209,7 +209,7 @@ export default function PluginModal({ plugin, onRestartNeeded, onClose, transiti
     const pluginMeta = PluginMeta[plugin.name];
 
     return (
-        <ModalRoot transitionState={transitionState} size={ModalSize.MEDIUM} className="vc-text-selectable">
+        <ModalRoot transitionState={transitionState} size={ModalSize.MEDIUM} className="rc-text-selectable">
             <ModalHeader separator={false}>
                 <Text variant="heading-lg/semibold" style={{ flexGrow: 1 }}>{plugin.name}</Text>
 
@@ -225,7 +225,7 @@ export default function PluginModal({ plugin, onRestartNeeded, onClose, transiti
                     <Flex className={cl("info")}>
                         <Forms.FormText className={cl("description")}>{plugin.description}</Forms.FormText>
                         {!pluginMeta.userPlugin && (
-                            <div className="vc-settings-modal-links">
+                            <div className="rc-settings-modal-links">
                                 <WebsiteButton
                                     text="View more info"
                                     href={`https://vencord.dev/plugins/${plugin.name}`}
@@ -265,7 +265,7 @@ export default function PluginModal({ plugin, onRestartNeeded, onClose, transiti
                     </div>
                 </Forms.FormSection>
                 {!!plugin.settingsAboutComponent && (
-                    <div className={classes(Margins.bottom8, "vc-text-selectable")}>
+                    <div className={classes(Margins.bottom8, "rc-text-selectable")}>
                         <Forms.FormSection>
                             <ErrorBoundary message="An error occurred while rendering this plugin's custom InfoComponent">
                                 <plugin.settingsAboutComponent tempSettings={tempSettings} />

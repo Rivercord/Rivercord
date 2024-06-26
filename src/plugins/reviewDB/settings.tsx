@@ -1,5 +1,5 @@
 /*
- * Vencord, a modification for Discord's desktop app
+ * Rivercord, a modification for Discord's desktop app
  * Copyright (c) 2023 Vendicated and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -64,7 +64,7 @@ export const settings = definePluginSettings({
                 <Button
                     color={Button.Colors.GREEN}
                     onClick={() => {
-                        VencordNative.native.openExternal("https://github.com/sponsors/mantikafasi");
+                        RivercordNative.native.openExternal("https://github.com/sponsors/mantikafasi");
                     }}
                 >
                     Support ReviewDB development
@@ -76,14 +76,14 @@ export const settings = definePluginSettings({
                     if (token)
                         url += "/api/redirect?token=" + encodeURIComponent(token);
 
-                    VencordNative.native.openExternal(url);
+                    RivercordNative.native.openExternal(url);
                 }}>
                     ReviewDB website
                 </Button>
 
 
                 <Button onClick={() => {
-                    VencordNative.native.openExternal("https://discord.gg/eWPBSbvznt");
+                    RivercordNative.native.openExternal("https://discord.gg/eWPBSbvznt");
                 }}>
                     ReviewDB Support Server
                 </Button>

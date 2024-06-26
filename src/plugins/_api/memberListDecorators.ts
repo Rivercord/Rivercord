@@ -1,5 +1,5 @@
 /*
- * Vencord, a modification for Discord's desktop app
+ * Rivercord, a modification for Discord's desktop app
  * Copyright (c) 2022 Vendicated and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -32,7 +32,7 @@ export default definePlugin({
                     replace: "$&vencordProps=$1,"
                 }, {
                     match: /\.Messages\.GUILD_OWNER(?=.+?decorators:(\i)\(\)).+?\1=?\(\)=>.+?children:\[/,
-                    replace: "$&...(typeof vencordProps=='undefined'?[]:Vencord.Api.MemberListDecorators.__getDecorators(vencordProps)),"
+                    replace: "$&...(typeof vencordProps=='undefined'?[]:Rivercord.Api.MemberListDecorators.__getDecorators(vencordProps)),"
                 }
             ]
         },
@@ -40,7 +40,7 @@ export default definePlugin({
             find: "PrivateChannel.renderAvatar",
             replacement: {
                 match: /decorators:(\i\.isSystemDM\(\))\?(.+?):null/,
-                replace: "decorators:[...Vencord.Api.MemberListDecorators.__getDecorators(arguments[0]), $1?$2:null]"
+                replace: "decorators:[...Rivercord.Api.MemberListDecorators.__getDecorators(arguments[0]), $1?$2:null]"
             }
         }
     ],

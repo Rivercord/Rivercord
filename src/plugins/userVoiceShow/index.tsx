@@ -1,5 +1,5 @@
 /*
- * Vencord, a modification for Discord's desktop app
+ * Rivercord, a modification for Discord's desktop app
  * Copyright (c) 2023 Vendicated and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -78,7 +78,7 @@ export default definePlugin({
             return null;
 
         return (
-            <div className="vc-uvs-modal-margin">
+            <div className="rc-uvs-modal-margin">
                 <VoiceChannelField user={user} />
             </div>
         );
@@ -87,7 +87,7 @@ export default definePlugin({
     patchPopout: ({ user }: UserProps) => {
         const isSelfUser = user.id === UserStore.getCurrentUser().id;
         return (
-            <div className={isSelfUser ? "vc-uvs-popout-margin-self" : ""}>
+            <div className={isSelfUser ? "rc-uvs-popout-margin-self" : ""}>
                 <VoiceChannelField user={user} />
             </div>
         );

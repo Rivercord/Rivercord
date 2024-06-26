@@ -1,27 +1,27 @@
-.vc-uvs-button>div {
+.rc-uvs-button>div {
     white-space: normal !important;
 }
 
-.vc-uvs-button {
+.rc-uvs-button {
     width: 100%;
     margin: auto;
     height: unset;
 }
 
-.vc-uvs-header {
+.rc-uvs-header {
     color: var(--header-primary);
     margin-bottom: 6px;
 }
 
-.vc-uvs-modal-margin {
+.rc-uvs-modal-margin {
     margin: 0 12px;
 }
 
-.vc-uvs-modal-margin div {
+.rc-uvs-modal-margin div {
     margin-bottom: 0 !important;
 }
 
-.vc-uvs-popout-margin-self>[class^="section"] {
+.rc-uvs-popout-margin-self>[class^="section"] {
     padding-top: 0;
     padding-bottom: 12px;
 }

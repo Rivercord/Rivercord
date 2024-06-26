@@ -1,5 +1,5 @@
 /*
- * Vencord, a modification for Discord's desktop app
+ * Rivercord, a modification for Discord's desktop app
  * Copyright (c) 2023 Vendicated and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -21,7 +21,7 @@ import "./ExpandableHeader.css";
 import { classNameFactory } from "@api/Styles";
 import { Text, Tooltip, useState } from "@webpack/common";
 
-const cl = classNameFactory("vc-expandableheader-");
+const cl = classNameFactory("rc-expandableheader-");
 
 export interface ExpandableHeaderProps {
     onMoreClick?: () => void;

@@ -1,5 +1,5 @@
 /*
- * Vencord, a modification for Discord's desktop app
+ * Rivercord, a modification for Discord's desktop app
  * Copyright (c) 2023 Vendicated and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -35,9 +35,9 @@ interface VoiceChannelFieldProps {
 
 export const VoiceChannelSection = ({ channel, label, showHeader }: VoiceChannelFieldProps) => (
     <UserPopoutSection>
-        {showHeader && <Forms.FormTitle className="vc-uvs-header">In a voice channel</Forms.FormTitle>}
+        {showHeader && <Forms.FormTitle className="rc-uvs-header">In a voice channel</Forms.FormTitle>}
         <Button
-            className="vc-uvs-button"
+            className="rc-uvs-button"
             color={Button.Colors.TRANSPARENT}
             size={Button.Sizes.SMALL}
 

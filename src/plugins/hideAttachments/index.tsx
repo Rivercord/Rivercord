@@ -1,5 +1,5 @@
 /*
- * Vencord, a modification for Discord's desktop app
+ * Rivercord, a modification for Discord's desktop app
  * Copyright (c) 2022 Vendicated and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -42,7 +42,7 @@ export default definePlugin({
 
     async start() {
         style = document.createElement("style");
-        style.id = "VencordHideAttachments";
+        style.id = "RivercordHideAttachments";
         document.head.appendChild(style);
 
         await getHiddenMessages();

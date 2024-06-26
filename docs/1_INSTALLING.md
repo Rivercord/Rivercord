@@ -1,26 +1,26 @@
 > [!WARNING]
-> These instructions are only for advanced users. If you're not a Developer, you should use our [graphical installer](https://github.com/Vendicated/VencordInstaller#usage) instead.
+> These instructions are only for advanced users. If you're not a Developer, you should use our [graphical installer](https://github.com/Rivercord/RivercordInstaller#usage) instead.
 > No support will be provided for installing in this fashion. If you cannot figure it out, you should just stick to a regular install.
 
 # Installation Guide
 
-Welcome to Megu's Installation Guide! In this file, you will learn about how to download, install, and uninstall Vencord!
+Welcome to Megu's Installation Guide! In this file, you will learn about how to download, install, and uninstall Rivercord!
 
 ## Sections
 
 - [Installation Guide](#installation-guide)
   - [Sections](#sections)
   - [Dependencies](#dependencies)
-  - [Installing Vencord](#installing-vencord)
-  - [Updating Vencord](#updating-vencord)
-  - [Uninstalling Vencord](#uninstalling-vencord)
+  - [Installing Rivercord](#installing-vencord)
+  - [Updating Rivercord](#updating-vencord)
+  - [Uninstalling Rivercord](#uninstalling-vencord)
 
 ## Dependencies
 
 -   Install Git from https://git-scm.com/download
 -   Install Node.JS LTS from here: https://nodejs.dev/en/
 
-## Installing Vencord
+## Installing Rivercord
 
 Install `pnpm`:
 
@@ -30,13 +30,13 @@ Install `pnpm`:
 npm i -g pnpm
 ```
 
-> :exclamation: **IMPORTANT** Make sure you aren't using an admin/root terminal from here onwards. It **will** mess up your Discord/Vencord instance and you **will** most likely have to reinstall.
+> :exclamation: **IMPORTANT** Make sure you aren't using an admin/root terminal from here onwards. It **will** mess up your Discord/Rivercord instance and you **will** most likely have to reinstall.
 
-Clone Vencord:
+Clone Rivercord:
 
 ```shell
-git clone https://github.com/Vendicated/Vencord
-cd Vencord
+git clone https://github.com/Rivercord/Rivercord
+cd Rivercord
 ```
 
 Install dependencies:
@@ -45,7 +45,7 @@ Install dependencies:
 pnpm install --frozen-lockfile
 ```
 
-Build Vencord:
+Build Rivercord:
 
 ```shell
 pnpm build
@@ -57,9 +57,9 @@ Inject vencord into your client:
 pnpm inject
 ```
 
-Then fully close Discord from your taskbar or task manager, and restart it. Vencord should be injected - you can check this by looking for the Vencord section in Discord settings.
+Then fully close Discord from your taskbar or task manager, and restart it. Rivercord should be injected - you can check this by looking for the Rivercord section in Discord settings.
 
-## Updating Vencord
+## Updating Rivercord
 
 If you're using Discord already, go into the `Updater` tab in settings.
 
@@ -88,7 +88,7 @@ pnpm build
 
 Then just refresh your client
 
-## Uninstalling Vencord
+## Uninstalling Rivercord
 
 Simply run:
 

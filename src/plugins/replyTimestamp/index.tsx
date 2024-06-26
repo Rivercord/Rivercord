@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * Rivercord, a Discord client mod
  * Copyright (c) 2024 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -45,7 +45,7 @@ function ReplyTimestamp({
     const baseTimestamp = baseMessage.timestamp as any;
     return (
         <Timestamp
-            className="vc-reply-timestamp"
+            className="rc-reply-timestamp"
             compact={isSameDay(refTimestamp, baseTimestamp)}
             timestamp={refTimestamp}
             isInline={false}

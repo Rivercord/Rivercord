@@ -1,5 +1,5 @@
 /*
- * Vencord, a modification for Discord's desktop app
+ * Rivercord, a modification for Discord's desktop app
  * Copyright (c) 2023 Vendicated and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -51,7 +51,7 @@ const settings = definePluginSettings({
     }
 });
 
-const Native = VencordNative.pluginHelpers.OpenInApp as PluginNative<typeof import("./native")>;
+const Native = RivercordNative.pluginHelpers.OpenInApp as PluginNative<typeof import("./native")>;
 
 export default definePlugin({
     name: "OpenInApp",
@@ -73,7 +73,7 @@ export default definePlugin({
             predicate: () => !IS_DISCORD_DESKTOP && settings.store.spotify,
             replacement: {
                 match: /\i\.\i\.isProtocolRegistered\(\)(.{0,100})window.open/g,
-                replace: "true$1VencordNative.native.openExternal"
+                replace: "true$1RivercordNative.native.openExternal"
             }
         },
         {
@@ -102,7 +102,7 @@ export default definePlugin({
             if (!match) break spotify;
 
             const [, type, id] = match;
-            VencordNative.native.openExternal(`spotify:${type}:${id}`);
+            RivercordNative.native.openExternal(`spotify:${type}:${id}`);
 
             event?.preventDefault();
             return true;
@@ -113,7 +113,7 @@ export default definePlugin({
 
             if (!SteamMatcher.test(url)) break steam;
 
-            VencordNative.native.openExternal(`steam://openurl/${url}`);
+            RivercordNative.native.openExternal(`steam://openurl/${url}`);
             event?.preventDefault();
 
             // Steam does not focus itself so show a toast so it's slightly less confusing
@@ -127,7 +127,7 @@ export default definePlugin({
             const match = EpicMatcher.exec(url);
             if (!match) break epic;
 
-            VencordNative.native.openExternal(`com.epicgames.launcher://store/${match[1]}`);
+            RivercordNative.native.openExternal(`com.epicgames.launcher://store/${match[1]}`);
             event?.preventDefault();
 
             return true;
@@ -140,7 +140,7 @@ export default definePlugin({
             if (!match) break tidal;
 
             const [, type, id] = match;
-            VencordNative.native.openExternal(`tidal://${type}/${id}`);
+            RivercordNative.native.openExternal(`tidal://${type}/${id}`);
 
             event?.preventDefault();
             return true;
@@ -157,10 +157,10 @@ export default definePlugin({
 
     handleAccountView(event: { preventDefault(): void; }, platformType: string, userId: string) {
         if (platformType === "spotify" && settings.store.spotify) {
-            VencordNative.native.openExternal(`spotify:user:${userId}`);
+            RivercordNative.native.openExternal(`spotify:user:${userId}`);
             event.preventDefault();
         } else if (platformType === "steam" && settings.store.steam) {
-            VencordNative.native.openExternal(`steam://openurl/https://steamcommunity.com/profiles/${userId}`);
+            RivercordNative.native.openExternal(`steam://openurl/https://steamcommunity.com/profiles/${userId}`);
             showToast("Opened link in Steam", Toasts.Type.SUCCESS);
             event.preventDefault();
         }

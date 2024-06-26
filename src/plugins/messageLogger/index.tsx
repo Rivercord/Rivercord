@@ -1,5 +1,5 @@
 /*
- * Vencord, a modification for Discord's desktop app
+ * Rivercord, a modification for Discord's desktop app
  * Copyright (c) 2022 Vendicated and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -103,7 +103,7 @@ const patchChannelContextMenu: NavContextMenuPatchCallback = (children, { channe
     const group = findGroupChildrenByChildId("mark-channel-read", children) ?? children;
     group.push(
         <Menu.MenuItem
-            id="vc-ml-clear-channel"
+            id="rc-ml-clear-channel"
             label="Clear Message Log"
             color="danger"
             action={() => {

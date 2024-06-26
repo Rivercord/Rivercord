@@ -1,5 +1,5 @@
 /*
- * Vencord, a modification for Discord's desktop app
+ * Rivercord, a modification for Discord's desktop app
  * Copyright (c) 2023 Vendicated and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -40,7 +40,7 @@ const messageCtxPatch: NavContextMenuPatchCallback = (children, { message }) => 
 
     group.splice(group.findIndex(c => c?.props?.id === "copy-text") + 1, 0, (
         <Menu.MenuItem
-            id="vc-trans"
+            id="rc-trans"
             label="Translate"
             icon={TranslateIcon}
             action={async () => {
@@ -64,11 +64,11 @@ export default definePlugin({
     translate,
 
     start() {
-        addAccessory("vc-translation", props => <TranslationAccessory message={props.message} />);
+        addAccessory("rc-translation", props => <TranslationAccessory message={props.message} />);
 
-        addChatBarButton("vc-translate", TranslateChatBarIcon);
+        addChatBarButton("rc-translate", TranslateChatBarIcon);
 
-        addButton("vc-translate", message => {
+        addButton("rc-translate", message => {
             if (!message.content) return null;
 
             return {
@@ -93,8 +93,8 @@ export default definePlugin({
 
     stop() {
         removePreSendListener(this.preSend);
-        removeChatBarButton("vc-translate");
-        removeButton("vc-translate");
-        removeAccessory("vc-translation");
+        removeChatBarButton("rc-translate");
+        removeButton("rc-translate");
+        removeAccessory("rc-translation");
     },
 });

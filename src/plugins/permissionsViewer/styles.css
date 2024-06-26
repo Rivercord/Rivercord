@@ -1,6 +1,6 @@
 /* User Permissions Component */
 
-.vc-permviewer-userperms-title-container {
+.rc-permviewer-userperms-title-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -8,12 +8,12 @@
     margin-bottom: 6px;
 }
 
-.vc-permviewer-userperms-btns-container {
+.rc-permviewer-userperms-btns-container {
     display: flex;
     align-items: center;
 }
 
-.vc-permviewer-userperms-sortorder-btn {
+.rc-permviewer-userperms-sortorder-btn {
     all: unset;
     cursor: pointer;
     display: flex;
@@ -23,14 +23,14 @@
     height: 24px;
 }
 
-.vc-permviewer-userperms-permdetails-btn {
+.rc-permviewer-userperms-permdetails-btn {
     all: unset;
     cursor: pointer;
     display: flex;
     align-items: center;
 }
 
-.vc-permviewer-userperms-toggleperms-btn {
+.rc-permviewer-userperms-toggleperms-btn {
     all: unset;
     cursor: pointer;
     display: flex;
@@ -39,11 +39,11 @@
 
 /*  RolesAndUsersPermissions Component */
 
-.vc-permviewer-perms-title {
+.rc-permviewer-perms-title {
     flex-grow: 1;
 }
 
-.vc-permviewer-perms-no-perms {
+.rc-permviewer-perms-no-perms {
     width: 100%;
     height: 100%;
     display: flex;
@@ -52,14 +52,14 @@
     text-align: center;
 }
 
-.vc-permviewer-perms-container {
+.rc-permviewer-perms-container {
     display: grid;
     grid-template-columns: 1fr 2fr;
     grid-template-areas: "list permissions";
     padding: 16px 0;
 }
 
-.vc-permviewer-perms-list {
+.rc-permviewer-perms-list {
     grid-area: list;
     display: flex;
     flex-direction: column;
@@ -67,12 +67,12 @@
     border-right: 2px solid var(--background-modifier-active);
 }
 
-.vc-permviewer-perms-list-item-btn {
+.rc-permviewer-perms-list-item-btn {
     all: unset;
     cursor: pointer;
 }
 
-.vc-permviewer-perms-list-item {
+.rc-permviewer-perms-list-item {
     display: flex;
     align-items: center;
     padding: 8px 5px;
@@ -81,21 +81,21 @@
     border-radius: 5px;
 }
 
-.vc-permviewer-perms-list-item:hover {
+.rc-permviewer-perms-list-item:hover {
     background-color: var(--background-modifier-hover);
 }
 
-.vc-permviewer-perms-list-item-active {
+.rc-permviewer-perms-list-item-active {
     background-color: var(--background-modifier-selected);
 }
 
-.vc-permviewer-perms-list-item > div {
+.rc-permviewer-perms-list-item > div {
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
 }
 
-.vc-permviewer-perms-role-circle {
+.rc-permviewer-perms-role-circle {
     border-radius: 50%;
     width: 12px;
     height: 12px;
@@ -104,21 +104,21 @@
     flex-shrink: 0;
 }
 
-.vc-permviewer-perms-user-img {
+.rc-permviewer-perms-user-img {
     border-radius: 50%;
     width: 20px;
     height: 20px;
     margin-right: 6px;
 }
 
-.vc-permviewer-perms-perms {
+.rc-permviewer-perms-perms {
     grid-area: permissions;
     display: flex;
     flex-direction: column;
     margin-left: 5px;
 }
 
-.vc-permviewer-perms-perms-item {
+.rc-permviewer-perms-perms-item {
     position: relative;
     display: flex;
     align-items: center;
@@ -126,18 +126,18 @@
     border-bottom: 2px solid var(--background-modifier-active);
 }
 
-.vc-permviewer-perms-perms-item:last-child {
+.rc-permviewer-perms-perms-item:last-child {
     border: 0;
 }
 
-.vc-permviewer-perms-perms-item-icon {
+.rc-permviewer-perms-perms-item-icon {
     border: 1px solid var(--background-modifier-selected);
     width: 24px;
     height: 24px;
     margin-right: 5px;
 }
 
-.vc-permviewer-perms-perms-item .vc-info-icon {
+.rc-permviewer-perms-perms-item .rc-info-icon {
     color: var(--interactive-muted);
     cursor: pointer;
     position: absolute;
@@ -146,6 +146,6 @@
     transition: color ease-in 0.1s;
 }
 
-.vc-permviewer-perms-perms-item .vc-info-icon:hover {
+.rc-permviewer-perms-perms-item .rc-info-icon:hover {
     color: var(--interactive-active);
 }

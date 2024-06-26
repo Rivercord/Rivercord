@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * Rivercord, a Discord client mod
  * Copyright (c) 2023 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -18,7 +18,7 @@ const Patch: NavContextMenuPatchCallback = (children, { guild }: { guild: Guild;
 
     group?.push(
         <Menu.MenuItem
-            id="vc-server-info"
+            id="rc-server-info"
             label="Server Info"
             action={() => openGuildInfoModal(guild)}
         />

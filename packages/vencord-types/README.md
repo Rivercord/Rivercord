@@ -1,6 +1,6 @@
-# Vencord Types
+# Rivercord Types
 
-Typings for Vencord's api, published to npm
+Typings for Rivercord's api, published to npm
 
 ```sh
 npm i @vencord/types

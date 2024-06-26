@@ -1,5 +1,5 @@
 /*
- * Vencord, a modification for Discord's desktop app
+ * Rivercord, a modification for Discord's desktop app
  * Copyright (c) 2022 Vendicated and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -86,7 +86,7 @@ function toCodeBlock(s: string, indentation = 0, isDiscord = false) {
 async function printReport() {
     console.log();
 
-    console.log("# Vencord Report" + (CANARY ? " (Canary)" : ""));
+    console.log("# Rivercord Report" + (CANARY ? " (Canary)" : ""));
 
     console.log();
 
@@ -134,8 +134,8 @@ async function printReport() {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                description: "Here's the latest Vencord Report!",
-                username: "Vencord Reporter" + (CANARY ? " (Canary)" : ""),
+                description: "Here's the latest Rivercord Report!",
+                username: "Rivercord Reporter" + (CANARY ? " (Canary)" : ""),
                 avatar_url: "https://cdn.discordapp.com/avatars/1017176847865352332/c312b6b44179ae6817de7e4b09e9c6af.webp?size=512",
                 embeds: [
                     {
@@ -200,11 +200,11 @@ page.on("console", async e => {
 
     const firstArg = await rawArgs[0]?.jsonValue();
 
-    const isVencord = firstArg === "[Vencord]";
+    const isRivercord = firstArg === "[Rivercord]";
     const isDebug = firstArg === "[PUP_DEBUG]";
 
     outer:
-    if (isVencord) {
+    if (isRivercord) {
         try {
             var args = await Promise.all(e.args().map(a => a.jsonValue()));
         } catch {
@@ -299,7 +299,7 @@ page.on("pageerror", e => {
 });
 
 async function reporterRuntime(token: string) {
-    Vencord.Webpack.waitFor(
+    Rivercord.Webpack.waitFor(
         "loginToken",
         m => {
             console.log("[PUP_DEBUG]", "Logging in with token...");

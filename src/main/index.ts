@@ -1,5 +1,5 @@
 /*
- * Vencord, a modification for Discord's desktop app
+ * Rivercord, a modification for Discord's desktop app
  * Copyright (c) 2023 Vendicated and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -29,7 +29,7 @@ if (IS_VESKTOP || !IS_VANILLA) {
         // Source Maps! Maybe there's a better way but since the renderer is executed
         // from a string I don't think any other form of sourcemaps would work
         protocol.registerFileProtocol("vencord", ({ url: unsafeUrl }, cb) => {
-            let url = unsafeUrl.slice("vencord://".length);
+            let url = unsafeUrl.slice("rivercord://".length);
             if (url.endsWith("/")) url = url.slice(0, -1);
             if (url.startsWith("/themes/")) {
                 const theme = url.slice("/themes/".length);
@@ -43,11 +43,11 @@ if (IS_VESKTOP || !IS_VANILLA) {
             }
             switch (url) {
                 case "renderer.js.map":
-                case "vencordDesktopRenderer.js.map":
+                case "rivercordDesktopRenderer.js.map":
                 case "preload.js.map":
-                case "vencordDesktopPreload.js.map":
+                case "rivercordDesktopPreload.js.map":
                 case "patcher.js.map":
-                case "vencordDesktopMain.js.map":
+                case "rivercordDesktopMain.js.map":
                     cb(join(__dirname, url));
                     break;
                 default:
@@ -58,8 +58,8 @@ if (IS_VESKTOP || !IS_VANILLA) {
         try {
             if (RendererSettings.store.enableReactDevtools)
                 installExt("fmkadmapgofadopljbjfkapdkoienihi")
-                    .then(() => console.info("[Vencord] Installed React Developer Tools"))
-                    .catch(err => console.error("[Vencord] Failed to install React Developer Tools", err));
+                    .then(() => console.info("[Rivercord] Installed React Developer Tools"))
+                    .catch(err => console.error("[Rivercord] Failed to install React Developer Tools", err));
         } catch { }
 
 
@@ -95,7 +95,7 @@ if (IS_VESKTOP || !IS_VANILLA) {
 
                 for (const directive of ["style-src", "connect-src", "img-src", "font-src", "media-src", "worker-src"]) {
                     csp[directive] ??= [];
-                    csp[directive].push("*", "blob:", "data:", "vencord:", "'unsafe-inline'");
+                    csp[directive].push("*", "blob:", "data:", "rivercord:", "'unsafe-inline'");
                 }
 
                 // TODO: Restrict this to only imported packages with fixed version.

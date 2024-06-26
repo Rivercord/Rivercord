@@ -1,5 +1,5 @@
 /*
- * Vencord, a modification for Discord's desktop app
+ * Rivercord, a modification for Discord's desktop app
  * Copyright (c) 2022 Vendicated and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -28,7 +28,7 @@ export default definePlugin({
             find: '"Message Username"',
             replacement: {
                 match: /\.Messages\.GUILD_COMMUNICATION_DISABLED_BOTTOM_SHEET_TITLE.+?}\),\i(?=\])/,
-                replace: "$&,...Vencord.Api.MessageDecorations.__addDecorationsToMessage(arguments[0])"
+                replace: "$&,...Rivercord.Api.MessageDecorations.__addDecorationsToMessage(arguments[0])"
             }
         }
     ],

@@ -1,5 +1,5 @@
 /*
- * Vencord, a modification for Discord's desktop app
+ * Rivercord, a modification for Discord's desktop app
  * Copyright (c) 2022 Sofia Lima
  *
  * This program is free software: you can redistribute it and/or modify
@@ -39,7 +39,7 @@ function FriendsIndicator() {
     forceUpdateFriendCount = useForceUpdater();
 
     return (
-        <span id="vc-friendcount" style={{
+        <span id="rc-friendcount" style={{
             display: "inline-block",
             width: "100%",
             fontSize: "12px",
@@ -57,7 +57,7 @@ function ServersIndicator() {
     forceUpdateGuildCount = useForceUpdater();
 
     return (
-        <span id="vc-guildcount" style={{
+        <span id="rc-guildcount" style={{
             display: "inline-block",
             width: "100%",
             fontSize: "12px",

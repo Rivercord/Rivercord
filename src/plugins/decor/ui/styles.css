@@ -1,9 +1,9 @@
-.vc-decor-danger-btn {
+.rc-decor-danger-btn {
     color: var(--white-500);
     background-color: var(--button-danger-background);
 }
 
-.vc-decor-change-decoration-modal-content {
+.rc-decor-change-decoration-modal-content {
     position: relative;
     display: flex;
     border-radius: 5px 5px 0 0;
@@ -11,7 +11,7 @@
     gap: 4px;
 }
 
-.vc-decor-change-decoration-modal-preview {
+.rc-decor-change-decoration-modal-preview {
     display: flex;
     flex-direction: column;
     margin-top: 24px;
@@ -19,48 +19,48 @@
     max-width: 280px;
 }
 
-.vc-decor-change-decoration-modal-decoration {
+.rc-decor-change-decoration-modal-decoration {
     width: 80px;
     height: 80px;
 }
 
-.vc-decor-change-decoration-modal-footer {
+.rc-decor-change-decoration-modal-footer {
     justify-content: space-between;
 }
 
-.vc-decor-change-decoration-modal-footer-btn-container {
+.rc-decor-change-decoration-modal-footer-btn-container {
     display: flex;
     flex-direction: row-reverse;
 }
 
-.vc-decor-create-decoration-modal-content {
+.rc-decor-create-decoration-modal-content {
     display: flex;
     flex-direction: column;
     gap: 20px;
     padding: 0 16px;
 }
 
-.vc-decor-create-decoration-modal-form-preview-container {
+.rc-decor-create-decoration-modal-form-preview-container {
     display: flex;
     gap: 16px;
 }
 
-.vc-decor-modal-header {
+.rc-decor-modal-header {
     padding: 16px;
 }
 
-.vc-decor-modal-footer {
+.rc-decor-modal-footer {
     padding: 16px;
 }
 
-.vc-decor-create-decoration-modal-form {
+.rc-decor-create-decoration-modal-form {
     display: flex;
     flex-direction: column;
     flex-grow: 1;
     gap: 16px;
 }
 
-.vc-decor-sectioned-grid-list-container {
+.rc-decor-sectioned-grid-list-container {
     display: flex;
     flex-direction: column;
     overflow: hidden scroll;
@@ -69,12 +69,12 @@
     gap: 12px;
 }
 
-.vc-decor-sectioned-grid-list-grid {
+.rc-decor-sectioned-grid-list-grid {
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
 }
 
-.vc-decor-section-remove-margin {
+.rc-decor-section-remove-margin {
     margin-bottom: 0;
 }

@@ -1,5 +1,5 @@
 /*
- * Vencord, a modification for Discord's desktop app
+ * Rivercord, a modification for Discord's desktop app
  * Copyright (c) 2023 Vendicated and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -86,7 +86,7 @@ const imageContextMenuPatch: NavContextMenuPatchCallback = children => {
     children.push(
         <Menu.MenuGroup id="image-zoom">
             <Menu.MenuCheckboxItem
-                id="vc-square"
+                id="rc-square"
                 label="Square Lens"
                 checked={square}
                 action={() => {
@@ -94,7 +94,7 @@ const imageContextMenuPatch: NavContextMenuPatchCallback = children => {
                 }}
             />
             <Menu.MenuCheckboxItem
-                id="vc-nearest-neighbour"
+                id="rc-nearest-neighbour"
                 label="Nearest Neighbour"
                 checked={nearestNeighbour}
                 action={() => {
@@ -102,7 +102,7 @@ const imageContextMenuPatch: NavContextMenuPatchCallback = children => {
                 }}
             />
             <Menu.MenuControlItem
-                id="vc-zoom"
+                id="rc-zoom"
                 label="Zoom"
                 control={(props, ref) => (
                     <Menu.MenuSliderControl
@@ -116,7 +116,7 @@ const imageContextMenuPatch: NavContextMenuPatchCallback = children => {
                 )}
             />
             <Menu.MenuControlItem
-                id="vc-size"
+                id="rc-size"
                 label="Lens Size"
                 control={(props, ref) => (
                     <Menu.MenuSliderControl
@@ -130,7 +130,7 @@ const imageContextMenuPatch: NavContextMenuPatchCallback = children => {
                 )}
             />
             <Menu.MenuControlItem
-                id="vc-zoom-speed"
+                id="rc-zoom-speed"
                 label="Zoom Speed"
                 control={(props, ref) => (
                     <Menu.MenuSliderControl

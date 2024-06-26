@@ -1,5 +1,5 @@
 /*
- * Vencord, a modification for Discord's desktop app
+ * Rivercord, a modification for Discord's desktop app
  * Copyright (c) 2023 Vendicated and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -17,29 +17,29 @@
 */
 
 export const enum IpcEvents {
-    QUICK_CSS_UPDATE = "VencordQuickCssUpdate",
-    THEME_UPDATE = "VencordThemeUpdate",
-    GET_QUICK_CSS = "VencordGetQuickCss",
-    SET_QUICK_CSS = "VencordSetQuickCss",
-    UPLOAD_THEME = "VencordUploadTheme",
-    DELETE_THEME = "VencordDeleteTheme",
-    GET_THEMES_DIR = "VencordGetThemesDir",
-    GET_THEMES_LIST = "VencordGetThemesList",
-    GET_THEME_DATA = "VencordGetThemeData",
-    GET_THEME_SYSTEM_VALUES = "VencordGetThemeSystemValues",
-    GET_SETTINGS_DIR = "VencordGetSettingsDir",
-    GET_SETTINGS = "VencordGetSettings",
-    SET_SETTINGS = "VencordSetSettings",
-    OPEN_EXTERNAL = "VencordOpenExternal",
-    OPEN_QUICKCSS = "VencordOpenQuickCss",
-    GET_UPDATES = "VencordGetUpdates",
-    GET_REPO = "VencordGetRepo",
-    UPDATE = "VencordUpdate",
-    BUILD = "VencordBuild",
-    OPEN_MONACO_EDITOR = "VencordOpenMonacoEditor",
+    QUICK_CSS_UPDATE = "RivercordQuickCssUpdate",
+    THEME_UPDATE = "RivercordThemeUpdate",
+    GET_QUICK_CSS = "RivercordGetQuickCss",
+    SET_QUICK_CSS = "RivercordSetQuickCss",
+    UPLOAD_THEME = "RivercordUploadTheme",
+    DELETE_THEME = "RivercordDeleteTheme",
+    GET_THEMES_DIR = "RivercordGetThemesDir",
+    GET_THEMES_LIST = "RivercordGetThemesList",
+    GET_THEME_DATA = "RivercordGetThemeData",
+    GET_THEME_SYSTEM_VALUES = "RivercordGetThemeSystemValues",
+    GET_SETTINGS_DIR = "RivercordGetSettingsDir",
+    GET_SETTINGS = "RivercordGetSettings",
+    SET_SETTINGS = "RivercordSetSettings",
+    OPEN_EXTERNAL = "RivercordOpenExternal",
+    OPEN_QUICKCSS = "RivercordOpenQuickCss",
+    GET_UPDATES = "RivercordGetUpdates",
+    GET_REPO = "RivercordGetRepo",
+    UPDATE = "RivercordUpdate",
+    BUILD = "RivercordBuild",
+    OPEN_MONACO_EDITOR = "RivercordOpenMonacoEditor",
 
-    GET_PLUGIN_IPC_METHOD_MAP = "VencordGetPluginIpcMethodMap",
+    GET_PLUGIN_IPC_METHOD_MAP = "RivercordGetPluginIpcMethodMap",
 
-    OPEN_IN_APP__RESOLVE_REDIRECT = "VencordOIAResolveRedirect",
-    VOICE_MESSAGES_READ_RECORDING = "VencordVMReadRecording",
+    OPEN_IN_APP__RESOLVE_REDIRECT = "RivercordOIAResolveRedirect",
+    VOICE_MESSAGES_READ_RECORDING = "RivercordVMReadRecording",
 }

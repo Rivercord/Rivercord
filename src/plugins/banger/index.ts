@@ -1,5 +1,5 @@
 /*
- * Vencord, a modification for Discord's desktop app
+ * Rivercord, a modification for Discord's desktop app
  * Copyright (c) 2022 Vendicated and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -28,7 +28,7 @@ export default definePlugin({
             find: "BAN_CONFIRM_TITLE.",
             replacement: {
                 match: /src:\i\("?\d+"?\)/g,
-                replace: "src: Vencord.Settings.plugins.BANger.source"
+                replace: "src: Rivercord.Settings.plugins.BANger.source"
             }
         }
     ],

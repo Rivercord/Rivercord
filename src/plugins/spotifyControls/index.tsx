@@ -1,5 +1,5 @@
 /*
- * Vencord, a modification for Discord's desktop app
+ * Rivercord, a modification for Discord's desktop app
  * Copyright (c) 2022 Vendicated and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -52,8 +52,8 @@ export default definePlugin({
             replacement: {
                 // react.jsx)(AccountPanel, { ..., showTaglessAccountPanel: blah })
                 match: /(?<=\i\.jsxs?\)\()(\i),{(?=[^}]*?userTag:\i,hidePrivateData:)/,
-                // react.jsx(WrapperComponent, { VencordOriginal: AccountPanel, ...
-                replace: "$self.PanelWrapper,{VencordOriginal:$1,"
+                // react.jsx(WrapperComponent, { RivercordOriginal: AccountPanel, ...
+                replace: "$self.PanelWrapper,{RivercordOriginal:$1,"
             }
         },
         {
@@ -89,12 +89,12 @@ export default definePlugin({
 
     start: () => toggleHoverControls(Settings.plugins.SpotifyControls.hoverControls),
 
-    PanelWrapper({ VencordOriginal, ...props }) {
+    PanelWrapper({ RivercordOriginal, ...props }) {
         return (
             <>
                 <ErrorBoundary
                     fallback={() => (
-                        <div className="vc-spotify-fallback">
+                        <div className="rc-spotify-fallback">
                             <p>Failed to render Spotify Modal :(</p>
                             <p >Check the console for errors</p>
                         </div>
@@ -103,7 +103,7 @@ export default definePlugin({
                     <Player />
                 </ErrorBoundary>
 
-                <VencordOriginal {...props} />
+                <RivercordOriginal {...props} />
             </>
         );
     }

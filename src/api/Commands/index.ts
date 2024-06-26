@@ -1,5 +1,5 @@
 /*
- * Vencord, a modification for Discord's desktop app
+ * Rivercord, a modification for Discord's desktop app
  * Copyright (c) 2022 Vendicated and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -55,7 +55,7 @@ export const _init = function (cmds: Command[]) {
 } as never;
 
 export const _handleCommand = function (cmd: Command, args: Argument[], ctx: CommandContext) {
-    if (!cmd.isVencordCommand)
+    if (!cmd.isRivercordCommand)
         return cmd.execute(args, ctx);
 
     const handleError = (err: any) => {
@@ -67,7 +67,7 @@ export const _handleCommand = function (cmd: Command, args: Argument[], ctx: Com
         sendBotMessage(ctx.channel.id, {
             content: `${msg}:\n${makeCodeblock(reason)}`,
             author: {
-                username: "Vencord"
+                username: "Rivercord"
             }
         });
     };
@@ -137,7 +137,7 @@ export function registerCommand<C extends Command>(command: C, plugin: string) {
     if (BUILT_IN.some(c => c.name === command.name))
         throw new Error(`Command '${command.name}' already exists.`);
 
-    command.isVencordCommand = true;
+    command.isRivercordCommand = true;
     command.id ??= `-${BUILT_IN.length + 1}`;
     command.applicationId ??= "-1"; // BUILT_IN;
     command.type ??= ApplicationCommandType.CHAT_INPUT;

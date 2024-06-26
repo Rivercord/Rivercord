@@ -1,6 +1,6 @@
 #!/usr/bin/node
 /*
- * Vencord, a modification for Discord's desktop app
+ * Rivercord, a modification for Discord's desktop app
  * Copyright (c) 2022 Vendicated and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -51,7 +51,7 @@ const nodeCommonOpts = {
     define: defines
 };
 
-const sourceMapFooter = s => watch ? "" : `//# sourceMappingURL=vencord://${s}.js.map`;
+const sourceMapFooter = s => watch ? "" : `//# sourceMappingURL=rivercord://${s}.js.map`;
 const sourcemap = watch ? "inline" : "external";
 
 /**
@@ -108,7 +108,7 @@ await Promise.all([
         ...nodeCommonOpts,
         entryPoints: ["src/main/index.ts"],
         outfile: "dist/patcher.js",
-        footer: { js: "//# sourceURL=VencordPatcher\n" + sourceMapFooter("patcher") },
+        footer: { js: "//# sourceURL=RivercordPatcher\n" + sourceMapFooter("patcher") },
         sourcemap,
         define: {
             ...defines,
@@ -122,12 +122,12 @@ await Promise.all([
     }),
     esbuild.build({
         ...commonOpts,
-        entryPoints: ["src/Vencord.ts"],
+        entryPoints: ["src/Rivercord.ts"],
         outfile: "dist/renderer.js",
         format: "iife",
         target: ["esnext"],
-        footer: { js: "//# sourceURL=VencordRenderer\n" + sourceMapFooter("renderer") },
-        globalName: "Vencord",
+        footer: { js: "//# sourceURL=RivercordRenderer\n" + sourceMapFooter("renderer") },
+        globalName: "Rivercord",
         sourcemap,
         plugins: [
             globPlugins("discordDesktop"),
@@ -143,7 +143,7 @@ await Promise.all([
         ...nodeCommonOpts,
         entryPoints: ["src/preload.ts"],
         outfile: "dist/preload.js",
-        footer: { js: "//# sourceURL=VencordPreload\n" + sourceMapFooter("preload") },
+        footer: { js: "//# sourceURL=RivercordPreload\n" + sourceMapFooter("preload") },
         sourcemap,
         define: {
             ...defines,
@@ -152,12 +152,12 @@ await Promise.all([
         }
     }),
 
-    // Vencord Desktop main & renderer & preload
+    // Rivercord Desktop main & renderer & preload
     esbuild.build({
         ...nodeCommonOpts,
         entryPoints: ["src/main/index.ts"],
-        outfile: "dist/vencordDesktopMain.js",
-        footer: { js: "//# sourceURL=VencordDesktopMain\n" + sourceMapFooter("vencordDesktopMain") },
+        outfile: "dist/rivercordDesktopMain.js",
+        footer: { js: "//# sourceURL=RivercordDesktopMain\n" + sourceMapFooter("rivercordDesktopMain") },
         sourcemap,
         define: {
             ...defines,
@@ -171,15 +171,15 @@ await Promise.all([
     }),
     esbuild.build({
         ...commonOpts,
-        entryPoints: ["src/Vencord.ts"],
-        outfile: "dist/vencordDesktopRenderer.js",
+        entryPoints: ["src/Rivercord.ts"],
+        outfile: "dist/rivercordDesktopRenderer.js",
         format: "iife",
         target: ["esnext"],
-        footer: { js: "//# sourceURL=VencordDesktopRenderer\n" + sourceMapFooter("vencordDesktopRenderer") },
-        globalName: "Vencord",
+        footer: { js: "//# sourceURL=RivercordDesktopRenderer\n" + sourceMapFooter("rivercordDesktopRenderer") },
+        globalName: "Rivercord",
         sourcemap,
         plugins: [
-            globPlugins("vencordDesktop"),
+            globPlugins("rivercordDesktop"),
             ...commonOpts.plugins
         ],
         define: {
@@ -191,8 +191,8 @@ await Promise.all([
     esbuild.build({
         ...nodeCommonOpts,
         entryPoints: ["src/preload.ts"],
-        outfile: "dist/vencordDesktopPreload.js",
-        footer: { js: "//# sourceURL=VencordPreload\n" + sourceMapFooter("vencordDesktopPreload") },
+        outfile: "dist/rivercordDesktopPreload.js",
+        footer: { js: "//# sourceURL=RivercordPreload\n" + sourceMapFooter("rivercordDesktopPreload") },
         sourcemap,
         define: {
             ...defines,

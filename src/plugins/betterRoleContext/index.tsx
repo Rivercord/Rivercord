@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * Rivercord, a Discord client mod
  * Copyright (c) 2024 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -85,7 +85,7 @@ export default definePlugin({
             if (role.colorString) {
                 children.push(
                     <Menu.MenuItem
-                        id="vc-copy-role-color"
+                        id="rc-copy-role-color"
                         label="Copy Role Color"
                         action={() => Clipboard.copy(role.colorString!)}
                         icon={AppearanceIcon}
@@ -96,7 +96,7 @@ export default definePlugin({
             if (role.icon) {
                 children.push(
                     <Menu.MenuItem
-                        id="vc-view-role-icon"
+                        id="rc-view-role-icon"
                         label="View Role Icon"
                         action={() => {
                             openImageModal(`${location.protocol}//${window.GLOBAL_ENV.CDN_HOST}/role-icons/${role.id}/${role.icon}.${settings.store.roleIconFileFormat}`);
@@ -110,7 +110,7 @@ export default definePlugin({
             if (PermissionStore.getGuildPermissionProps(guild).canManageRoles) {
                 children.push(
                     <Menu.MenuItem
-                        id="vc-edit-role"
+                        id="rc-edit-role"
                         label="Edit Role"
                         action={async () => {
                             await GuildSettingsActions.open(guild.id, "ROLES");

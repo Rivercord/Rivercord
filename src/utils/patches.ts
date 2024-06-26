@@ -1,5 +1,5 @@
 /*
- * Vencord, a modification for Discord's desktop app
+ * Rivercord, a modification for Discord's desktop app
  * Copyright (c) 2022 Vendicated and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -26,7 +26,7 @@ export function canonicalizeMatch<T extends RegExp | string>(match: T): T {
 }
 
 export function canonicalizeReplace<T extends string | ReplaceFn>(replace: T, pluginName: string): T {
-    const self = `Vencord.Plugins.plugins[${JSON.stringify(pluginName)}]`;
+    const self = `Rivercord.Plugins.plugins[${JSON.stringify(pluginName)}]`;
 
     if (typeof replace !== "function")
         return replace.replaceAll("$self", self) as T;

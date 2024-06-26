@@ -1,4 +1,4 @@
-.vc-membercount-widget {
+.rc-membercount-widget {
     display: flex;
     align-content: center;
 
@@ -6,26 +6,26 @@
     --color-total: var(--primary-400);
 }
 
-.vc-membercount-tooltip {
+.rc-membercount-tooltip {
     margin-top: 0.25em;
     margin-left: 2px;
 }
 
-.vc-membercount-member-list {
+.rc-membercount-member-list {
     justify-content: center;
     margin-top: 1em;
     padding-inline: 1em;
 }
 
-.vc-membercount-online {
+.rc-membercount-online {
     color: var(--color-online);
 }
 
-.vc-membercount-total {
+.rc-membercount-total {
     color: var(--color-total);
 }
 
-.vc-membercount-online-dot {
+.rc-membercount-online-dot {
     background-color: var(--color-online);
     display: inline-block;
     width: 12px;
@@ -34,7 +34,7 @@
     margin-right: 0.5em;
 }
 
-.vc-membercount-total-dot {
+.rc-membercount-total-dot {
     display: inline-block;
     width: 6px;
     height: 6px;

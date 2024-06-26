@@ -1,5 +1,5 @@
 /*
- * Vencord, a modification for Discord's desktop app
+ * Rivercord, a modification for Discord's desktop app
  * Copyright (c) 2022 Vendicated and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -134,7 +134,7 @@ function MakeContextCallback(name: "Guild" | "User" | "Channel"): NavContextMenu
 
         children.splice(-1, 0,
             <Menu.MenuItem
-                id={`vc-view-${name.toLowerCase()}-raw`}
+                id={`rc-view-${name.toLowerCase()}-raw`}
                 label="View Raw"
                 action={() => openViewRawModal(JSON.stringify(value, null, 4), name)}
                 icon={CopyIcon}

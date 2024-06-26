@@ -1,19 +1,19 @@
-.vc-user-connection {
+.rc-user-connection {
     all: unset;
     display: inline-block;
     cursor: pointer;
 }
 
-.vc-sc-tooltip {
+.rc-sc-tooltip {
     display: inline-flex;
     gap: 0.25em;
     align-items: center;
 }
 
-.vc-sc-connection-name {
+.rc-sc-connection-name {
     word-break: break-all;
 }
 
-.vc-sc-tooltip svg {
+.rc-sc-tooltip svg {
     min-width: 16px;
 }

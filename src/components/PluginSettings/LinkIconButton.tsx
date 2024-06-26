@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * Rivercord, a Discord client mod
  * Copyright (c) 2024 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -16,12 +16,12 @@ const GithubIconDark = "/assets/6a853b4c87fce386cbfef4a2efbacb09.svg";
 
 export function GithubIcon() {
     const src = getTheme() === Theme.Light ? GithubIconLight : GithubIconDark;
-    return <img src={src} aria-hidden className={"vc-settings-modal-link-icon"} />;
+    return <img src={src} aria-hidden className={"rc-settings-modal-link-icon"} />;
 }
 
 export function WebsiteIcon() {
     const src = getTheme() === Theme.Light ? WebsiteIconLight : WebsiteIconDark;
-    return <img src={src} aria-hidden className={"vc-settings-modal-link-icon"} />;
+    return <img src={src} aria-hidden className={"rc-settings-modal-link-icon"} />;
 }
 
 interface Props {

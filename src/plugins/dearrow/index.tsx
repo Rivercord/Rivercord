@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * Rivercord, a Discord client mod
  * Copyright (c) 2023 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -93,7 +93,7 @@ function DearrowButton({ component }: { component: Component<Props>; }) {
                 <button
                     onMouseEnter={onMouseEnter}
                     onMouseLeave={onMouseLeave}
-                    className={"vc-dearrow-toggle-" + (embed.dearrow.enabled ? "on" : "off")}
+                    className={"rc-dearrow-toggle-" + (embed.dearrow.enabled ? "on" : "off")}
                     onClick={() => {
                         const { enabled, oldThumb, oldTitle } = embed.dearrow;
                         embed.dearrow.enabled = !enabled;

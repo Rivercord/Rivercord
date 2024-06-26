@@ -1,5 +1,5 @@
 /*
- * Vencord, a modification for Discord's desktop app
+ * Rivercord, a modification for Discord's desktop app
  * Copyright (c) 2022 Vendicated and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -17,10 +17,10 @@
 */
 
 export const VENCORD_FILES = [
-    IS_DISCORD_DESKTOP ? "patcher.js" : "vencordDesktopMain.js",
-    IS_DISCORD_DESKTOP ? "preload.js" : "vencordDesktopPreload.js",
-    IS_DISCORD_DESKTOP ? "renderer.js" : "vencordDesktopRenderer.js",
-    IS_DISCORD_DESKTOP ? "renderer.css" : "vencordDesktopRenderer.css",
+    IS_DISCORD_DESKTOP ? "patcher.js" : "rivercordDesktopMain.js",
+    IS_DISCORD_DESKTOP ? "preload.js" : "rivercordDesktopPreload.js",
+    IS_DISCORD_DESKTOP ? "renderer.js" : "rivercordDesktopRenderer.js",
+    IS_DISCORD_DESKTOP ? "renderer.css" : "rivercordDesktopRenderer.css",
 ];
 
 export function serializeErrors(func: (...args: any[]) => any) {

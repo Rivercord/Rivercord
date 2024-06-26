@@ -1,5 +1,5 @@
 /*
- * Vencord, a modification for Discord's desktop app
+ * Rivercord, a modification for Discord's desktop app
  * Copyright (c) 2022 Vendicated and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -29,7 +29,7 @@ import { Button, Card, Forms, React, Select, Slider, Switch } from "@webpack/com
 
 import { SettingsTab, wrapTab } from "./shared";
 
-const cl = classNameFactory("vc-settings-");
+const cl = classNameFactory("rc-settings-");
 
 const DEFAULT_DONATE_IMAGE = "https://cdn.discordapp.com/emojis/1026533090627174460.png";
 const SHIGGY_DONATE_IMAGE = "https://media.discordapp.net/stickers/1039992459209490513.png";
@@ -38,8 +38,8 @@ type KeysOfType<Object, Type> = {
     [K in keyof Object]: Object[K] extends Type ? K : never;
 }[keyof Object];
 
-function VencordSettings() {
-    const [settingsDir, , settingsDirPending] = useAwaiter(VencordNative.settings.getSettingsDir, {
+function RivercordSettings() {
+    const [settingsDir, , settingsDirPending] = useAwaiter(RivercordNative.settings.getSettingsDir, {
         fallbackValue: "Loading..."
     });
     const settings = useSettings();
@@ -93,7 +93,7 @@ function VencordSettings() {
         ];
 
     return (
-        <SettingsTab title="Vencord Settings">
+        <SettingsTab title="Rivercord Settings">
             <DonateCard image={donateImage} />
             <Forms.FormSection title="Quick Actions">
                 <Card className={cl("quick-actions-card")}>
@@ -106,7 +106,7 @@ function VencordSettings() {
                             </Button>
                         )}
                         <Button
-                            onClick={() => VencordNative.quickCss.openEditor()}
+                            onClick={() => RivercordNative.quickCss.openEditor()}
                             size={Button.Sizes.SMALL}
                             disabled={settingsDir === "Loading..."}>
                             Open QuickCSS File
@@ -120,7 +120,7 @@ function VencordSettings() {
                             </Button>
                         )}
                         <Button
-                            onClick={() => VencordNative.native.openExternal("https://github.com/Vendicated/Vencord")}
+                            onClick={() => RivercordNative.native.openExternal("https://github.com/Rivercord/Rivercord")}
                             size={Button.Sizes.SMALL}
                             disabled={settingsDirPending}>
                             Open in GitHub
@@ -230,7 +230,7 @@ function NotificationSection({ settings }: { settings: typeof Settings["notifica
             <Forms.FormText className={Margins.bottom8}>
                 Some plugins may show you notifications. These come in two styles:
                 <ul>
-                    <li><strong>Vencord Notifications</strong>: These are in-app notifications</li>
+                    <li><strong>Rivercord Notifications</strong>: These are in-app notifications</li>
                     <li><strong>Desktop Notifications</strong>: Native Desktop notifications (like when you get a ping)</li>
                 </ul>
             </Forms.FormText>
@@ -239,7 +239,7 @@ function NotificationSection({ settings }: { settings: typeof Settings["notifica
                 options={[
                     { label: "Only use Desktop notifications when Discord is not focused", value: "not-focused", default: true },
                     { label: "Always use Desktop notifications", value: "always" },
-                    { label: "Always use Vencord notifications", value: "never" },
+                    { label: "Always use Rivercord notifications", value: "never" },
                 ] satisfies Array<{ value: typeof settings["useNative"]; } & Record<string, any>>}
                 closeOnSelect={true}
                 select={v => settings.useNative = v}
@@ -309,7 +309,7 @@ function DonateCard({ image }: DonateCardProps) {
         <Card className={cl("card", "donate")}>
             <div>
                 <Forms.FormTitle tag="h5">Support the Project</Forms.FormTitle>
-                <Forms.FormText>Please consider supporting the development of Vencord by donating!</Forms.FormText>
+                <Forms.FormText>Please consider supporting the development of Rivercord by donating!</Forms.FormText>
                 <DonateButton style={{ transform: "translateX(-1em)" }} />
             </div>
             <img
@@ -320,11 +320,12 @@ function DonateCard({ image }: DonateCardProps) {
                 style={{
                     imageRendering: image === SHIGGY_DONATE_IMAGE ? "pixelated" : void 0,
                     marginLeft: "auto",
-                    transform: image === DEFAULT_DONATE_IMAGE ? "rotate(10deg)" : void 0
+                    transform: image === DEFAULT_DONATE_IMAGE ? "rotate(10deg)" : void 0,
+                    filter: "invert(1)"
                 }}
             />
         </Card>
     );
 }
 
-export default wrapTab(VencordSettings, "Vencord Settings");
+export default wrapTab(RivercordSettings, "Rivercord Settings");

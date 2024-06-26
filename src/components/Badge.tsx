@@ -1,5 +1,5 @@
 /*
- * Vencord, a modification for Discord's desktop app
+ * Rivercord, a modification for Discord's desktop app
  * Copyright (c) 2022 Vendicated and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -18,7 +18,7 @@
 
 export function Badge({ text, color }): JSX.Element {
     return (
-        <div className="vc-plugins-badge" style={{
+        <div className="rc-plugins-badge" style={{
             backgroundColor: color,
             justifySelf: "flex-end",
             marginLeft: "auto"

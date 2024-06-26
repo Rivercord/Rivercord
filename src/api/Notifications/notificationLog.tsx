@@ -1,5 +1,5 @@
 /*
- * Vencord, a modification for Discord's desktop app
+ * Rivercord, a modification for Discord's desktop app
  * Copyright (c) 2023 Vendicated and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -40,7 +40,7 @@ const getLog = async () => {
     return log ?? [];
 };
 
-const cl = classNameFactory("vc-notification-log-");
+const cl = classNameFactory("rc-notification-log-");
 const signals = new Set<DispatchWithoutAction>();
 
 export async function persistNotification(notification: NotificationData) {
@@ -181,7 +181,7 @@ function LogModal({ modalProps, close }: { modalProps: ModalProps; close(): void
                                 signals.forEach(x => x());
                             },
                             confirmText: "Do it!",
-                            confirmColor: "vc-notification-log-danger-btn",
+                            confirmColor: "rc-notification-log-danger-btn",
                             cancelText: "Nevermind"
                         });
                     }}

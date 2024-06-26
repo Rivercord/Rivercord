@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * Rivercord, a Discord client mod
  * Copyright (c) 2024 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -136,7 +136,7 @@ const settings = definePluginSettings({
     },
 });
 
-const Native = VencordNative.pluginHelpers.XSOverlay as PluginNative<typeof import("./native")>;
+const Native = RivercordNative.pluginHelpers.XSOverlay as PluginNative<typeof import("./native")>;
 
 export default definePlugin({
     name: "XSOverlay",
@@ -271,7 +271,7 @@ function sendMsgNotif(titleString: string, content: string, message: Message) {
             content: content,
             useBase64Icon: true,
             icon: result,
-            sourceApp: "Vencord"
+            sourceApp: "Rivercord"
         };
         Native.sendToOverlay(msgData);
     });
@@ -290,7 +290,7 @@ function sendOtherNotif(content: string, titleString: string) {
         content: content,
         useBase64Icon: false,
         icon: null,
-        sourceApp: "Vencord"
+        sourceApp: "Rivercord"
     };
     Native.sendToOverlay(msgData);
 }

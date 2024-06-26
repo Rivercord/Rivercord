@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * Rivercord, a Discord client mod
  * Copyright (c) 2024 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -35,7 +35,7 @@ const ColorPickerWithSwatches = findExportedComponentLazy<ColorPickerWithSwatche
 
 export const requireSettingsMenu = extractAndLoadChunksLazy(['name:"UserSettings"'], /createPromise:.{0,20}Promise\.all\((\[\i\.\i\("?.+?"?\).+?\])\).then\(\i\.bind\(\i,"?(.+?)"?\)\).{0,50}"UserSettings"/);
 
-const cl = classNameFactory("vc-pindms-modal-");
+const cl = classNameFactory("rc-pindms-modal-");
 
 interface Props {
     categoryId: string | null;

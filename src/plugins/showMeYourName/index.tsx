@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * Rivercord, a Discord client mod
  * Copyright (c) 2023 rini
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -69,9 +69,9 @@ export default definePlugin({
             if (username === nick || isRepliedMessage && !settings.store.inReplies)
                 return <>{prefix}{nick}</>;
             if (settings.store.mode === "user-nick")
-                return <>{prefix}{username} <span className="vc-smyn-suffix">{nick}</span></>;
+                return <>{prefix}{username} <span className="rc-smyn-suffix">{nick}</span></>;
             if (settings.store.mode === "nick-user")
-                return <>{prefix}{nick} <span className="vc-smyn-suffix">{username}</span></>;
+                return <>{prefix}{nick} <span className="rc-smyn-suffix">{username}</span></>;
             return <>{prefix}{username}</>;
         } catch {
             return <>{author?.nick}</>;

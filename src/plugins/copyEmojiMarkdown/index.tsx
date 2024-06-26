@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * Rivercord, a Discord client mod
  * Copyright (c) 2024 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -55,12 +55,12 @@ export default definePlugin({
     settings,
 
     contextMenus: {
-        "expression-picker"(children, { target }: { target: Target }) {
+        "expression-picker"(children, { target }: { target: Target; }) {
             if (target.dataset.type !== "emoji") return;
 
             children.push(
                 <Menu.MenuItem
-                    id="vc-copy-emoji-markdown"
+                    id="rc-copy-emoji-markdown"
                     label="Copy Emoji Markdown"
                     action={() => {
                         copyWithToast(

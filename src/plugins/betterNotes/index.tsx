@@ -1,5 +1,5 @@
 /*
- * Vencord, a modification for Discord's desktop app
+ * Rivercord, a modification for Discord's desktop app
  * Copyright (c) 2022 Vendicated and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -36,7 +36,7 @@ export default definePlugin({
             all: true,
             // Some modules match the find but the replacement is returned untouched
             noWarn: true,
-            predicate: () => Vencord.Settings.plugins.BetterNotesBox.hide,
+            predicate: () => Rivercord.Settings.plugins.BetterNotesBox.hide,
             replacement: {
                 match: /hideNote:.+?(?=([,}].*?\)))/g,
                 replace: (m, rest) => {
@@ -54,7 +54,7 @@ export default definePlugin({
             find: "Messages.NOTE_PLACEHOLDER",
             replacement: {
                 match: /\.NOTE_PLACEHOLDER,/,
-                replace: "$&spellCheck:!Vencord.Settings.plugins.BetterNotesBox.noSpellCheck,"
+                replace: "$&spellCheck:!Rivercord.Settings.plugins.BetterNotesBox.noSpellCheck,"
             }
         },
         {

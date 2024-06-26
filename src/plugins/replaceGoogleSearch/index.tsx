@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * Rivercord, a Discord client mod
  * Copyright (c) 2024 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -53,10 +53,10 @@ function makeSearchItem(src: string) {
         <Menu.MenuItem
             label="Search Text"
             key="search-text"
-            id="vc-search-text"
+            id="rc-search-text"
         >
             {Object.keys(Engines).map((engine, i) => {
-                const key = "vc-search-content-" + engine;
+                const key = "rc-search-content-" + engine;
                 return (
                     <Menu.MenuItem
                         key={key}

@@ -1,5 +1,5 @@
 /*
- * Vencord, a modification for Discord's desktop app
+ * Rivercord, a modification for Discord's desktop app
  * Copyright (c) 2023 Vendicated and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -85,8 +85,8 @@ export default definePlugin({
                     if (msg.hasFlag(EPHEMERAL)) return;
 
                     const isShiftPress = event.shiftKey && !settings.store.requireModifier;
-                    const NoReplyMention = Vencord.Plugins.plugins.NoReplyMention as any as typeof import("../noReplyMention").default;
-                    const shouldMention = Vencord.Plugins.isPluginEnabled("NoReplyMention")
+                    const NoReplyMention = Rivercord.Plugins.plugins.NoReplyMention as any as typeof import("../noReplyMention").default;
+                    const shouldMention = Rivercord.Plugins.isPluginEnabled("NoReplyMention")
                         ? NoReplyMention.shouldMention(msg, isShiftPress)
                         : !isShiftPress;
 

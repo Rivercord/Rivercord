@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * Rivercord, a Discord client mod
  * Copyright (c) 2024 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -81,7 +81,7 @@ export default definePlugin({
             text={renderTimeout(message, false)}
         />;
         return (
-            <div className="vc-std-wrapper">
+            <div className="rc-std-wrapper">
                 <Tooltip text={text} children={children} />
                 <Text variant="text-md/normal" color="status-danger">
                     {renderTimeout(message, true)} timeout remaining
