@@ -1,4 +1,4 @@
-// Rivercord 9c189cb6
+// Rivercord 5004af79
 // Standalone: false
 // Platform: win32
 // Updater Disabled: false

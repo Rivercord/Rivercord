@@ -1,5 +1,5 @@
 .pi-indicators {
-    display: flex;
+    display: inline-flex;
     gap: 0.125rem;
 }
 
