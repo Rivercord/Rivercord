@@ -40,7 +40,7 @@ const settings = definePluginSettings({
         type: OptionType.BOOLEAN,
         description: "Add back the Discord context menus for images, links and the chat input bar",
         // Web slate menu has proper spellcheck suggestions and image context menu is also pretty good,
-        // so disable this by default. Vesktop just doesn't, so enable by default
+        // so disable this by default. Resktop just doesn't, so enable by default
         default: IS_VESKTOP,
         restartNeeded: true
     }
@@ -223,8 +223,8 @@ export default definePlugin({
             });
         }
 
-        if (IS_VESKTOP && VesktopNative.clipboard) {
-            VesktopNative.clipboard.copyImage(await imageData.arrayBuffer(), url);
+        if (IS_VESKTOP && ResktopNative.clipboard) {
+            ResktopNative.clipboard.copyImage(await imageData.arrayBuffer(), url);
             return;
         } else {
             navigator.clipboard.write([

@@ -49,8 +49,8 @@ declare global {
      * If you really must use it, mark your plugin as Desktop App only by naming it Foo.desktop.ts(x)
      */
     export var DiscordNative: any;
-    export var Vesktop: any;
-    export var VesktopNative: any;
+    export var Resktop: any;
+    export var ResktopNative: any;
 
     interface Window {
         webpackChunkdiscord_app: {

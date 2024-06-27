@@ -1,4 +1,4 @@
-// Rivercord e1008293
+// Rivercord 9c189cb6
 // Standalone: false
 // Platform: win32
 // Updater Disabled: false

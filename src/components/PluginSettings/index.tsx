@@ -182,10 +182,10 @@ function ExcludedPluginsList({ search }: { search: string; }) {
         .filter(([name]) => name.toLowerCase().includes(search));
 
     const ExcludedReasons: Record<"web" | "discordDesktop" | "rivercordDesktop" | "desktop" | "dev", string> = {
-        desktop: "Discord Desktop app or Vesktop",
+        desktop: "Discord Desktop app or Resktop",
         discordDesktop: "Discord Desktop app",
-        rivercordDesktop: "Vesktop app",
-        web: "Vesktop app and the Web version of Discord",
+        rivercordDesktop: "Resktop app",
+        web: "Resktop app and the Web version of Discord",
         dev: "Developer version of Rivercord"
     };
 
