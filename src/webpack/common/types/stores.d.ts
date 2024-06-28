@@ -38,7 +38,7 @@ export class FluxStore {
     registerActionHandlers: GenericFunction;
     syncWith: GenericFunction;
     waitFor: GenericFunction;
-    __getLocalVars(): Record<string, any>;
+    // __getLocalVars(): Record<string, any>;
 
     static getAll(): FluxStore[];
 }
