@@ -1,0 +1,4 @@
+.rc-rotate-camera-back [class*="cameraPreview_"] [class*="camera_"],
+.rc-rotate-camera-back [class*="mirror_"] {
+    transform: scaleX(1) !important;
+}
