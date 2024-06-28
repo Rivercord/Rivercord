@@ -43,6 +43,11 @@ export interface ProfileBadge {
     position?: BadgePosition;
     /** The badge name to display, Discord uses this. Required for component badges */
     key?: string;
+
+    /**
+     * Allows dynamically returning multiple badges
+     */
+    getBadges?(userInfo: BadgeUserArgs): ProfileBadge[];
 }
 
 const Badges = new Set<ProfileBadge>();
@@ -73,9 +78,16 @@ export function _getBadges(args: BadgeUserArgs) {
 
     for (const badge of Badges) {
         if (!badge.shouldShow || badge.shouldShow(args)) {
+            const b = badge.getBadges
+                ? badge.getBadges(args).map(b => {
+                    b.component &&= ErrorBoundary.wrap(b.component, { noop: true });
+                    return b;
+                })
+                : [{ ...badge, ...args }];
+
             badge.position === BadgePosition.START
-                ? badges.unshift({ ...badge, ...args })
-                : badges.push({ ...badge, ...args });
+                ? badges.unshift(...b)
+                : badges.push(...b);
         }
     }
 

@@ -1,7 +1,7 @@
 {
     "name": "rivercord",
     "private": true,
-    "version": "1.9.1",
+    "version": "1.9.3",
     "description": "The cutest and coolest Discord client mod",
     "homepage": "https://github.com/Rivercord/Rivercord#readme",
     "bugs": {

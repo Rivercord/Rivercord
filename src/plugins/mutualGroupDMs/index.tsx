@@ -53,13 +53,28 @@ export default definePlugin({
             }
         },
         {
-            find: ".USER_INFO_CONNECTIONS:case",
+            find: ".MUTUAL_FRIENDS?(",
             replacement: {
                 match: /(?<={user:(\i),onClose:(\i)}\);)(?=case \i\.\i\.MUTUAL_FRIENDS)/,
-                replace: "case \"MUTUAL_GDMS\":return $self.renderMutualGDMs({user: $1, onClose: $2});"
+                replace: "[...$1, ...($self.isBotOrSelf(arguments[0].user) ? [] : [{section:'MUTUAL_GDMS',text:'Mutual Groups'}])].map"
             }
+        },
+        {
+            find: ".USER_INFO,subsection:",
+            replacement: [
+                {
+                    match: /(?<=onItemSelect:\i,children:)(\i)\.map/,
+                    replace: "[...$1, {section:'MUTUAL_GDMS',text:'Mutual Groups'}].map"
+                },
+                {
+                    match: /\(0,\i\.jsx\)\(\i,\{items:\i,section:(\i)/,
+                    replace: "$1==='MUTUAL_GDMS'?$self.renderMutualGDMs(arguments[0]):$&"
+                }
+            ]
         }
     ],
+
+    isBotOrSelf: (user: User) => user.bot || user.id === UserStore.getCurrentUser().id,
 
     renderMutualGDMs: ErrorBoundary.wrap(({ user, onClose }: { user: User, onClose: () => void; }) => {
         const entries = ChannelStore.getSortedPrivateChannels().filter(c => c.isGroupDM() && c.recipients.includes(user.id)).map(c => (

@@ -1,4 +1,4 @@
-// Rivercord 1c75ceaf
+// Rivercord beb2224a
 // Standalone: false
 // Platform: win32
 // Updater Disabled: false
