@@ -1,4 +1,4 @@
-// Rivercord 5004af79
+// Rivercord 1c75ceaf
 // Standalone: false
 // Platform: win32
 // Updater Disabled: false

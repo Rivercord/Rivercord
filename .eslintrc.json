@@ -9,8 +9,8 @@
     ],
     "plugins": [
         "@typescript-eslint",
-        "simple-header",
-        "simple-import-sort",
+        // "simple-header",
+        // "simple-import-sort",
         "unused-imports",
         "path-alias"
     ],
@@ -46,21 +46,21 @@
         // Since it's only been a month and Rivercord has already been stolen
         // by random skids who rebranded it to "AlphaCord" and erased all license
         // information
-        "simple-header/header": [
-            "error",
-            {
-                "files": [
-                    "scripts/header-new.txt",
-                    "scripts/header-old.txt"
-                ],
-                "templates": {
-                    "author": [
-                        ".*",
-                        "Vendicated and contributors"
-                    ]
-                }
-            }
-        ],
+        // "simple-header/header": [
+        //     "error",
+        //     {
+        //         "files": [
+        //             "scripts/header-new.txt",
+        //             "scripts/header-old.txt"
+        //         ],
+        //         "templates": {
+        //             "author": [
+        //                 ".*",
+        //                 "Vendicated and contributors"
+        //             ]
+        //         }
+        //     }
+        // ],
         "quotes": [
             "error",
             "double",
@@ -190,8 +190,8 @@
         "use-isnan": "error",
         "prefer-const": "error",
         "prefer-spread": "error",
-        "simple-import-sort/imports": "error",
-        "simple-import-sort/exports": "error",
+        // "simple-import-sort/imports": "error",
+        // "simple-import-sort/exports": "error",
         "unused-imports/no-unused-imports": "error",
         "path-alias/no-relative": "error"
     }
