@@ -5,7 +5,7 @@ import "./styles.css";
 
 export default definePlugin({
     name: "RotateCameraBack",
-    description: "Rotate the camera back to the original direction.",
+    description: "Rotate the camera preview of yourself back to the original direction.",
     authors: [Devs.TheArmagan],
     start() {
         document.body.classList.add("rc-rotate-camera-back");
