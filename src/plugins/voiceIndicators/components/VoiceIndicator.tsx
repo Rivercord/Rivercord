@@ -31,7 +31,7 @@ export function VoiceIndicator({ userId, margin }: { userId: string; margin?: bo
             state: vs,
             channel,
             guild,
-            canConnect: PermissionStore.can(1n << 20n, channel)
+            canConnect: guild ? PermissionStore.can(1n << 20n, channel) : true
         });
     }
 
@@ -53,9 +53,9 @@ export function VoiceIndicator({ userId, margin }: { userId: string; margin?: bo
             <div className="guild-name">
                 {data.guild?.name ?? "Private Call"}
             </div>
-            <div className="channel-name">
-                {data.channel?.name ?? "Direct Call"}
-            </div>
+            {data.guild && <div className="channel-name">
+                {data.channel?.name ?? "Unknown Channel"}
+            </div>}
         </div>
     }>
         {tooltipProps => (
