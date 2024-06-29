@@ -1,4 +1,4 @@
-// Rivercord ec3e23e6
+// Rivercord 86dddd4d
 // Standalone: false
 // Platform: win32
 // Updater Disabled: false
