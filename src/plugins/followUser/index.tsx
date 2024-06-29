@@ -22,8 +22,9 @@ import {
     Toasts,
     UserStore
 } from "@webpack/common";
-import type { Channel, User } from "@discord-types/general";
+import type { Channel, User, VoiceState } from "@discord-types/general";
 import type { PropsWithChildren, SVGProps } from "react";
+import { VoiceStateStore } from "@discord-types/stores";
 
 const HeaderBarIcon = LazyComponent(() => {
     const filter = filters.byCode(".HEADER_BAR_BADGE");
@@ -92,21 +93,6 @@ function UnfollowIcon(props: IconProps) {
     );
 }
 
-interface VoiceState {
-    userId: string;
-    channelId?: string;
-    oldChannelId?: string;
-    deaf: boolean;
-    mute: boolean;
-    selfDeaf: boolean;
-    selfMute: boolean;
-    selfStream: boolean;
-    selfVideo: boolean;
-    sessionId: string;
-    suppress: boolean;
-    requestToSpeakTimestamp: string | null;
-}
-
 export const settings = definePluginSettings({
     executeOnFollow: {
         type: OptionType.BOOLEAN,
@@ -154,19 +140,6 @@ const ChannelActions: {
 
 const VoiceStateStore: VoiceStateStore = findStoreLazy("VoiceStateStore");
 const CONNECT = 1n << 20n;
-
-interface VoiceStateStore {
-    getAllVoiceStates(): VoiceStateEntry;
-    getVoiceStatesForChannel(channelId: string): VoiceStateMember;
-}
-
-interface VoiceStateEntry {
-    [guildIdOrMe: string]: VoiceStateMember;
-}
-
-interface VoiceStateMember {
-    [userId: string]: VoiceState;
-}
 
 function getChannelId(userId: string) {
     if (!userId) {

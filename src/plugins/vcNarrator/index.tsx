@@ -18,6 +18,7 @@
 
 import { Settings } from "@api/Settings";
 import { ErrorCard } from "@components/ErrorCard";
+import { VoiceState } from "@discord-types/general";
 import { Devs } from "@utils/constants";
 import { Logger } from "@utils/Logger";
 import { Margins } from "@utils/margins";
@@ -25,16 +26,6 @@ import { wordsToTitle } from "@utils/text";
 import definePlugin, { OptionType, PluginOptionsItem, ReporterTestable } from "@utils/types";
 import { findByPropsLazy } from "@webpack";
 import { Button, ChannelStore, Forms, GuildMemberStore, SelectedChannelStore, SelectedGuildStore, useMemo, UserStore } from "@webpack/common";
-
-interface VoiceState {
-    userId: string;
-    channelId?: string;
-    oldChannelId?: string;
-    deaf: boolean;
-    mute: boolean;
-    selfDeaf: boolean;
-    selfMute: boolean;
-}
 
 const VoiceStateStore = findByPropsLazy("getVoiceStatesForChannel", "getCurrentClientVoiceChannelId");
 

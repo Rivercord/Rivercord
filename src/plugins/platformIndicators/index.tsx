@@ -61,9 +61,9 @@ type Platform = keyof typeof Icons;
 const StatusUtils = findByPropsLazy("useStatusFillColor", "StatusTypes");
 
 const PlatformIcon = ({ platform, status }: { platform: Platform, status: string; }) => {
-    const tooltip = platform === "embedded"
+    const tooltip = `${status[0].toUpperCase() + status.slice(1).toLowerCase()}: ${platform === "embedded"
         ? "Console"
-        : platform[0].toUpperCase() + platform.slice(1);
+        : platform[0].toUpperCase() + platform.slice(1)}`;
 
     const Icon = Icons[platform] ?? Icons.desktop;
 
@@ -75,29 +75,7 @@ const getStatus = (id: string): Record<Platform, string> => PresenceStore.getSta
 const PlatformIndicators = ({ user, padding = false }: { user: User; padding?: boolean; }) => {
     if (!user || user.bot) return null;
 
-    if (user.id === UserStore.getCurrentUser().id) {
-        const sessions = SessionsStore.getSessions();
-        if (typeof sessions !== "object") return null;
-        const sortedSessions = Object.values(sessions).sort(({ status: a }: any, { status: b }: any) => {
-            if (a === b) return 0;
-            if (a === "online") return 1;
-            if (b === "online") return -1;
-            if (a === "idle") return 1;
-            if (b === "idle") return -1;
-            return 0;
-        });
-
-        const ownStatus = Object.values(sortedSessions).reduce((acc: any, curr: any) => {
-            if (curr.clientInfo.client !== "unknown")
-                acc[curr.clientInfo.client] = curr.status;
-            return acc;
-        }, {});
-
-        const { clientStatuses } = PresenceStore.getState();
-        clientStatuses[UserStore.getCurrentUser().id] = ownStatus;
-    }
-
-    const status = PresenceStore.getState()?.clientStatuses?.[user.id] as Record<Platform, string>;
+    const status = getStatus(user.id);
     if (!status) return null;
 
     const icons = Object.entries(status).map(([platform, status]) => (
@@ -123,7 +101,7 @@ const badge: ProfileBadge = {
     component: p => <PlatformIndicators {...p} user={UserStore.getUser(p.userId)} />,
     position: BadgePosition.START,
     shouldShow: userInfo => !!Object.keys(getStatus(userInfo.userId) ?? {}).length,
-    key: "indicator"
+    key: "platform-indicator"
 };
 
 const indicatorLocations = {

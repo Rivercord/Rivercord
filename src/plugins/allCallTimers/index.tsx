@@ -9,9 +9,11 @@ import ErrorBoundary from "@components/ErrorBoundary";
 import { Devs } from "@utils/constants";
 import definePlugin, { OptionType } from "@utils/types";
 import { FluxDispatcher, GuildStore, UserStore } from "@webpack/common";
-import { PassiveVoiceUpdateState, VoiceState } from "@webpack/types";
+import { PassiveUpdateState } from "@webpack/types";
 
 import { Timer } from "./Timer";
+import { VoiceState } from "@discord-types/general";
+
 
 export const settings = definePluginSettings({
     showWithoutHover: {
@@ -63,8 +65,8 @@ export const settings = definePluginSettings({
 
 
 // Save the join time of all users in a Map
-type userJoinData = { channelId: string, time: number; guildId: string; };
-const userJoinTimes = new Map<string, userJoinData>();
+type TUserJoinData = { channelId: string, time: number; guildId: string; };
+const userJoinTimes = new Map<string, TUserJoinData>();
 
 /**
  * The function `addUserJoinTime` stores the join time of a user in a specific channel within a guild.
@@ -164,7 +166,7 @@ export default definePlugin({
             }
             runOneTime = false;
         },
-        PASSIVE_UPDATE_V1(passiveUpdate: PassiveVoiceUpdateState) {
+        PASSIVE_UPDATE_V1(passiveUpdate: PassiveUpdateState) {
             if (settings.store.watchLargeGuilds) {
                 return;
             }

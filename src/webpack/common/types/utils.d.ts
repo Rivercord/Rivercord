@@ -20,10 +20,8 @@ import { Guild, GuildMember } from "@discord-types/general";
 import type { ReactNode } from "react";
 import { LiteralUnion } from "type-fest";
 
-import type { FluxEvents } from "./fluxEvents";
 import { i18nMessages } from "./i18nMessages";
-
-export { FluxEvents };
+import { FluxEvents } from "@discord-types/other";
 
 export interface FluxDispatcher {
     _actionHandlers: any;

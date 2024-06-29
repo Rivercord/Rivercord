@@ -23,11 +23,11 @@ import { Logger } from "@utils/Logger";
 import { canonicalizeFind } from "@utils/patches";
 import { Patch, Plugin, ReporterTestable, StartAt } from "@utils/types";
 import { FluxDispatcher } from "@webpack/common";
-import { FluxEvents } from "@webpack/types";
 
 import Plugins from "~plugins";
 
 import { traceFunction } from "../debug/Tracer";
+import { FluxEvents } from "@discord-types/other";
 
 const logger = new Logger("PluginManager", "#a6d189");
 

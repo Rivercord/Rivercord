@@ -5,8 +5,8 @@
  */
 
 import { MessageCache, MessageStore } from "@webpack/common";
-import { FluxStore } from "@webpack/types";
 import { Message } from "@discord-types/general";
+import { FluxStore } from "@discord-types/stores";
 
 /**
  * Update and re-render a message

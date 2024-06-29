@@ -18,7 +18,7 @@
 
 import { Command } from "@api/Commands";
 import { NavContextMenuPatchCallback } from "@api/ContextMenu";
-import { FluxEvents } from "@webpack/types";
+import { FluxEvents } from "@discord-types/other";
 import { Promisable } from "type-fest";
 
 // exists to export default definePlugin({...})

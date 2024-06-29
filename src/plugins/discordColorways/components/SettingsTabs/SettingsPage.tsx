@@ -16,11 +16,11 @@ import {
     useEffect,
     useState
 } from "@webpack/common";
-import { FluxEvents } from "@webpack/types";
 
 import { versionData } from "../../";
 import { fallbackColorways } from "../../constants";
 import { Colorway } from "../../types";
+import { FluxEvents } from "@discord-types/other";
 
 export default function () {
     const [colorways, setColorways] = useState<Colorway[]>([]);

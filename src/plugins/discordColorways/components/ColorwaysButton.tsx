@@ -7,12 +7,12 @@
 import * as DataStore from "@api/DataStore";
 import { openModal } from "@utils/modal";
 import { FluxDispatcher, Text, Tooltip, useEffect, useState } from "@webpack/common";
-import { FluxEvents } from "@webpack/types";
 
 import { getAutoPresets } from "../css";
 import { ColorwayObject } from "../types";
 import { PalleteIcon } from "./Icons";
 import Selector from "./Selector";
+import type { FluxEvents } from "@discord-types/other";
 
 export default function () {
     const [activeColorway, setActiveColorway] = useState<string>("None");

@@ -21,7 +21,6 @@ export * from "./components";
 export * from "./fluxEvents";
 export * from "./i18nMessages";
 export * from "./menu";
-export * from "./passiveVoiceUpdateState";
+export * from "./passiveUpdateState";
 export * from "./stores";
 export * from "./utils";
-export * from "./voiceState";

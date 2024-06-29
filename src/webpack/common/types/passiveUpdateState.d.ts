@@ -4,9 +4,9 @@
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
-import { VoiceState } from "./voiceState";
+import { VoiceState } from "@discord-types/general";
 
-export interface PassiveVoiceUpdateState {
+export interface PassiveUpdateState {
     type: string;
     guildId: string;
     members?: ({

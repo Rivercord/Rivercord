@@ -25,13 +25,11 @@ import * as t from "./types/stores";
 
 export const Flux: t.Flux = findByPropsLazy("connectStores");
 
-export type GenericStore = t.FluxStore & Record<string, any>;
+export type GenericStore = Stores.FluxStore & Record<string, any>;
 
 export const DraftType = findByPropsLazy("ChannelMessage", "SlashCommand");
 
-export let MessageStore: Omit<Stores.MessageStore, "getMessages"> & {
-    getMessages(chanId: string): any;
-};
+export let MessageStore: Stores.MessageStore;
 
 // this is not actually a FluxStore
 export const PrivateChannelsStore = findByPropsLazy("openPrivateChannel");
@@ -41,17 +39,18 @@ export let ReadStateStore: GenericStore;
 export let PresenceStore: GenericStore;
 
 export let GuildStore: t.GuildStore;
-export let UserStore: Stores.UserStore & t.FluxStore;
+export let UserStore: Stores.UserStore & Stores.FluxStore;
 export let UserProfileStore: GenericStore;
-export let SelectedChannelStore: Stores.SelectedChannelStore & t.FluxStore;
-export let SelectedGuildStore: t.FluxStore & Record<string, any>;
-export let ChannelStore: Stores.ChannelStore & t.FluxStore;
-export let GuildMemberStore: Stores.GuildMemberStore & t.FluxStore;
-export let RelationshipStore: Stores.RelationshipStore & t.FluxStore;
+export let SelectedChannelStore: Stores.SelectedChannelStore & Stores.FluxStore;
+export let SelectedGuildStore: Stores.FluxStore & Record<string, any>;
+export let ChannelStore: Stores.ChannelStore & Stores.FluxStore;
+export let GuildMemberStore: Stores.GuildMemberStore & Stores.FluxStore;
+export let RelationshipStore: Stores.RelationshipStore & Stores.FluxStore;
 
 export let EmojiStore: t.EmojiStore;
 export let WindowStore: t.WindowStore;
 export let DraftStore: t.DraftStore;
+export let VoiceStateStore: Stores.VoiceStateStore & Stores.FluxStore;
 
 /**
  * React hook that returns stateful data for one or more stores
@@ -82,3 +81,4 @@ waitForStore("GuildChannelStore", m => GuildChannelStore = m);
 waitForStore("MessageStore", m => MessageStore = m);
 waitForStore("WindowStore", m => WindowStore = m);
 waitForStore("EmojiStore", m => EmojiStore = m);
+waitForStore("VoiceStateStore", m => VoiceStateStore = m);

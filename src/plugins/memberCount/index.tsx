@@ -24,9 +24,9 @@ import ErrorBoundary from "@components/ErrorBoundary";
 import { Devs } from "@utils/constants";
 import definePlugin, { OptionType } from "@utils/types";
 import { findStoreLazy } from "@webpack";
-import { FluxStore } from "@webpack/types";
 
 import { MemberCount } from "./MemberCount";
+import { FluxStore } from "@discord-types/stores";
 
 export const GuildMemberCountStore = findStoreLazy("GuildMemberCountStore") as FluxStore & { getMemberCount(guildId: string): number | null; };
 export const ChannelMemberStore = findStoreLazy("ChannelMemberStore") as FluxStore & {
