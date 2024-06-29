@@ -1,5 +1,5 @@
 import { Channel, Guild, VoiceState } from "@discord-types/general";
-import { ChannelStore, GuildStore, NavigationRouter, Tooltip, VoiceStateStore, useEffect, useState } from "@webpack/common";
+import { ChannelStore, GuildStore, NavigationRouter, PermissionStore, Tooltip, VoiceStateStore, useEffect, useState } from "@webpack/common";
 import { updateCallbacks } from "..";
 
 import { DeafIcon } from "./DeafIcon";
@@ -20,14 +20,19 @@ const indicatorMap = {
 };
 
 export function VoiceIndicator({ userId, margin }: { userId: string; margin?: boolean; }) {
-    const [data, setData] = useState<{ state: VoiceState, channel: Channel, guild: Guild | null; } | null>(null);
+    const [data, setData] = useState<{ state: VoiceState, channel: Channel, guild: Guild | null; canConnect: boolean; } | null>(null);
 
     function updateState() {
         const vs = VoiceStateStore.getVoiceStateForUser(userId);
         if (!vs) return setData(null);
         const channel = ChannelStore.getChannel(vs.channelId!);
         const guild = channel?.guild_id ? GuildStore.getGuild(channel.guild_id) : null;
-        setData({ state: vs, channel, guild });
+        setData({
+            state: vs,
+            channel,
+            guild,
+            canConnect: PermissionStore.can(1n << 20n, channel)
+        });
     }
 
     useEffect(() => {
@@ -43,7 +48,7 @@ export function VoiceIndicator({ userId, margin }: { userId: string; margin?: bo
     return <Tooltip text={
         <div className="vi-tooltip">
             <div className="can-connect">
-                {data.channel ? "Can Connect" : "Cannot Connect"}
+                {data.canConnect ? "Can Connect" : "Cannot Connect"}
             </div>
             <div className="guild-name">
                 {data.guild?.name ?? "Private Call"}
