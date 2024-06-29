@@ -1,0 +1,60 @@
+.vi-icon-container {
+    background-color: rgba(0 0 0 / 25%);
+    border-radius: 50%;
+    min-width: 1.25rem;
+    min-height: 1.25rem;
+    width: 1.25rem;
+    height: 1.25rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 5;
+    cursor: pointer;
+}
+
+.vi-margin {
+    margin-left: 0.25rem;
+}
+
+.vi-icon {
+    display: flex;
+    color: white;
+    width: 14px;
+    height: 14px;
+}
+
+.vi-red-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: var(--red-400);
+    box-shadow: 0 0 4px var(--red-400);
+}
+
+.vi-tooltip {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+
+    .can-connect,
+    .total-states,
+    .time-elapsed {
+        font-size: 12px;
+        opacity: 0.75;
+    }
+
+    .guild-name {
+        font-size: 16px;
+        font-weight: 600;
+        padding-left: 4px;
+        border-left: 4px solid #5865f2;
+    }
+
+    .channel-name {
+        font-size: 14px;
+        font-weight: 400;
+        padding-left: 6px;
+        border-left: 2px solid #5865f2;
+    }
+}
