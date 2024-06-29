@@ -23,12 +23,12 @@ export function VoiceIndicator({ userId, margin }: { userId: string; margin?: bo
     const [data, setData] = useState<{ state: VoiceState, channel: Channel, guild: Guild | null; canConnect: boolean; } | null>(null);
 
     function updateState() {
-        const vs = VoiceStateStore.getVoiceStateForUser(userId);
-        if (!vs) return setData(null);
-        const channel = ChannelStore.getChannel(vs.channelId!);
+        const state = VoiceStateStore.getVoiceStateForUser(userId);
+        if (!state) return setData(null);
+        const channel = ChannelStore.getChannel(state.channelId!);
         const guild = channel?.guild_id ? GuildStore.getGuild(channel.guild_id) : null;
         setData({
-            state: vs,
+            state,
             channel,
             guild,
             canConnect: guild ? PermissionStore.can(1n << 20n, channel) : true
