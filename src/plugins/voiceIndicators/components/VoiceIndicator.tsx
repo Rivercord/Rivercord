@@ -43,9 +43,7 @@ export function VoiceIndicator({ userId, margin }: { userId: string; margin?: bo
         };
     }, [userId]);
 
-    if (!data) return null;
-
-    return <Tooltip text={
+    return data && <Tooltip text={
         <div className="vi-tooltip">
             <div className="can-connect">
                 {data.canConnect ? "Can Connect" : "Cannot Connect"}

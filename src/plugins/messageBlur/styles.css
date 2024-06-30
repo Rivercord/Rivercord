@@ -1,0 +1,12 @@
+/* stylelint-disable length-zero-no-unit */
+body.mb-blur {
+    [id^="message-content-"],
+    [id^="message-accessories-"] {
+        filter: blur(var(--mb-blur-amount, 0px)) !important;
+        transition: filter 0.05s ease-in-out;
+
+        &:hover {
+            filter: blur(0px) !important;
+        }
+    }
+}
