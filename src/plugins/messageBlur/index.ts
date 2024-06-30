@@ -17,7 +17,7 @@ const settings = definePluginSettings({
 });
 
 const keyBindHandler = (e: KeyboardEvent) => {
-    if (e.code === "KeyM" && e.ctrlKey) {
+    if (e.code === "KeyM" && e.ctrlKey && e.altKey) {
         document.body.classList.toggle("mb-blur");
     }
 };
@@ -25,7 +25,7 @@ const keyBindHandler = (e: KeyboardEvent) => {
 export default definePlugin({
     name: "MessageBlur",
     authors: [Devs.TheArmagan],
-    description: "Blur all messages with a CTRL + M shortcut.",
+    description: "Blur all messages with a CTRL + ALT + M shortcut.",
     settings,
     start() {
         document.body.style.setProperty("--mb-blur-amount", `${settings.store.blurAmount}px`);
