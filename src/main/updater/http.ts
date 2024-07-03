@@ -25,8 +25,7 @@ async function githubGet(endpoint: string) {
 }
 
 async function calculateGitChanges() {
-    const isOutdated = await fetchUpdates();
-    if (!isOutdated) return [];
+    await fetchUpdates();
 
     const res = await githubGet(`/compare/${gitHash}...HEAD`);
 
@@ -76,3 +75,5 @@ ipcMain.handle(IpcEvents.GET_REPO, serializeErrors(() => `https://github.com/${g
 ipcMain.handle(IpcEvents.GET_UPDATES, serializeErrors(calculateGitChanges));
 ipcMain.handle(IpcEvents.UPDATE, serializeErrors(fetchUpdates));
 ipcMain.handle(IpcEvents.BUILD, serializeErrors(applyUpdates));
+
+console.log("[Rivercord] Updater", { gitHash, gitRemote, __dirname });
