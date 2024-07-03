@@ -1,21 +1,3 @@
-/*
- * Rivercord, a modification for Discord's desktop app
- * Copyright (c) 2022 Vendicated and contributors
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <https://www.gnu.org/licenses/>.
-*/
-
 import { IpcEvents } from "@shared/IpcEvents";
 import { RIVERCORD_USER_AGENT } from "@shared/rivercordUserAgent";
 import { ipcMain } from "electron";
@@ -26,7 +8,7 @@ import gitHash from "~git-hash";
 import gitRemote from "~git-remote";
 
 import { get } from "../utils/simpleGet";
-import { RIVERCORD_FILES,serializeErrors } from "./common";
+import { RIVERCORD_FILES, serializeErrors } from "./common";
 
 const API_BASE = `https://api.github.com/repos/${gitRemote}`;
 let PendingUpdates = [] as [string, string][];
@@ -58,18 +40,24 @@ async function calculateGitChanges() {
 }
 
 async function fetchUpdates() {
-    const release = await githubGet("/releases/latest");
+    // const release = await githubGet("/releases/latest");
 
-    const data = JSON.parse(release.toString());
-    const hash = data.name.slice(data.name.lastIndexOf(" ") + 1);
-    if (hash === gitHash)
-        return false;
+    // const data = JSON.parse(release.toString());
+    // const hash = data.name.slice(data.name.lastIndexOf(" ") + 1);
+    // if (hash === gitHash)
+    //     return false;
 
-    data.assets.forEach(({ name, browser_download_url }) => {
-        if (RIVERCORD_FILES.some(s => name.startsWith(s))) {
-            PendingUpdates.push([name, browser_download_url]);
-        }
+    RIVERCORD_FILES.forEach(i => {
+        PendingUpdates.push(
+            [i, `https://raw.githubusercontent.com/Rivercord/Rivercord/main/dist/${i}`]
+        );
     });
+
+    // data.assets.forEach(({ name, browser_download_url }) => {
+    //     if (RIVERCORD_FILES.some(s => name.startsWith(s))) {
+    //         PendingUpdates.push([name, browser_download_url]);
+    //     }
+    // });
     return true;
 }
 
