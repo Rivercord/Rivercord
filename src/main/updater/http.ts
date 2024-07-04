@@ -40,6 +40,9 @@ async function calculateGitChanges() {
 
 async function fetchUpdates() {
     // const release = await githubGet("/releases/latest");
+    const lastGitHash = await get("https://raw.githubusercontent.com/Rivercord/Rivercord/main/dist/git-hash.txt");
+
+    if (lastGitHash.toString("utf-8").trim() === gitHash) return false;
 
     // const data = JSON.parse(release.toString());
     // const hash = data.name.slice(data.name.lastIndexOf(" ") + 1);
@@ -76,7 +79,6 @@ async function applyUpdates() {
 ipcMain.handle(IpcEvents.GET_REPO, serializeErrors(() => `https://github.com/${gitRemote}`));
 ipcMain.handle(IpcEvents.GET_UPDATES, serializeErrors(calculateGitChanges));
 ipcMain.handle(IpcEvents.UPDATE, serializeErrors(fetchUpdates));
-// ipcMain.handle(IpcEvents.BUILD, serializeErrors(applyUpdates));
-ipcMain.handle(IpcEvents.BUILD, serializeErrors(fetchUpdates));
+ipcMain.handle(IpcEvents.BUILD, serializeErrors(applyUpdates));
 
 console.log("[Rivercord] Updater", { gitHash, gitRemote, __dirname });
