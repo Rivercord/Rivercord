@@ -61,7 +61,6 @@ async function fetchUpdates() {
     //     }
     // });
 
-    await applyUpdates();
     return true;
 }
 
