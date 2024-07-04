@@ -18,10 +18,10 @@
 */
 
 import esbuild from "esbuild";
-import { readdir } from "fs/promises";
+import { readdir, writeFile } from "fs/promises";
 import { join } from "path";
 
-import { BUILD_TIMESTAMP, commonOpts, exists, globPlugins, IS_DEV, IS_REPORTER, IS_STANDALONE, IS_UPDATER_DISABLED, resolvePluginName, VERSION, watch } from "./common.mjs";
+import { BUILD_TIMESTAMP, commonOpts, exists, globPlugins, IS_DEV, IS_REPORTER, IS_STANDALONE, IS_UPDATER_DISABLED, resolvePluginName, VERSION, watch, gitHash } from "./common.mjs";
 
 const defines = {
     IS_STANDALONE,
@@ -200,6 +200,7 @@ await Promise.all([
             IS_VESKTOP: true
         }
     }),
+    writeFile("dist/git-hash.txt", gitHash, "utf8")
 ]).catch(err => {
     console.error("Build failed");
     console.error(err.message);
