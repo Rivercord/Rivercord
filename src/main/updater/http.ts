@@ -38,28 +38,19 @@ async function calculateGitChanges() {
     }));
 }
 
+async function isUpdateRequired() {
+    const remoteGitHash = await get("https://raw.githubusercontent.com/Rivercord/Rivercord/main/dist/git-hash.txt");
+    return remoteGitHash.toString("utf-8").trim() !== gitHash;
+}
+
 async function fetchUpdates() {
-    // const release = await githubGet("/releases/latest");
-    const lastGitHash = await get("https://raw.githubusercontent.com/Rivercord/Rivercord/main/dist/git-hash.txt");
-
-    if (lastGitHash.toString("utf-8").trim() === gitHash) return false;
-
-    // const data = JSON.parse(release.toString());
-    // const hash = data.name.slice(data.name.lastIndexOf(" ") + 1);
-    // if (hash === gitHash)
-    //     return false;
+    if (!(await isUpdateRequired())) return false;
 
     RIVERCORD_FILES.forEach(i => {
         PendingUpdates.push(
             [i, `https://raw.githubusercontent.com/Rivercord/Rivercord/main/dist/${i}`]
         );
     });
-
-    // data.assets.forEach(({ name, browser_download_url }) => {
-    //     if (RIVERCORD_FILES.some(s => name.startsWith(s))) {
-    //         PendingUpdates.push([name, browser_download_url]);
-    //     }
-    // });
 
     return true;
 }
@@ -77,6 +68,7 @@ async function applyUpdates() {
 
 ipcMain.handle(IpcEvents.GET_REPO, serializeErrors(() => `https://github.com/${gitRemote}`));
 ipcMain.handle(IpcEvents.GET_UPDATES, serializeErrors(calculateGitChanges));
+ipcMain.handle(IpcEvents.IS_UPDATE_REQUIRED, serializeErrors(isUpdateRequired));
 ipcMain.handle(IpcEvents.UPDATE, serializeErrors(fetchUpdates));
 ipcMain.handle(IpcEvents.BUILD, serializeErrors(applyUpdates));
 

@@ -44,6 +44,7 @@ export default {
         update: () => invoke<IpcRes<boolean>>(IpcEvents.UPDATE),
         rebuild: () => invoke<IpcRes<boolean>>(IpcEvents.BUILD),
         getRepo: () => invoke<IpcRes<string>>(IpcEvents.GET_REPO),
+        isUpdateRequired: () => invoke<IpcRes<boolean>>(IpcEvents.IS_UPDATE_REQUIRED),
     },
 
     settings: {

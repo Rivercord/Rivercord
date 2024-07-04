@@ -33,6 +33,7 @@ export const enum IpcEvents {
     OPEN_EXTERNAL = "RivercordOpenExternal",
     OPEN_QUICKCSS = "RivercordOpenQuickCss",
     GET_UPDATES = "RivercordGetUpdates",
+    IS_UPDATE_REQUIRED = "RivercordIsUpdateRequired",
     GET_REPO = "RivercordGetRepo",
     UPDATE = "RivercordUpdate",
     BUILD = "RivercordBuild",

@@ -38,6 +38,8 @@ async function Unwrap<T>(p: Promise<IpcRes<T>>) {
 }
 
 export async function checkForUpdates() {
+    if (!(await Unwrap(RivercordNative.updater.isUpdateRequired()))) return (isOutdated = false);
+
     changes = await Unwrap(RivercordNative.updater.getUpdates());
     if (changes.some(c => c.hash === gitHash)) {
         isNewer = true;
