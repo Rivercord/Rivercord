@@ -17,8 +17,8 @@
 */
 
 import { Settings } from "@api/Settings";
-import BackupAndRestoreTab from "@components/RivercordSettings/BackupAndRestoreTab";
-import CloudTab from "@components/RivercordSettings/CloudTab";
+// import BackupAndRestoreTab from "@components/RivercordSettings/BackupAndRestoreTab";
+// import CloudTab from "@components/RivercordSettings/CloudTab";
 import PatchHelperTab from "@components/RivercordSettings/PatchHelperTab";
 import PluginsTab from "@components/RivercordSettings/PluginsTab";
 import RivercordTab from "@components/RivercordSettings/RivercordTab";
@@ -111,18 +111,18 @@ export default definePlugin({
                 element: UpdaterTab,
                 className: "rc-updater"
             },
-            {
-                section: "RivercordCloud",
-                label: "Cloud",
-                element: CloudTab,
-                className: "rc-cloud"
-            },
-            {
-                section: "RivercordSettingsSync",
-                label: "Backup & Restore",
-                element: BackupAndRestoreTab,
-                className: "rc-backup-restore"
-            },
+            // {
+            //     section: "RivercordCloud",
+            //     label: "Cloud",
+            //     element: CloudTab,
+            //     className: "rc-cloud"
+            // },
+            // {
+            //     section: "RivercordSettingsSync",
+            //     label: "Backup & Restore",
+            //     element: BackupAndRestoreTab,
+            //     className: "rc-backup-restore"
+            // },
             IS_DEV && {
                 section: "RivercordPatchHelper",
                 label: "Patch Helper",

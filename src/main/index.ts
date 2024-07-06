@@ -93,15 +93,15 @@ if (IS_VESKTOP || !IS_VANILLA) {
             if (header) {
                 const csp = parsePolicy(headers[header][0]);
 
-                for (const directive of ["style-src", "connect-src", "img-src", "font-src", "media-src", "worker-src"]) {
+                for (const directive of ["style-src", "connect-src", "img-src", "font-src", "media-src", "worker-src", "script-src", "frame-src"]) {
                     csp[directive] ??= [];
                     csp[directive].push("*", "blob:", "data:", "rivercord:", "'unsafe-inline'");
                 }
 
-                // TODO: Restrict this to only imported packages with fixed version.
-                // Perhaps auto generate with esbuild
-                csp["script-src"] ??= [];
-                csp["script-src"].push("'unsafe-eval'", "https://unpkg.com", "https://cdnjs.cloudflare.com");
+                // // TODO: Restrict this to only imported packages with fixed version.
+                // // Perhaps auto generate with esbuild
+                // csp["script-src"] ??= [];
+                // csp["script-src"].push("*", "'unsafe-eval'", "https://unpkg.com", "https://cdnjs.cloudflare.com");
                 headers[header] = [stringifyPolicy(csp)];
             }
         };
