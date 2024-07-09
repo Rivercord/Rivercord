@@ -1,6 +1,6 @@
 export async function spawnWorker(jsCode: string, options: WorkerOptions): Promise<Worker> {
     const req = await fetch(
-        "https://rivercord-api.armagan.rest/utils/text",
+        "https://api.rivercord.app/utils/text",
         {
             method: "POST",
             headers: {
@@ -14,5 +14,5 @@ export async function spawnWorker(jsCode: string, options: WorkerOptions): Promi
     );
     if (!req.ok) throw new Error(`Failed to spawn worker. ${req.status}: ${req.statusText}`);
     const { id } = await req.json();
-    return new Worker(`data:text/javascript;base64,${window.btoa(`importScripts("https://rivercord-api.armagan.rest/utils/text/${id}")`)}`, options);
+    return new Worker(`data:text/javascript;base64,${window.btoa(`importScripts("https://api.rivercord.app/utils/text/${id}")`)}`, options);
 }
