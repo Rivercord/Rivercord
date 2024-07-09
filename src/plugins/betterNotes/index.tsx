@@ -16,7 +16,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-import { Settings } from "@api/Settings";
+import { definePluginSettings, Settings } from "@api/Settings";
 import ErrorBoundary from "@components/ErrorBoundary";
 import { Devs } from "@utils/constants";
 import { canonicalizeMatch } from "@utils/patches";
@@ -24,6 +24,21 @@ import definePlugin, { OptionType } from "@utils/types";
 import { findByPropsLazy } from "@webpack";
 
 const UserPopoutSectionCssClasses = findByPropsLazy("section", "lastSection");
+
+const settings = definePluginSettings({
+    hide: {
+        type: OptionType.BOOLEAN,
+        description: "Hide notes",
+        default: false,
+        restartNeeded: true
+    },
+    noSpellCheck: {
+        type: OptionType.BOOLEAN,
+        description: "Disable spellcheck in notes",
+        disabled: () => Settings.plugins.BetterNotesBox.hide,
+        default: false
+    }
+});
 
 export default definePlugin({
     name: "BetterNotesBox",
@@ -54,7 +69,7 @@ export default definePlugin({
             find: "Messages.NOTE_PLACEHOLDER",
             replacement: {
                 match: /\.NOTE_PLACEHOLDER,/,
-                replace: "$&spellCheck:!Rivercord.Settings.plugins.BetterNotesBox.noSpellCheck,"
+                replace: "$&spellCheck:!$self.noSpellCheck,"
             }
         },
         {
@@ -66,20 +81,11 @@ export default definePlugin({
         }
     ],
 
-    options: {
-        hide: {
-            type: OptionType.BOOLEAN,
-            description: "Hide notes",
-            default: false,
-            restartNeeded: true
-        },
-        noSpellCheck: {
-            type: OptionType.BOOLEAN,
-            description: "Disable spellcheck in notes",
-            disabled: () => Settings.plugins.BetterNotesBox.hide,
-            default: false
-        }
+    get noSpellCheck() {
+        return settings.store.noSpellCheck;
     },
+
+    settings,
 
     patchPadding: ErrorBoundary.wrap(({ lastSection }) => {
         if (!lastSection) return null;
