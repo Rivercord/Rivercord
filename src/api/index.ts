@@ -33,6 +33,7 @@ import * as $ServerList from "./ServerList";
 import * as $Settings from "./Settings";
 import * as $Styles from "./Styles";
 import * as $UserSettings from "./UserSettings";
+import * as $OnlineServices from "./OnlineServices";
 
 /**
  * An API allowing you to listen to Message Clicks or run your own logic
@@ -122,3 +123,5 @@ export const MessageUpdater = $MessageUpdater;
  * An API allowing you to get an user setting
  */
 export const UserSettings = $UserSettings;
+
+export const OnlineServices = $OnlineServices;
