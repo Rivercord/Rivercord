@@ -7,7 +7,7 @@ import type { ReactNode } from "react";
 import { PermissionsSortOrder, settings } from ".";
 import { PermissionType } from "./components/RolesAndUsersPermissions";
 
-export const cl = classNameFactory("vc-permviewer-");
+export const cl = classNameFactory("rc-permviewer-");
 
 function formatPermissionWithoutMatchingString(permission: string) {
     return wordsToTitle(permission.toLowerCase().split("_"));

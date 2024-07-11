@@ -188,7 +188,7 @@ export default definePlugin({
                         look={Button.Looks.FILLED}
                         size={Button.Sizes.NONE}
                         innerClassName={classes(RoleButtonClasses.buttonInner, RoleButtonClasses.icon)}
-                        className={classes(RoleButtonClasses.button, RoleButtonClasses.icon, "vc-permviewer-role-button")}
+                        className={classes(RoleButtonClasses.button, RoleButtonClasses.icon, "rc-permviewer-role-button")}
                     >
                         <SafetyIcon height="16" width="16" />
                     </Button>

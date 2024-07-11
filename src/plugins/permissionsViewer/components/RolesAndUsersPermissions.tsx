@@ -190,7 +190,7 @@ function RoleContextMenu({ guild, roleId, onClose }: { guild: Guild; roleId: str
             aria-label="Role Options"
         >
             <Menu.MenuItem
-                id="vc-copy-role-id"
+                id="rc-copy-role-id"
                 label={i18n.Messages.COPY_ID_ROLE}
                 action={() => {
                     Clipboard.copy(roleId);
@@ -199,7 +199,7 @@ function RoleContextMenu({ guild, roleId, onClose }: { guild: Guild; roleId: str
 
             {(settings.store as any).unsafeViewAsRole && (
                 <Menu.MenuItem
-                    id="vc-pw-view-as-role"
+                    id="rc-pw-view-as-role"
                     label={i18n.Messages.VIEW_AS_ROLE}
                     action={() => {
                         const role = GuildStore.getRole(guild.id, roleId);
@@ -233,7 +233,7 @@ function UserContextMenu({ userId, onClose }: { userId: string; onClose: () => v
             aria-label="User Options"
         >
             <Menu.MenuItem
-                id="vc-copy-user-id"
+                id="rc-copy-user-id"
                 label={i18n.Messages.COPY_ID_USER}
                 action={() => {
                     Clipboard.copy(userId);
