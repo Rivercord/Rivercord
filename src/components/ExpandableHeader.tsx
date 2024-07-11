@@ -3,7 +3,7 @@ import "./ExpandableHeader.css";
 import { classNameFactory } from "@api/Styles";
 import { Text, Tooltip, useState } from "@webpack/common";
 
-const cl = classNameFactory("vc-expandableheader-");
+const cl = classNameFactory("rc-expandableheader-");
 
 export interface ExpandableHeaderProps {
     onMoreClick?: () => void;
