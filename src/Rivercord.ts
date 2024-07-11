@@ -35,6 +35,7 @@ if (IS_REPORTER) {
 }
 
 async function syncSettings() {
+    return;
     // pre-check for local shared settings
     if (
         Settings.cloud.authenticated &&
@@ -88,8 +89,8 @@ async function init() {
                 await update();
                 if (Settings.autoUpdateNotification)
                     setTimeout(() => showNotification({
-                        title: "Rivercord has been updated!",
-                        body: "Click here to restart",
+                        title: "Rivercord güncellendi!",
+                        body: "Yeniden başlatmak için tıklayın.",
                         permanent: true,
                         noPersist: true,
                         onClick: relaunch
@@ -98,8 +99,8 @@ async function init() {
             }
 
             setTimeout(() => showNotification({
-                title: "A Rivercord update is available!",
-                body: "Click here to view the update",
+                title: "Rivercord için güncelleme mevcut!",
+                body: "Güncellemeleri görmek için tıklayın.",
                 permanent: true,
                 noPersist: true,
                 onClick: openUpdaterModal!
