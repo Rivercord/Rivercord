@@ -4,7 +4,7 @@ export function buildSocketUser(user: User) {
     return {
         id: user.id,
         username: user.username,
-        global_name: user.username,
+        global_name: user.globalName,
         avatar: user.avatar,
         banner: user.banner,
         avatar_decoration_asset: user.avatarDecorationData?.asset,
