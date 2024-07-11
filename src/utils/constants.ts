@@ -6,7 +6,11 @@
 
 export const WEBPACK_CHUNK = "webpackChunkdiscord_app";
 export const REACT_GLOBAL = "Rivercord.Webpack.Common.React";
-export const SUPPORT_CHANNEL_ID = "1026515880080842772";
+export const SUPPORT_CHANNEL_ID = "1259148017915789393";
+
+export const RIVERCORD_HTTP_API_BASE = "https://api.rivercord.app";
+export const RIVERCORD_WSS_API_BASE = "wss://api.rivercord.app/socket";
+export const RIVERCORD_CLIENT_ID = "1166511736938053757";
 
 export interface Dev {
     name: string;

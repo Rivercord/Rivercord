@@ -23,6 +23,17 @@ export default class User {
     system: boolean;
     username: string;
     verified: boolean;
+    premiumType: number | undefined;
+    avatarDecorationData: {
+        asset: string;
+        skuId: string;
+    } | undefined;
+    clan: {
+        badge: string;
+        identityEnabled: boolean;
+        identityGuildId: string;
+        tag: string;
+    } | undefined;
 
     get createdAt(): Date;
     get hasPremiumPerks(): boolean;

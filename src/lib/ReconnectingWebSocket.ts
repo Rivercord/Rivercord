@@ -4,16 +4,20 @@ import { BasicEventEmitter } from "./BasicEventEmitter";
 export class ReconnectingWebSocket extends BasicEventEmitter {
     url: string = "";
     socket: WebSocket | null = null;
-    disconnect: boolean = false;
-    retries: number = 0;
-    showConnected: boolean = false;
+    private disconnect: boolean = false;
+    private retries: number = 0;
+    private showConnected: boolean = false;
 
     constructor() {
         super();
     }
 
+    get connected(): boolean {
+        return this.socket?.readyState === WebSocket.OPEN;
+    }
+
     connect(url?: string, force = false) {
-        if (this.socket?.readyState === WebSocket.OPEN && !force) return;
+        if (this.connected && !force) return;
 
         if (url) this.url = url;
 
@@ -59,8 +63,8 @@ export class ReconnectingWebSocket extends BasicEventEmitter {
     }
 
     send(eventName: string, eventData: any) {
-        if (this.socket?.readyState !== WebSocket.OPEN) return;
-        this.socket.send(JSON.stringify([eventName, eventData]));
+        if (!this.connected) return;
+        this.socket!.send(JSON.stringify([eventName, eventData]));
     }
 
     close() {

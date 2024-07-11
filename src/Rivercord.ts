@@ -79,7 +79,7 @@ async function init() {
 
     syncSettings();
 
-    if (!IS_WEB && !IS_UPDATER_DISABLED) {
+    if (!IS_WEB && !IS_UPDATER_DISABLED && !IS_DEV) {
         try {
             const isOutdated = await checkForUpdates();
             if (!isOutdated) return;
