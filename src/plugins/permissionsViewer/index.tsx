@@ -1,33 +1,22 @@
-/*
- * Rivercord, a modification for Discord's desktop app
- * Copyright (c) 2023 Vendicated and contributors
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <https://www.gnu.org/licenses/>.
-*/
-
 import "./styles.css";
 
 import { findGroupChildrenByChildId, NavContextMenuPatchCallback } from "@api/ContextMenu";
 import { definePluginSettings } from "@api/Settings";
+import ErrorBoundary from "@components/ErrorBoundary";
+import { SafetyIcon } from "@components/Icons";
 import { Devs } from "@utils/constants";
+import { classes } from "@utils/misc";
 import definePlugin, { OptionType } from "@utils/types";
-import { ChannelStore, GuildMemberStore, GuildStore, Menu, PermissionsBits, UserStore } from "@webpack/common";
-import type { Guild, GuildMember } from "@discord-types/general";
+import { findByPropsLazy } from "@webpack";
+import { Button, ChannelStore, Dialog, GuildMemberStore, GuildStore, Menu, PermissionsBits, Popout, TooltipContainer, UserStore } from "@webpack/common";
+import type { Guild, GuildMember } from "discord-types/general";
 
 import openRolesAndUsersPermissionsModal, { PermissionType, RoleOrUserPermission } from "./components/RolesAndUsersPermissions";
 import UserPermissions from "./components/UserPermissions";
 import { getSortedRoles, sortPermissionOverwrites } from "./utils";
+
+const PopoutClasses = findByPropsLazy("container", "scroller", "list");
+const RoleButtonClasses = findByPropsLazy("button", "buttonInner", "icon", "banner");
 
 export const enum PermissionsSortOrder {
     HighestRole,
@@ -168,10 +157,45 @@ export default definePlugin({
                 match: /showBorder:(.{0,60})}\),(?<=guild:(\i),guildMember:(\i),.+?)/,
                 replace: (m, showBoder, guild, guildMember) => `${m}$self.UserPermissions(${guild},${guildMember},${showBoder}),`
             }
+        },
+        {
+            find: ".VIEW_ALL_ROLES,",
+            replacement: {
+                match: /children:"\+"\.concat\(\i\.length-\i\.length\).{0,20}\}\),/,
+                replace: "$&$self.ViewPermissionsButton(arguments[0]),"
+            }
         }
     ],
 
-    UserPermissions: (guild: Guild, guildMember: GuildMember | undefined, showBoder: boolean) => !!guildMember && <UserPermissions guild={guild} guildMember={guildMember} showBorder={showBoder} />,
+    UserPermissions: (guild: Guild, guildMember: GuildMember | undefined, showBorder: boolean) =>
+        !!guildMember && <UserPermissions guild={guild} guildMember={guildMember} showBorder={showBorder} />,
+
+    ViewPermissionsButton: ErrorBoundary.wrap(({ guild, guildMember }: { guild: Guild; guildMember: GuildMember; }) => (
+        <Popout
+            position="bottom"
+            align="center"
+            renderPopout={() => (
+                <Dialog className={PopoutClasses.container} style={{ width: "500px" }}>
+                    <UserPermissions guild={guild} guildMember={guildMember} showBorder forceOpen />
+                </Dialog>
+            )}
+        >
+            {popoutProps => (
+                <TooltipContainer text="View Permissions">
+                    <Button
+                        {...popoutProps}
+                        color={Button.Colors.CUSTOM}
+                        look={Button.Looks.FILLED}
+                        size={Button.Sizes.NONE}
+                        innerClassName={classes(RoleButtonClasses.buttonInner, RoleButtonClasses.icon)}
+                        className={classes(RoleButtonClasses.button, RoleButtonClasses.icon, "vc-permviewer-role-button")}
+                    >
+                        <SafetyIcon height="16" width="16" />
+                    </Button>
+                </TooltipContainer>
+            )}
+        </Popout>
+    ), { noop: true }),
 
     contextMenus: {
         "user-context": makeContextMenuPatch("roles", MenuItemParentType.User),

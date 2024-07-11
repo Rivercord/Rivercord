@@ -101,6 +101,28 @@ export type Tooltip = ComponentType<{
 
 export type TooltipPositions = Record<"BOTTOM" | "CENTER" | "LEFT" | "RIGHT" | "TOP" | "WINDOW_CENTER", string>;
 
+export type TooltipContainer = ComponentType<PropsWithChildren<{
+    text: ReactNode;
+    element?: "div" | "span";
+    "aria-label"?: string | false;
+
+    delay?: number;
+    /** Tooltip.Colors.BLACK */
+    color?: string;
+    /** TooltipPositions.TOP */
+    position?: string;
+    spacing?: number;
+
+    className?: string;
+    tooltipClassName?: string | null;
+    tooltipContentClassName?: string | null;
+
+    allowOverflow?: boolean;
+    forceOpen?: boolean;
+    hideOnClick?: boolean;
+    disableTooltipPointerEvents?: boolean;
+}>>;
+
 export type Card = ComponentType<PropsWithChildren<HTMLProps<HTMLDivElement> & {
     editable?: boolean;
     outline?: boolean;

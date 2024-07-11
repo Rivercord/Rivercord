@@ -1,27 +1,9 @@
-/*
- * Rivercord, a modification for Discord's desktop app
- * Copyright (c) 2023 Vendicated and contributors
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <https://www.gnu.org/licenses/>.
-*/
-
 import ErrorBoundary from "@components/ErrorBoundary";
 import { ExpandableHeader } from "@components/ExpandableHeader";
 import { classes } from "@utils/misc";
 import { filters, findBulk, proxyLazyWebpack } from "@webpack";
 import { i18n, PermissionsBits, Text, Tooltip, useMemo, UserStore } from "@webpack/common";
-import type { Guild, GuildMember } from "@discord-types/general";
+import type { Guild, GuildMember } from "discord-types/general";
 
 import { PermissionsSortOrder, settings } from "..";
 import { cl, getPermissionString, getSortedRoles, sortUserRoles } from "../utils";
@@ -43,7 +25,7 @@ const Classes = proxyLazyWebpack(() =>
     ))
 ) as Record<"roles" | "rolePill" | "rolePillBorder" | "desaturateUserColors" | "flex" | "alignCenter" | "justifyCenter" | "svg" | "background" | "dot" | "dotBorderColor" | "roleCircle" | "dotBorderBase" | "flex" | "alignCenter" | "justifyCenter" | "wrap" | "root" | "role" | "roleRemoveButton" | "roleDot" | "roleFlowerStar" | "roleRemoveIcon" | "roleRemoveIconFocused" | "roleVerifiedIcon" | "roleName" | "roleNameOverflow" | "actionButton" | "overflowButton" | "addButton" | "addButtonIcon" | "overflowRolesPopout" | "overflowRolesPopoutArrowWrapper" | "overflowRolesPopoutArrow" | "popoutBottom" | "popoutTop" | "overflowRolesPopoutHeader" | "overflowRolesPopoutHeaderIcon" | "overflowRolesPopoutHeaderText" | "roleIcon", string>;
 
-function UserPermissionsComponent({ guild, guildMember, showBorder }: { guild: Guild; guildMember: GuildMember; showBorder: boolean; }) {
+function UserPermissionsComponent({ guild, guildMember, showBorder, forceOpen = false }: { guild: Guild; guildMember: GuildMember; showBorder: boolean; forceOpen?: boolean; }) {
     const stns = settings.use(["permissionsSortOrder"]);
 
     const [rolePermissions, userPermissions] = useMemo(() => {
@@ -95,6 +77,7 @@ function UserPermissionsComponent({ guild, guildMember, showBorder }: { guild: G
 
     return (
         <ExpandableHeader
+            forceOpen={forceOpen}
             headerText="Permissions"
             moreTooltipText="Role Details"
             onMoreClick={() =>

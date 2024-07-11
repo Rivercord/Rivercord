@@ -1,22 +1,3 @@
-/*
- * Rivercord, a modification for Discord's desktop app
- * Copyright (c) 2023 Vendicated and contributors
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <https://www.gnu.org/licenses/>.
-*/
-
-// eslint-disable-next-line path-alias/no-relative
 import { filters, findByPropsLazy, waitFor } from "@webpack";
 
 import { waitForComponent } from "./internal";
@@ -33,6 +14,7 @@ export let Card: t.Card;
 export let Button: t.Button;
 export let Switch: t.Switch;
 export let Tooltip: t.Tooltip;
+export let TooltipContainer: t.TooltipContainer;
 export let TextInput: t.TextInput;
 export let TextArea: t.TextArea;
 export let Text: t.Text;
@@ -66,6 +48,7 @@ waitFor(["FormItem", "Button"], m => {
         Button,
         FormSwitch: Switch,
         Tooltip,
+        TooltipContainer,
         TextInput,
         TextArea,
         Text,

@@ -1,28 +1,10 @@
-/*
- * Rivercord, a modification for Discord's desktop app
- * Copyright (c) 2023 Vendicated and contributors
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <https://www.gnu.org/licenses/>.
-*/
-
 import ErrorBoundary from "@components/ErrorBoundary";
 import { Flex } from "@components/Flex";
 import { InfoIcon, OwnerCrownIcon } from "@components/Icons";
 import { getUniqueUsername } from "@utils/discord";
 import { ModalCloseButton, ModalContent, ModalHeader, ModalProps, ModalRoot, ModalSize, openModal } from "@utils/modal";
 import { Clipboard, ContextMenuApi, FluxDispatcher, GuildMemberStore, GuildStore, i18n, Menu, PermissionsBits, Text, Tooltip, useEffect, UserStore, useState, useStateFromStores } from "@webpack/common";
-import type { Guild } from "@discord-types/general";
+import type { Guild } from "discord-types/general";
 
 import { settings } from "..";
 import { cl, getPermissionDescription, getPermissionString } from "../utils";
@@ -208,7 +190,7 @@ function RoleContextMenu({ guild, roleId, onClose }: { guild: Guild; roleId: str
             aria-label="Role Options"
         >
             <Menu.MenuItem
-                id="rc-copy-role-id"
+                id="vc-copy-role-id"
                 label={i18n.Messages.COPY_ID_ROLE}
                 action={() => {
                     Clipboard.copy(roleId);
@@ -217,7 +199,7 @@ function RoleContextMenu({ guild, roleId, onClose }: { guild: Guild; roleId: str
 
             {(settings.store as any).unsafeViewAsRole && (
                 <Menu.MenuItem
-                    id="rc-pw-view-as-role"
+                    id="vc-pw-view-as-role"
                     label={i18n.Messages.VIEW_AS_ROLE}
                     action={() => {
                         const role = GuildStore.getRole(guild.id, roleId);
@@ -251,7 +233,7 @@ function UserContextMenu({ userId, onClose }: { userId: string; onClose: () => v
             aria-label="User Options"
         >
             <Menu.MenuItem
-                id="rc-copy-user-id"
+                id="vc-copy-user-id"
                 label={i18n.Messages.COPY_ID_USER}
                 action={() => {
                     Clipboard.copy(userId);
