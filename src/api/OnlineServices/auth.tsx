@@ -18,11 +18,15 @@ export async function getAuthKey() {
     return keys?.[userId];
 }
 
-export function authorize(): Promise<string> {
+let modalIsOpen = false;
+
+export function authorize(): Promise<void> {
+    if (modalIsOpen) return Promise.resolve();
     return new Promise(resolve => {
         function doAuth() {
             const userId = UserStore.getCurrentUser()?.id;
             let success = false;
+            modalIsOpen = true;
             openModal(props =>
                 <OAuth2AuthorizeModal
                     {...props}
@@ -34,6 +38,8 @@ export function authorize(): Promise<string> {
                     state={userId}
                     cancelCompletesFlow={true}
                     callback={async (response: any) => {
+                        modalIsOpen = false;
+
                         if (!response.location) return doAuth();
                         success = true;
 
@@ -55,11 +61,12 @@ export function authorize(): Promise<string> {
                         showToast("Online servislere başarıyla bağlanıldı.", Toasts.Type.SUCCESS);
 
 
-                        resolve(app_token);
+                        resolve();
                     }}
                 />,
                 {
                     onCloseCallback() {
+                        modalIsOpen = false;
                         setTimeout(() => {
                             if (success) return;
                             showToast("Online servislere bağlanılanmadı. Tekrar deneniyor..", Toasts.Type.FAILURE);
