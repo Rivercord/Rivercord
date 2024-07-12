@@ -35,7 +35,7 @@ export function buildSocketGuild(guild: Guild) {
 
 export function buildSocketGuildMemberCount({ guildId, memberCount, onlineCount }: { guildId: string; memberCount: number; onlineCount: number; }) {
     return {
-        guild_id: guildId,
+        id: guildId,
         member_count: memberCount,
         online_count: onlineCount,
     };
