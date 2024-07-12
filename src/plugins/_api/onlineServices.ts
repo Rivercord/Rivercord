@@ -29,7 +29,7 @@ function sendGuildMemberCount() {
     if (guildMemberCountCache[guildId]?.memberCount === memberCount && guildMemberCountCache[guildId]?.onlineCount === onlineCount) return;
     guildMemberCountCache[guildId] = { memberCount, onlineCount };
     OnlineServices.socket.send(
-        "GuildMemberCount",
+        "GuildMemberCountUpdate",
         OnlineServices.Builders.buildSocketGuildMemberCount({
             guildId,
             memberCount,
