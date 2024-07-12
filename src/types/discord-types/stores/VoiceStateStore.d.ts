@@ -8,4 +8,5 @@ export default interface VoiceStateStore {
     getVoiceStateForChannel(channelId: string): VoiceState | null;
     getVoiceStateForSession(guildId: string, sessionId: string): VoiceState | null;
     getVoiceStateForUser(userId: string): VoiceState | null;
+    getVoiceStatesForChannel(channelId: string): Record<string, VoiceState>;
 }

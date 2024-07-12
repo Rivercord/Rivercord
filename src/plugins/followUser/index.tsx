@@ -1,9 +1,3 @@
-/*
- * Rivercord, a Discord client mod
- * Copyright (c) 2024 Vendicated and contributors
- * SPDX-License-Identifier: GPL-3.0-or-later
- */
-
 import { NavContextMenuPatchCallback } from "@api/ContextMenu";
 import { definePluginSettings, useSettings } from "@api/Settings";
 import ErrorBoundary from "@components/ErrorBoundary";
@@ -110,7 +104,7 @@ export const settings = definePluginSettings({
         type: OptionType.BOOLEAN,
         description: "Also leave when the followed user leaves",
         restartNeeded: false,
-        default: false
+        default: true
     },
     autoMoveBack: {
         type: OptionType.BOOLEAN,
@@ -168,7 +162,7 @@ function triggerFollow(userChannelId: string | null = getChannelId(settings.stor
                 if (channel.type === 1 || PermissionStore.can(CONNECT, channel)) {
                     if (channel.userLimit !== 0 && memberCount !== null && memberCount >= channel.userLimit && !PermissionStore.can(PermissionsBits.MOVE_MEMBERS, channel)) {
                         Toasts.show({
-                            message: "Channel is full",
+                            message: "Kanal dolu.",
                             id: Toasts.genId(),
                             type: Toasts.Type.FAILURE
                         });
@@ -176,20 +170,20 @@ function triggerFollow(userChannelId: string | null = getChannelId(settings.stor
                     }
                     ChannelActions.selectVoiceChannel(userChannelId);
                     Toasts.show({
-                        message: "Followed user into a new voice channel",
+                        message: "Kullanıcıya katılındı.",
                         id: Toasts.genId(),
                         type: Toasts.Type.SUCCESS
                     });
                 } else {
                     Toasts.show({
-                        message: "Insufficient permissions to enter in the voice channel",
+                        message: "Katılma izniniz yok.",
                         id: Toasts.genId(),
                         type: Toasts.Type.FAILURE
                     });
                 }
             } else {
                 Toasts.show({
-                    message: "You are already in the same channel",
+                    message: "Zaten aynı kanaldasınız.",
                     id: Toasts.genId(),
                     type: Toasts.Type.FAILURE
                 });
@@ -199,20 +193,14 @@ function triggerFollow(userChannelId: string | null = getChannelId(settings.stor
             if (settings.store.followLeave) {
                 ChannelActions.disconnect();
                 Toasts.show({
-                    message: "Followed user left, disconnected",
+                    message: "Takip edilen kullanıcı sesten ayrıldı.",
                     id: Toasts.genId(),
                     type: Toasts.Type.SUCCESS
-                });
-            } else {
-                Toasts.show({
-                    message: "Followed user left, but not following disconnect",
-                    id: Toasts.genId(),
-                    type: Toasts.Type.FAILURE
                 });
             }
         } else {
             Toasts.show({
-                message: "Followed user is not in a voice channel",
+                message: "Takip edilen kullanıcı bir ses kanalında değil.",
                 id: Toasts.genId(),
                 type: Toasts.Type.FAILURE
             });
@@ -240,7 +228,7 @@ interface UserContextProps {
 const UserContext: NavContextMenuPatchCallback = (children, { user }: UserContextProps) => {
     if (!user || user.id === UserStore.getCurrentUser().id) return;
     const isFollowed = settings.store.followUserId === user.id;
-    const label = isFollowed ? "Unfollow User" : "Follow User";
+    const label = isFollowed ? "Takip Etmeyi Bırak" : "Takip Et";
     const icon = isFollowed ? UnfollowIcon : FollowIcon;
 
     children.splice(-1, 0, (

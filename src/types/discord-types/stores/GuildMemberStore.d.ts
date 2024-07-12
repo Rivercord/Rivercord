@@ -8,6 +8,7 @@ export default class GuildMemberStore extends FluxStore {
   getCommunicationDisabledVersion(): number;
   getKeyedMembers(guildId: string): Record<string, GuildMember>;
   getMember(guildId: string, userId: string): GuildMember;
+  getTrueMember(guildId: string, userId: string): GuildMember & { roles: string[] };
   getMemberIds(guildId: string): string[];
   getMembers(guildId: string): GuildMember[];
   getNick(guildId: string, userId: string): string;

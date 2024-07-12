@@ -53,7 +53,7 @@ const fakeVoiceState = {
 const StateKeys = ["selfDeaf", "selfMute", "selfVideo"];
 export default definePlugin({
     name: "FakeMuteAndDeafen",
-    description: "Fake mute and deafen yourself. You can hear and speak.",
+    description: "Kendinizi sahte olarak susturabilir ve sağırlaştırabilirsiniz. Bu sırada konuşmaya devam edebilir ve duyulabilirsiniz.",
     authors: [Devs.TheArmagan],
     settings,
     modifyVoiceState(e) {
@@ -70,7 +70,7 @@ export default definePlugin({
                     <Menu.MenuSeparator />,
                     <Menu.MenuCheckboxItem
                         id="fake-mute"
-                        label="Fake Mute"
+                        label="Sahte Susturma"
                         checked={fakeVoiceState.selfMute}
                         action={() => {
                             fakeVoiceState.selfMute = !fakeVoiceState.selfMute;
@@ -85,7 +85,7 @@ export default definePlugin({
                     <Menu.MenuSeparator />,
                     <Menu.MenuCheckboxItem
                         id="fake-deafen"
-                        label="Fake Deafen"
+                        label="Sahte Sağırlaştırma"
                         checked={fakeVoiceState.selfDeaf}
                         action={() => {
                             fakeVoiceState.selfDeaf = !fakeVoiceState.selfDeaf;
@@ -100,7 +100,7 @@ export default definePlugin({
                 <Menu.MenuSeparator />,
                 <Menu.MenuCheckboxItem
                     id="fake-video"
-                    label="Fake Video"
+                    label="Sahte Kamera"
                     checked={fakeVoiceState.selfVideo}
                     action={() => {
                         fakeVoiceState.selfVideo = !fakeVoiceState.selfVideo;
