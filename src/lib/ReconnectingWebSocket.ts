@@ -4,9 +4,11 @@ import { BasicEventEmitter } from "./BasicEventEmitter";
 export class ReconnectingWebSocket extends BasicEventEmitter {
     url: string = "";
     socket: WebSocket | null = null;
+    private pendingMessages: any[] = [];
     private disconnect: boolean = false;
     private retries: number = 0;
     private showConnected: boolean = false;
+    forcePending: boolean = true;
 
     constructor() {
         super();
@@ -62,9 +64,17 @@ export class ReconnectingWebSocket extends BasicEventEmitter {
         };
     }
 
-    send(eventName: string, eventData: any) {
-        if (!this.connected) return;
+    send(eventName: string, eventData: any, force = false) {
+        if (!force && (!this.connected || this.forcePending)) return this.pendingMessages.push([eventName, eventData]);
         this.socket!.send(JSON.stringify([eventName, eventData]));
+    }
+
+    sendAllPending() {
+        this.forcePending = false;
+        for (const [eventName, eventData] of this.pendingMessages) {
+            this.send(eventName, eventData, true);
+        }
+        this.pendingMessages = [];
     }
 
     close() {

@@ -83,11 +83,12 @@ export function authorize(): Promise<void> {
 setTimeout(() => {
     socket.on(":Connected", async () => {
         const key = await getAuthKey();
-        socket.send(":Identify", key);
+        socket.send(":Identify", key, true);
     });
 
     socket.on(":Identified", (userId: string) => {
         logger.info("Identified as", userId);
+        socket.sendAllPending();
     });
 
     socket.on("Authorize", () => authorize());
