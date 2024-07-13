@@ -9,7 +9,7 @@ import definePlugin from "@utils/types";
 
 export default definePlugin({
     name: "AmITyping",
-    description: "Shows you if other people can see you typing.",
+    description: "Başkalarının sizi yazarken görüp göremediğini gösterir.",
     authors: [Devs.MrDiamond],
 
     patches: [
