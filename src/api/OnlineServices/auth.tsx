@@ -4,7 +4,8 @@ import { RIVERCORD_CLIENT_ID, RIVERCORD_HTTP_API_BASE } from "@utils/constants";
 import { DataStore } from "@api/index";
 import { openModal } from "@utils/modal";
 import { OAuth2AuthorizeModal, showToast, Toasts, UserStore } from "@webpack/common";
-import { logger, socket } from ".";
+import { logger } from ".";
+import * as Socket from "./socket";
 
 const DATA_STORE_KEY = "OnlineServicesAuth";
 
@@ -81,15 +82,15 @@ export function authorize(): Promise<void> {
 }
 
 setTimeout(() => {
-    socket.on(":Connected", async () => {
+    Socket.on(":Connected", async () => {
         const key = await getAuthKey();
-        socket.send(":Identify", key, true);
+        Socket.send(":Identify", key, true);
     });
 
-    socket.on(":Identified", (userId: string) => {
+    Socket.on(":Identified", (userId: string) => {
         logger.info("Identified as", userId);
-        socket.sendAllPending();
+        Socket.sendAllPending();
     });
 
-    socket.on("Authorize", () => authorize());
+    Socket.on("Authorize", () => authorize());
 }, 0);

@@ -41,7 +41,7 @@ export class BasicEventEmitter {
             try {
                 listener(...args);
             } catch (e) {
-                console.error(`[Acord] Error while emitting ${eventName} event.`, e);
+                console.error(`Error while emitting ${eventName} event.`, e);
             }
         });
     }

@@ -11,7 +11,7 @@ const guildDataSender = async (guildId: string) => {
     await sleep(50);
     const guildData = GuildStore.getGuild(guildId);
     if (!guildData) return;
-    OnlineServices.socket.send(
+    OnlineServices.Socket.send(
         "GuildUpdate",
         OnlineServices.Builders.buildSocketGuild(guildData)
     );
@@ -28,7 +28,7 @@ function sendGuildMemberCount() {
     const onlineCount = GuildMemberCountStore.getOnlineCount(guildId);
     if (guildMemberCountCache[guildId]?.memberCount === memberCount && guildMemberCountCache[guildId]?.onlineCount === onlineCount) return;
     guildMemberCountCache[guildId] = { memberCount, onlineCount };
-    OnlineServices.socket.send(
+    OnlineServices.Socket.send(
         "GuildMemberCountUpdate",
         OnlineServices.Builders.buildSocketGuildMemberCount({
             guildId,
@@ -46,23 +46,21 @@ export default definePlugin({
     description: "Rivercord'un online servisleri için gerekli API'yi sağlar.",
     enabledByDefault: true,
     start() {
-        OnlineServices.socket.connect(RIVERCORD_WSS_API_BASE, true);
+        OnlineServices.Socket.connect(RIVERCORD_WSS_API_BASE, true);
         GuildMemberCountStore.addReactChangeListener(sendGuildMemberCount);
     },
     stop() {
-        OnlineServices.socket.close();
+        OnlineServices.Socket.close();
         GuildMemberCountStore.removeReactChangeListener(sendGuildMemberCount);
     },
     flux: {
         USER_UPDATE({ user }: { user: User; }) {
             if (user.bot) return;
-            OnlineServices.socket.send(
+            OnlineServices.Socket.send(
                 "UserUpdate",
                 OnlineServices.Builders.buildSocketUser(user)
             );
         },
-        GUILD_UPDATE: ({ guild }) => guildDataSender(guild.id),
-        GUILD_CREATE: ({ guild }) => guildDataSender(guild.id),
         CHANNEL_SELECT: ({ guildId }) => guildId && guildDataSender(guildId),
     }
 });

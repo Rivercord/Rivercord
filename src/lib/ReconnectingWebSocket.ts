@@ -31,6 +31,7 @@ export class ReconnectingWebSocket extends BasicEventEmitter {
         this.socket = new WebSocket(this.url);
         this.socket.onclose = e => {
             this.emit(":Disconnected");
+            this.emit("*", ":Disconnected");
             console.log("Connection Closed", this.retries, e);
             if (this.socket) this.socket.close();
             this.socket = null;
@@ -50,6 +51,7 @@ export class ReconnectingWebSocket extends BasicEventEmitter {
             try {
                 const [eventName, eventData] = JSON.parse(e.data);
                 this.emit(eventName, eventData);
+                this.emit("*", eventName, eventData);
             } catch (e) {
                 console.error("Error parsing message", e);
             }
@@ -61,6 +63,7 @@ export class ReconnectingWebSocket extends BasicEventEmitter {
                 console.log("Connection Restored");
             }
             this.emit(":Connected");
+            this.emit("*", ":Connected");
         };
     }
 

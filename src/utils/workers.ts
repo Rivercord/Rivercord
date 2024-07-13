@@ -1,6 +1,6 @@
 import { RIVERCORD_HTTP_API_BASE } from "./constants";
 
-export async function spawnWorker(jsCode: string, options: WorkerOptions): Promise<Worker> {
+export async function spawnWorker(jsCode: string, options?: WorkerOptions): Promise<Worker> {
     const req = await fetch(
         `${RIVERCORD_HTTP_API_BASE}/utils/text`,
         {
