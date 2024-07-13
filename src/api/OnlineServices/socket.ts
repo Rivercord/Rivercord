@@ -48,3 +48,7 @@ export function sendAllPending() {
     if (!worker) return pendingMessages.push(["SendAllPending"]);
     worker.postMessage(["SendAllPending"]);
 }
+
+on(":KeepAlive", (d: number) => {
+    send(":KeepAlive", d);
+});
