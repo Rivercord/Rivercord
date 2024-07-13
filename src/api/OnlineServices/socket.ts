@@ -40,7 +40,7 @@ export function connect(url: string, force = false) {
 }
 
 export function close() {
-    if (!worker) return;
+    if (!worker) return pendingMessages.push(["Close"]);
     worker.postMessage(["Close"]);
 }
 
