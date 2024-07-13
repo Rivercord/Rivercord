@@ -30,7 +30,7 @@ export class ReconnectingWebSocket extends BasicEventEmitter {
             this.socket = null;
         }
 
-        this.compress = compress;
+        if (compress) this.compress = compress;
         this.socket = new WebSocket(this.url);
         if (compress === "zlib") this.socket.binaryType = "arraybuffer";
         this.socket.onclose = e => {
