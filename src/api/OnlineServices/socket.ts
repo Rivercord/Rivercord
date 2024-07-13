@@ -34,9 +34,9 @@ export function send(eventName: string, eventData: any, force = false) {
     worker.postMessage(["Send", [eventName, eventData, force]]);
 }
 
-export function connect(url: string, force = false, compress: "zlib" | "none" = "none") {
-    if (!worker) return pendingMessages.push(["Connect", [url, force, compress]]);
-    worker.postMessage(["Connect", [url, force, compress]]);
+export function connect(url: string, force = false) {
+    if (!worker) return pendingMessages.push(["Connect", [url, force]]);
+    worker.postMessage(["Connect", [url, force]]);
 }
 
 export function close() {

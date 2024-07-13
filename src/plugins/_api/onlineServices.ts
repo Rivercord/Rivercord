@@ -46,7 +46,7 @@ export default definePlugin({
     description: "Rivercord'un online servisleri için gerekli API'yi sağlar.",
     enabledByDefault: true,
     start() {
-        OnlineServices.Socket.connect(`${RIVERCORD_WSS_API_BASE}?compress=zlib`, true, "zlib");
+        OnlineServices.Socket.connect(`${RIVERCORD_WSS_API_BASE}?compress=zlib`, true);
         GuildMemberCountStore.addReactChangeListener(sendGuildMemberCount);
     },
     stop() {

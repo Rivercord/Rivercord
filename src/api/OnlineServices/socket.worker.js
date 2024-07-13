@@ -56,15 +56,16 @@ class ReconnectingWebSocket extends BasicEventEmitter {
     forcePending = true;
     compress = "none";
 
-    constructor() {
+    constructor(compress = "none") {
         super();
+        this.compress = compress;
     }
 
     get connected() {
         return this.socket?.readyState === WebSocket.OPEN;
     }
 
-    connect(url, force = false, compress = "none") {
+    connect(url, force = false) {
         if (this.connected && !force) return;
 
         if (url) this.url = url;
@@ -74,9 +75,8 @@ class ReconnectingWebSocket extends BasicEventEmitter {
             this.socket = null;
         }
 
-        if (compress) this.compress = compress;
         this.socket = new WebSocket(this.url);
-        if (compress === "zlib") this.socket.binaryType = "arraybuffer";
+        if (this.compress === "zlib") this.socket.binaryType = "arraybuffer";
         this.socket.onclose = e => {
             this.emit(":Disconnected");
             this.emit("*", ":Disconnected");
@@ -153,7 +153,7 @@ class ReconnectingWebSocket extends BasicEventEmitter {
     }
 }
 
-const socket = new ReconnectingWebSocket();
+const socket = new ReconnectingWebSocket("zlib");
 
 onmessage = event => {
     const { data } = event;
@@ -169,8 +169,8 @@ onmessage = event => {
             break;
         }
         case "Connect": {
-            const [url, force, compress] = data[1];
-            socket.connect(url, force, compress);
+            const [url, force] = data[1];
+            socket.connect(url, force);
             break;
         }
         case "Close": {
