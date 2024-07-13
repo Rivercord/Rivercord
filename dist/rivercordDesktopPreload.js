@@ -1,4 +1,4 @@
-// Rivercord f3306282
+// Rivercord 50f7dd74
 // Standalone: false
 // Platform: win32
 // Updater Disabled: false
