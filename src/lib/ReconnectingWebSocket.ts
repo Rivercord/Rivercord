@@ -1,5 +1,6 @@
 
 import { BasicEventEmitter } from "./BasicEventEmitter";
+import pako from "pako";
 
 export class ReconnectingWebSocket extends BasicEventEmitter {
     url: string = "";
@@ -9,6 +10,7 @@ export class ReconnectingWebSocket extends BasicEventEmitter {
     private retries: number = 0;
     private showConnected: boolean = false;
     forcePending: boolean = true;
+    compress: "zlib" | "none" = "none";
 
     constructor() {
         super();
@@ -18,7 +20,7 @@ export class ReconnectingWebSocket extends BasicEventEmitter {
         return this.socket?.readyState === WebSocket.OPEN;
     }
 
-    connect(url?: string, force = false) {
+    connect(url?: string, force = false, compress: "zlib" | "none" = "none") {
         if (this.connected && !force) return;
 
         if (url) this.url = url;
@@ -28,7 +30,9 @@ export class ReconnectingWebSocket extends BasicEventEmitter {
             this.socket = null;
         }
 
+        this.compress = compress;
         this.socket = new WebSocket(this.url);
+        if (compress === "zlib") this.socket.binaryType = "arraybuffer";
         this.socket.onclose = e => {
             this.emit(":Disconnected");
             this.emit("*", ":Disconnected");
@@ -49,7 +53,13 @@ export class ReconnectingWebSocket extends BasicEventEmitter {
         };
         this.socket.onmessage = e => {
             try {
-                const [eventName, eventData] = JSON.parse(e.data);
+                let { data } = e;
+                if (this.compress === "zlib") {
+                    data = new Uint8Array(data);
+                    data = pako.inflate(data, { to: "string" });
+                }
+
+                const [eventName, eventData] = JSON.parse(data);
                 this.emit(eventName, eventData);
                 this.emit("*", eventName, eventData);
             } catch (e) {
@@ -67,9 +77,17 @@ export class ReconnectingWebSocket extends BasicEventEmitter {
         };
     }
 
-    send(eventName: string, eventData: any, force = false) {
-        if (!force && (!this.connected || this.forcePending)) return this.pendingMessages.push([eventName, eventData]);
-        this.socket!.send(JSON.stringify([eventName, eventData]));
+    send(eventName, eventData, force = false) {
+        if (!force && (!this.connected || this.forcePending))
+            return this.pendingMessages.push([eventName, eventData]);
+
+        if (this.compress === "zlib") {
+            this.socket!.send(
+                pako.deflate(JSON.stringify([eventName, eventData]))
+            );
+        } else {
+            this.socket!.send(JSON.stringify([eventName, eventData]));
+        }
     }
 
     sendAllPending() {
