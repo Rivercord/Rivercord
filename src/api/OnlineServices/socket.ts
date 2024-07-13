@@ -49,6 +49,6 @@ export function sendAllPending() {
     worker.postMessage(["SendAllPending"]);
 }
 
-on(":KeepAlive", (d: number) => {
-    send(":KeepAlive", d);
+on(":KeepAlive", () => {
+    send(":KeepAlive", Date.now());
 });
