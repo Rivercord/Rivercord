@@ -3,7 +3,7 @@ import { spawnWorker } from "@utils/workers";
 import { BasicEventEmitter } from "lib/BasicEventEmitter";
 
 const pendingMessages: any[] = [];
-export const events = new BasicEventEmitter();
+const events = new BasicEventEmitter();
 export let worker: Worker | null = null;
 
 export function on(eventName: string, listener: (data: any) => void) {

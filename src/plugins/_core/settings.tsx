@@ -95,13 +95,13 @@ export default definePlugin({
             },
             {
                 section: "RivercordPlugins",
-                label: "Pluginler",
+                label: "Plugins",
                 element: PluginsTab,
                 className: "rc-plugins"
             },
             {
                 section: "RivercordThemes",
-                label: "Temalar",
+                label: "Themes",
                 element: ThemesTab,
                 className: "rc-themes"
             },

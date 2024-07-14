@@ -1,4 +1,4 @@
-// Rivercord 1abf71cf
+// Rivercord ba678203
 // Standalone: false
 // Platform: win32
 // Updater Disabled: false

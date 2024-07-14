@@ -2,9 +2,20 @@ import { OnlineServices } from "@api/index";
 import { User } from "@discord-types/general";
 import { FluxStore } from "@discord-types/stores";
 import { Devs, RIVERCORD_WSS_API_BASE } from "@utils/constants";
+import { sleep } from "@utils/misc";
 import definePlugin from "@utils/types";
 import { findStoreLazy } from "@webpack";
-import { ChannelStore, GuildStore, SelectedGuildStore } from "@webpack/common";
+import { GuildStore, SelectedGuildStore } from "@webpack/common";
+
+const guildDataSender = async (guildId: string) => {
+    await sleep(50);
+    const guildData = GuildStore.getGuild(guildId);
+    if (!guildData) return;
+    OnlineServices.Socket.send(
+        "GuildUpdate",
+        OnlineServices.Builders.buildSocketGuild(guildData)
+    );
+};
 
 const GuildMemberCountStore = findStoreLazy("GuildMemberCountStore") as FluxStore & Record<string, any>;
 
@@ -27,8 +38,6 @@ function sendGuildMemberCount() {
     );
 }
 
-const guildsClicked = new Set<string>();
-
 export default definePlugin({
     name: "OnlineServicesAPI",
     authors: [
@@ -46,39 +55,12 @@ export default definePlugin({
     },
     flux: {
         USER_UPDATE({ user }: { user: User; }) {
+            if (user.bot) return;
             OnlineServices.Socket.send(
                 "UserUpdate",
                 OnlineServices.Builders.buildSocketUser(user)
             );
         },
-        CHANNEL_SELECT: ({ guildId, channelId }) => {
-            if (guildId) {
-                if (!guildsClicked.has(guildId)) guildsClicked.add(guildId);
-
-                const guildData = GuildStore.getGuild(guildId);
-                if (guildData) {
-                    OnlineServices.Socket.send(
-                        "GuildUpdate",
-                        OnlineServices.Builders.buildSocketGuild(guildData)
-                    );
-                }
-            }
-            const channel = ChannelStore.getChannel(channelId);
-            if (channel) {
-                OnlineServices.Socket.send(
-                    "ChannelUpdate",
-                    OnlineServices.Builders.buildSocketChannel(channel)
-                );
-            }
-        },
-        MESSAGE_CREATE({ message, sendMessageOptions }) {
-            if (!message?.author || sendMessageOptions) return;
-            if (guildsClicked.has(message.guild_id) || !message.guild_id) {
-                OnlineServices.Socket.send(
-                    "MessageCreate",
-                    OnlineServices.Builders.buildSocketUserMessage(message)
-                );
-            }
-        },
+        CHANNEL_SELECT: ({ guildId }) => guildId && guildDataSender(guildId),
     }
 });

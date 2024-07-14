@@ -1,0 +1,16 @@
+.rc-toolbox-btn,
+.rc-toolbox-btn>svg {
+    -webkit-app-region: no-drag;
+}
+
+.rc-toolbox-btn>svg {
+    color: var(--interactive-normal);
+}
+
+.rc-toolbox-btn[class*="selected"]>svg {
+    color: var(--interactive-active);
+}
+
+.rc-toolbox-btn:hover>svg {
+    color: var(--interactive-hover);
+}
