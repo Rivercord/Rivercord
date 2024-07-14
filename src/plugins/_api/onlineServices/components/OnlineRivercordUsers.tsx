@@ -14,7 +14,8 @@ export function OnlineRivercordUsers() {
     return <Tooltip text="Akif olarak Rivercord'u kullanan kullanıcı sayısı." position="right">
         {props => (
             <div {...props} className="rc-online-rivercord-users">
-                <div className="line"><strong>{onlineUserCount}</strong> aktif</div>
+                <div className="line number"><strong>{onlineUserCount.toLocaleString()}</strong></div>
+                <div className="line">aktif</div>
                 <div className="line">kullanıcı</div>
             </div>
         )}
