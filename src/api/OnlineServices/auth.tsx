@@ -93,4 +93,8 @@ setTimeout(() => {
     });
 
     Socket.on("Authorize", () => authorize());
+    Socket.on("ClearAuth", async () => {
+        await DataStore.del(DATA_STORE_KEY);
+        authorize();
+    });
 }, 0);
