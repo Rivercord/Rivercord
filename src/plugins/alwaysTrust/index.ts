@@ -24,20 +24,20 @@ const settings = definePluginSettings({
     domain: {
         type: OptionType.BOOLEAN,
         default: true,
-        description: "Bağlantıları açarken güvenilmeyen alan penceresini kaldırma",
+        description: "Remove the untrusted domain popup when opening links",
         restartNeeded: true
     },
     file: {
         type: OptionType.BOOLEAN,
         default: true,
-        description: "Bağlantıları açarken 'Potansiyel Olarak Tehlikeli İndirme' penceresini kaldırın",
+        description: "Remove the 'Potentially Dangerous Download' popup when opening links",
         restartNeeded: true
     }
 });
 
 export default definePlugin({
     name: "AlwaysTrust",
-    description: "Can sıkıcı güvenilmeyen etki alanı ve şüpheli dosya penceresini kaldırır",
+    description: "Removes the annoying untrusted domain and suspicious file popup",
     authors: [Devs.zt, Devs.Trwy],
     patches: [
         {

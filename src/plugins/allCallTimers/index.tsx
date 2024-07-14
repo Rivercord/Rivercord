@@ -18,31 +18,31 @@ import { VoiceState } from "@discord-types/general";
 export const settings = definePluginSettings({
     showWithoutHover: {
         type: OptionType.BOOLEAN,
-        description: "Üzerine gelmeye gerek kalmadan zamanlayıcıyı her zaman gösterin.",
+        description: "Always show the timer without needing to hover",
         restartNeeded: false,
         default: true
     },
     showRoleColor: {
         type: OptionType.BOOLEAN,
-        description: "Kullanıcının rol rengini göster. (bu eklenti etkinse)",
+        description: "Show the user's role color (if this plugin in enabled)",
         restartNeeded: false,
         default: true
     },
     trackSelf: {
         type: OptionType.BOOLEAN,
-        description: "Ayrıca kendinizi takip edin.",
+        description: "Also track yourself",
         restartNeeded: false,
         default: true
     },
     showSeconds: {
         type: OptionType.BOOLEAN,
-        description: "Zamanlayıcıda saniyeleri göster.",
+        description: "Show seconds in the timer",
         restartNeeded: false,
         default: true
     },
     format: {
         type: OptionType.SELECT,
-        description: "Kompakt veya insan tarafından okunabilir format:",
+        description: "Compact or human readable format:",
         options: [
             {
                 label: "30:23:00:42",
@@ -57,7 +57,7 @@ export const settings = definePluginSettings({
     },
     watchLargeGuilds: {
         type: OptionType.BOOLEAN,
-        description: "Büyük sunucularda ki kullanıcıları takip edin. Bu, aktif sesli kullanıcılara sahip çok sayıda büyük sunucularda gecikmeye neden olabilir. Hiçbir sorun olmadan 2000'e kadar aktif ses kullanıcısı ile test edildi.",
+        description: "Track users in large guilds. This may cause lag if you're in a lot of large guilds with active voice users. Tested with up to 2000 active voice users with no issues.",
         restartNeeded: true,
         default: false
     }
@@ -102,7 +102,7 @@ let runOneTime = true;
 
 export default definePlugin({
     name: "AllCallTimers",
-    description: "Bir ses kanalındaki tüm kullanıcılara çağrı zamanlayıcısı ekleme.",
+    description: "Add call timer to all users in a server voice channel.",
     authors: [Devs.Max, Devs.D3SOX],
 
     settings,

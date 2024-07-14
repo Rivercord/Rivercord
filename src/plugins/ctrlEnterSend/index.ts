@@ -1,9 +1,3 @@
-/*
- * Rivercord, a Discord client mod
- * Copyright (c) 2023 Vendicated and contributors
- * SPDX-License-Identifier: GPL-3.0-or-later
- */
-
 import { definePluginSettings } from "@api/Settings";
 import { Devs } from "@utils/constants";
 import definePlugin, { OptionType } from "@utils/types";
@@ -39,10 +33,19 @@ export default definePlugin({
         }
     }),
     patches: [
+        // Only one of the two patches will be at effect; Discord often updates to switch between them.
+        // See: https://discord.com/channels/1015060230222131221/1032770730703716362/1261398512017477673
         {
             find: ".ENTER&&(!",
             replacement: {
                 match: /(?<=(\i)\.which===\i\.\i.ENTER&&).{0,100}(\(0,\i\.\i\)\(\i\)).{0,100}(?=&&\(\i\.preventDefault)/,
+                replace: "$self.shouldSubmit($1, $2)"
+            }
+        },
+        {
+            find: "!this.hasOpenCodeBlock()",
+            replacement: {
+                match: /!(\i).shiftKey&&!(this.hasOpenCodeBlock\(\))&&\(.{0,100}?\)/,
                 replace: "$self.shouldSubmit($1, $2)"
             }
         }

@@ -19,6 +19,27 @@ export class BasicEventEmitter {
         };
     }
 
+    waitFor(eventName: string, filter: (...args: any[]) => boolean, timeout?: number): Promise<any[]> {
+        return new Promise(resolve => {
+            let resolved = false;
+            const listener = (...args: any[]) => {
+                if (filter(eventName, ...args)) {
+                    if (resolved) return;
+                    this.off(eventName, listener);
+                    resolve(args);
+                    resolved = true;
+                }
+            };
+            this.on(eventName, listener);
+            if (timeout) setTimeout(() => {
+                if (resolved) return;
+                this.off(eventName, listener);
+                resolve([]);
+                resolved = true;
+            }, timeout);
+        });
+    }
+
     once(eventName: string, listener: Listener) {
         this._prepareListenersMap(eventName);
         this.listeners.get(eventName)?.set(listener, { once: true });
