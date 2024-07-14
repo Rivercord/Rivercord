@@ -1,4 +1,4 @@
-// Rivercord 52de56c2
+// Rivercord 07776343
 // Standalone: false
 // Platform: win32
 // Updater Disabled: false
