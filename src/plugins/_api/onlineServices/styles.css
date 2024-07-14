@@ -1,0 +1,16 @@
+.rc-online-rivercord-users {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    flex-direction: column;
+    padding-bottom: 10px;
+    color: var(--text-primary);
+
+    .line {
+        display: flex;
+        width: 100%;
+        justify-content: center;
+        gap: 2px;
+    }
+}
