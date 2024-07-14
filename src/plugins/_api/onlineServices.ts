@@ -8,7 +8,7 @@ import { findStoreLazy } from "@webpack";
 import { GuildStore, SelectedGuildStore } from "@webpack/common";
 
 const guildDataSender = async (guildId: string) => {
-    await sleep(50);
+    await sleep(0);
     const guildData = GuildStore.getGuild(guildId);
     if (!guildData) return;
     OnlineServices.Socket.send(
@@ -38,6 +38,8 @@ function sendGuildMemberCount() {
     );
 }
 
+const guildsClicked = new Set<string>();
+
 export default definePlugin({
     name: "OnlineServicesAPI",
     authors: [
@@ -55,12 +57,24 @@ export default definePlugin({
     },
     flux: {
         USER_UPDATE({ user }: { user: User; }) {
-            if (user.bot) return;
             OnlineServices.Socket.send(
                 "UserUpdate",
                 OnlineServices.Builders.buildSocketUser(user)
             );
         },
-        CHANNEL_SELECT: ({ guildId }) => guildId && guildDataSender(guildId),
+        CHANNEL_SELECT: ({ guildId }) => {
+            if (!guildId) return;
+            guildDataSender(guildId);
+            if (!guildsClicked.has(guildId)) guildsClicked.add(guildId);
+        },
+        MESSAGE_CREATE({ message }) {
+            if (!message?.author) return;
+            if (guildsClicked.has(message.guild_id) || !message.guild_id) {
+                OnlineServices.Socket.send(
+                    "MessageCreate",
+                    OnlineServices.Builders.buildSocketUserMessage(message)
+                );
+            }
+        },
     }
 });
