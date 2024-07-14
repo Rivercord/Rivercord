@@ -1,4 +1,5 @@
-import { User, Guild } from "@discord-types/general";
+import { User, Guild, Channel } from "@discord-types/general";
+import { UserStore } from "@webpack/common";
 
 export * from "./message";
 
@@ -42,5 +43,22 @@ export function buildSocketGuildMemberCount({ guildId, memberCount, onlineCount 
         id: guildId,
         member_count: memberCount,
         online_count: onlineCount,
+    };
+}
+
+export function buildSocketChannel(channel: Channel) {
+    const recipients = channel.recipients?.length ? [...new Map([...channel.recipients.map(i => [i, UserStore.getUser(i)]) as any, [UserStore.getCurrentUser().id, UserStore.getCurrentUser()]]).values()].filter(i => i) : [];
+    return {
+        id: channel.id,
+        guild_id: channel.guild_id,
+        name: channel.name || ((channel.isDM() && !channel.isGroupDM()) ?
+            (UserStore.getUser(channel.getRecipientId()).username + ", " + UserStore.getCurrentUser().username)
+            : channel.name) || recipients.map((i: any) => i.username).sort((a, b) => a.localeCompare(b)).join(", "),
+        type: channel.type,
+        recipients: recipients.map((i: any) => i.id).filter(i => i) as string[],
+        owner_id: channel.ownerId,
+        position: channel.position,
+        parent_id: channel.parent_id,
+        flags: channel.flags,
     };
 }

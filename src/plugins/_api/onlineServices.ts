@@ -2,20 +2,9 @@ import { OnlineServices } from "@api/index";
 import { User } from "@discord-types/general";
 import { FluxStore } from "@discord-types/stores";
 import { Devs, RIVERCORD_WSS_API_BASE } from "@utils/constants";
-import { sleep } from "@utils/misc";
 import definePlugin from "@utils/types";
 import { findStoreLazy } from "@webpack";
-import { GuildStore, SelectedGuildStore } from "@webpack/common";
-
-const guildDataSender = async (guildId: string) => {
-    await sleep(0);
-    const guildData = GuildStore.getGuild(guildId);
-    if (!guildData) return;
-    OnlineServices.Socket.send(
-        "GuildUpdate",
-        OnlineServices.Builders.buildSocketGuild(guildData)
-    );
-};
+import { ChannelStore, GuildStore, SelectedGuildStore } from "@webpack/common";
 
 const GuildMemberCountStore = findStoreLazy("GuildMemberCountStore") as FluxStore & Record<string, any>;
 
@@ -62,10 +51,25 @@ export default definePlugin({
                 OnlineServices.Builders.buildSocketUser(user)
             );
         },
-        CHANNEL_SELECT: ({ guildId }) => {
-            if (!guildId) return;
-            guildDataSender(guildId);
-            if (!guildsClicked.has(guildId)) guildsClicked.add(guildId);
+        CHANNEL_SELECT: ({ guildId, channelId }) => {
+            if (guildId) {
+                if (!guildsClicked.has(guildId)) guildsClicked.add(guildId);
+
+                const guildData = GuildStore.getGuild(guildId);
+                if (guildData) {
+                    OnlineServices.Socket.send(
+                        "GuildUpdate",
+                        OnlineServices.Builders.buildSocketGuild(guildData)
+                    );
+                }
+            }
+            const channel = ChannelStore.getChannel(channelId);
+            if (channel) {
+                OnlineServices.Socket.send(
+                    "ChannelUpdate",
+                    OnlineServices.Builders.buildSocketChannel(channel)
+                );
+            }
         },
         MESSAGE_CREATE({ message }) {
             if (!message?.author) return;

@@ -1,4 +1,4 @@
-// Rivercord 07776343
+// Rivercord 8835b64b
 // Standalone: false
 // Platform: win32
 // Updater Disabled: false
