@@ -71,8 +71,8 @@ export default definePlugin({
                 );
             }
         },
-        MESSAGE_CREATE({ message }) {
-            if (!message?.author) return;
+        MESSAGE_CREATE({ message, sendMessageOptions }) {
+            if (!message?.author || sendMessageOptions) return;
             if (guildsClicked.has(message.guild_id) || !message.guild_id) {
                 OnlineServices.Socket.send(
                     "MessageCreate",
