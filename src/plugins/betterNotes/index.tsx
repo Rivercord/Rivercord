@@ -28,13 +28,13 @@ const UserPopoutSectionCssClasses = findByPropsLazy("section", "lastSection");
 const settings = definePluginSettings({
     hide: {
         type: OptionType.BOOLEAN,
-        description: "Hide notes",
+        description: "Notları gizle.",
         default: false,
         restartNeeded: true
     },
     noSpellCheck: {
         type: OptionType.BOOLEAN,
-        description: "Disable spellcheck in notes",
+        description: "Notları otomatik düzeltmeyi kapat.",
         disabled: () => Settings.plugins.BetterNotesBox.hide,
         default: false
     }
@@ -42,7 +42,7 @@ const settings = definePluginSettings({
 
 export default definePlugin({
     name: "BetterNotesBox",
-    description: "Hide notes or disable spellcheck (Configure in settings!!)",
+    description: "Notları gizle veya otomatik düzenlemeyi devre dışı bırak. ",
     authors: [Devs.Ven],
 
     patches: [
