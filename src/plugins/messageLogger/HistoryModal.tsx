@@ -17,7 +17,7 @@ import { parseEditContent } from ".";
 const CodeContainerClasses = findByPropsLazy("markup", "codeContainer");
 const MiscClasses = findByPropsLazy("messageContent", "markupRtl");
 
-const cl = classNameFactory("vc-ml-modal-");
+const cl = classNameFactory("rc-ml-modal-");
 
 export function openHistoryModal(message: any) {
   openModal(props =>
@@ -46,14 +46,14 @@ export function HistoryModal({ modalProps, message }: { modalProps: ModalProps; 
         <TabBar
           type="top"
           look="brand"
-          className={classes("vc-settings-tab-bar", cl("tab-bar"))}
+          className={classes("rc-settings-tab-bar", cl("tab-bar"))}
           selectedItem={currentTab}
           onItemSelect={setCurrentTab}
         >
           {message.firstEditTimestamp.getTime() !== message.timestamp.getTime() && (
             <TooltipContainer text="Bu düzenleme durumu günlüğe kaydedilmedi, bu nedenle görüntülenemiyor.">
               <TabBar.Item
-                className="vc-settings-tab-bar-item"
+                className="rc-settings-tab-bar-item"
                 id={-1}
                 disabled
               >
@@ -69,7 +69,7 @@ export function HistoryModal({ modalProps, message }: { modalProps: ModalProps; 
 
           {timestamps.map((timestamp, index) => (
             <TabBar.Item
-              className="vc-settings-tab-bar-item"
+              className="rc-settings-tab-bar-item"
               id={index}
             >
               <Timestamp
