@@ -1,0 +1,56 @@
+.rc-last-messages-list {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+
+    .content {
+        display: flex;
+        flex-direction: column;
+        max-height: 200px;
+        gap: 4px;
+
+        .message-item {
+            background-color: rgba(0 0 0 / 25%);
+            padding: 4px;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            border-radius: 4px;
+
+            .guild {
+                display: flex;
+                align-items: center;
+                gap: 4px;
+                width: fit-content;
+
+                .icon {
+                    background-color: #2f3136;
+                    border-radius: 50%;
+                    width: 16px;
+                    height: 16px;
+                    min-width: 16px;
+                    background-position: center;
+                    background-size: cover;
+                }
+            }
+
+            .date {
+                display: flex;
+                position: absolute;
+                right: 4px;
+                top: 4px;
+            }
+
+            .channel {
+                display: flex;
+                width: fit-content;
+            }
+
+            .message {
+                display: flex;
+                width: fit-content;
+                flex-wrap: wrap;
+            }
+        }
+    }
+}
