@@ -1,5 +1,4 @@
 import { OnlineServices } from "@api/index";
-import { User } from "@discord-types/general";
 import { moment, Text, Tooltip, useState, useEffect, ScrollerThin, InviteActions, ChannelStore, NavigationRouter, Toasts } from "@webpack/common";
 
 interface LastMessages {
@@ -9,19 +8,19 @@ interface LastMessages {
     messages: Record<string, { id: string; channel_id: string; guild_id: string | null; created_at: string; content: string | null; }>;
 }
 
-export function LastMessagesList({ user }: { user: User; }) {
+export function LastMessagesList({ userId, padding }: { userId: string; padding?: boolean }) {
     const [data, setData] = useState<LastMessages | null>(null);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        OnlineServices.Socket.send("UserLastMessages", user.id);
-        OnlineServices.Socket.events.waitFor("UserLastMessages", (_, d: LastMessages) => d.id === user.id).then(([d]: any[]) => {
+        OnlineServices.Socket.send("UserLastMessages", userId);
+        OnlineServices.Socket.events.waitFor("UserLastMessages", (_, d: LastMessages) => d.id === userId).then(([d]: any[]) => {
             setData(d);
             setLoading(false);
         });
     });
 
-    return <div className="rc-last-messages-list">
+    return <div className={`rc-last-messages-list ${padding ? "padding" : ""}`}>
         <Text variant="text-xs/semibold">
             Son Mesajlar
         </Text>

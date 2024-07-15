@@ -34,6 +34,8 @@ import * as $Settings from "./Settings";
 import * as $Styles from "./Styles";
 import * as $UserSettings from "./UserSettings";
 import * as $OnlineServices from "./OnlineServices";
+import * as $UserPopout from "./UserPopout";
+import * as $UserModal from "./UserModal";
 
 /**
  * An API allowing you to listen to Message Clicks or run your own logic
@@ -124,4 +126,17 @@ export const MessageUpdater = $MessageUpdater;
  */
 export const UserSettings = $UserSettings;
 
+/**
+ * Rivercord Online services API
+ */
 export const OnlineServices = $OnlineServices;
+
+/**
+ * An API allowing you to add custom sections to the user popout
+ */
+export const UserPopout = $UserPopout;
+
+/**
+ * An API allowing you to add custom sections to the user modal
+ */
+export const UserModal = $UserModal;

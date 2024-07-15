@@ -22,6 +22,7 @@ export default definePlugin({
     name: "VoiceIndicators",
     authors: [Devs.TheArmagan],
     description: "Adds voice indicators to the users.",
+    dependencies: ["BadgeAPI", "MemberListDecoratorsAPI", "MessageDecorationsAPI"],
     start() {
         interval = setInterval(() => {
             for (const callback of updateCallbacks.values()) {

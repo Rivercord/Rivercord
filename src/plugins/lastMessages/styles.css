@@ -3,6 +3,10 @@
     flex-direction: column;
     gap: 4px;
 
+    &.padding {
+        padding: 16px 8px 16px 16px;
+    }
+
     .content {
         display: flex;
         flex-direction: column;
