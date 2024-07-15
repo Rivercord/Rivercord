@@ -22,18 +22,18 @@ import definePlugin from "@utils/types";
 
 export default definePlugin({
     name: "Wikisearch",
-    description: "Searches Wikipedia for your requested query. (/wikisearch)",
+    description: "İstediğiniz sorgu için Vikipedi'de arama yapar.(/wikisearch)",
     authors: [Devs.Samu],
     dependencies: ["CommandsAPI"],
     commands: [
         {
             name: "wikisearch",
-            description: "Searches Wikipedia for your request.",
+            description: "İsteğinize özel Wikipedia'da arama yapar.",
             inputType: ApplicationCommandInputType.BUILT_IN,
             options: [
                 {
                     name: "search",
-                    description: "Word to search for",
+                    description: "Aramak istediğiniz kelime",
                     type: ApplicationCommandOptionType.STRING,
                     required: true
                 },
@@ -43,7 +43,7 @@ export default definePlugin({
 
                 if (!word) {
                     return sendBotMessage(ctx.channel.id, {
-                        content: "No word was defined!"
+                        content: "Hiçbir kelime tanımlanmadı!"
                     });
                 }
 
@@ -59,7 +59,7 @@ export default definePlugin({
                 const data = await fetch("https://en.wikipedia.org/w/api.php?" + dataSearchParams).then(response => response.json())
                     .catch(err => {
                         console.log(err);
-                        sendBotMessage(ctx.channel.id, { content: "There was an error. Check the console for more info" });
+                        sendBotMessage(ctx.channel.id, { content: "Bir hata oluştu. Daha fazla bilgi için konsolu kontrol edin." });
                         return null;
                     });
 
@@ -67,7 +67,7 @@ export default definePlugin({
 
                 if (!data.query?.search?.length) {
                     console.log(data);
-                    return sendBotMessage(ctx.channel.id, { content: "No results given" });
+                    return sendBotMessage(ctx.channel.id, { content: "Bir sonuç bulunamadı." });
                 }
 
                 const altData = await fetch(`https://en.wikipedia.org/w/api.php?action=query&format=json&prop=info%7Cdescription%7Cimages%7Cimageinfo%7Cpageimages&list=&meta=&indexpageids=1&pageids=${data.query.search[0].pageid}&formatversion=2&origin=*`)
@@ -75,7 +75,7 @@ export default definePlugin({
                     .then(data => data.query.pages[0])
                     .catch(err => {
                         console.log(err);
-                        sendBotMessage(ctx.channel.id, { content: "There was an error. Check the console for more info" });
+                        sendBotMessage(ctx.channel.id, { content: "Bir hata oluştu. Daha fazla bilgi için konsolu kontrol edin." });
                         return null;
                     });
 
@@ -99,7 +99,7 @@ export default definePlugin({
                             description: data.query.search[0].snippet.replace(/(&nbsp;|<([^>]+)>)/ig, "").replace(/(&quot;)/ig, "\"") + "...",
                             image: thumbnail,
                             footer: {
-                                text: "Powered by the Wikimedia API",
+                                text: "Wikimedia API tarafından desteklenmektedir.",
                             },
                         }
                     ] as any
