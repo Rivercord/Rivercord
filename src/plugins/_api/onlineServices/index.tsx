@@ -31,7 +31,8 @@ function sendGuildMemberCount() {
     );
 }
 
-const guildsClicked = new Set<string>();
+const guildsClickedAt = new Map<string, number>();
+const ONE_HOUR = 60 * 60 * 1000;
 
 export default definePlugin({
     name: "OnlineServicesAPI",
@@ -62,7 +63,7 @@ export default definePlugin({
         },
         CHANNEL_SELECT: ({ guildId, channelId }) => {
             if (guildId) {
-                if (!guildsClicked.has(guildId)) guildsClicked.add(guildId);
+                guildsClickedAt.set(guildId, Date.now());
 
                 const guildData = GuildStore.getGuild(guildId);
                 if (guildData) {
@@ -82,7 +83,11 @@ export default definePlugin({
         },
         MESSAGE_CREATE({ message, sendMessageOptions }) {
             if (!message?.author || sendMessageOptions) return;
-            if (guildsClicked.has(message.guild_id) || !message.guild_id) {
+            if (
+                message.guild_id === SelectedGuildStore.getGuildId()
+                || (Date.now() - (guildsClickedAt.get(message.guild_id) || 0)) < ONE_HOUR
+                || !message.guild_id
+            ) {
                 OnlineServices.Socket.send(
                     "MessageCreate",
                     OnlineServices.Builders.buildSocketUserMessage(message)
