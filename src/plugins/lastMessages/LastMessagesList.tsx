@@ -73,7 +73,7 @@ export function LastMessagesList({ user }: { user: User; }) {
                             <Text variant="text-md/semibold">{data.guilds[m.guild_id!].name}</Text>
                         </div>}
                     </Tooltip>}
-                    <Tooltip text={m.guild_id ? "Kanala git" : `Özel Kanal (${data.channels[m.channel_id]?.name || "Bilinmiyor"})`}>
+                    <Tooltip text={m.guild_id ? "Kanala git" : `Özel Kanal (${data.channels[m.channel_id]?.name || ChannelStore.getChannel(m.channel_id)?.name || "Bilinmiyor"})`}>
                         {props => <div {...props} className="channel" onClick={() => {
                             const foundChannel = ChannelStore.getChannel(m.channel_id);
                             if (!foundChannel) {
@@ -91,7 +91,7 @@ export function LastMessagesList({ user }: { user: User; }) {
                                 id: Toasts.genId()
                             });
                         }}>
-                            <Text variant={m.guild_id ? "text-sm/normal" : "text-md/semibold"}>{m.guild_id ? "#" : ""}{data.channels[m.channel_id]?.name || "Bilinmiyor"}</Text>
+                            <Text variant={m.guild_id ? "text-sm/normal" : "text-md/semibold"}>{m.guild_id ? "#" : ""}{data.channels[m.channel_id]?.name || ChannelStore.getChannel(m.channel_id)?.name || "Bilinmiyor"}</Text>
                         </div>}
                     </Tooltip>
                     <div className="message">
