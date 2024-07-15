@@ -20,72 +20,72 @@ const MiscClasses = findByPropsLazy("messageContent", "markupRtl");
 const cl = classNameFactory("rc-ml-modal-");
 
 export function openHistoryModal(message: any) {
-  openModal(props =>
-    <ErrorBoundary>
-      <HistoryModal
-        modalProps={props}
-        message={message}
-      />
-    </ErrorBoundary>
-  );
+    openModal(props =>
+        <ErrorBoundary>
+            <HistoryModal
+                modalProps={props}
+                message={message}
+            />
+        </ErrorBoundary>
+    );
 }
 
 export function HistoryModal({ modalProps, message }: { modalProps: ModalProps; message: any; }) {
-  const [currentTab, setCurrentTab] = useState(message.editHistory.length);
-  const timestamps = [message.firstEditTimestamp, ...message.editHistory.map(m => m.timestamp)];
-  const contents = [...message.editHistory.map(m => m.content), message.content];
+    const [currentTab, setCurrentTab] = useState(message.editHistory.length);
+    const timestamps = [message.firstEditTimestamp, ...message.editHistory.map(m => m.timestamp)];
+    const contents = [...message.editHistory.map(m => m.content), message.content];
 
-  return (
-    <ModalRoot {...modalProps} size={ModalSize.LARGE}>
-      <ModalHeader className={cl("head")}>
-        <Text variant="heading-lg/semibold" style={{ flexGrow: 1 }}>Mesaj Düzenleme Geçmişi</Text>
-        <ModalCloseButton onClick={modalProps.onClose} />
-      </ModalHeader>
+    return (
+        <ModalRoot {...modalProps} size={ModalSize.LARGE}>
+            <ModalHeader className={cl("head")}>
+                <Text variant="heading-lg/semibold" style={{ flexGrow: 1 }}>Mesaj Düzenleme Geçmişi</Text>
+                <ModalCloseButton onClick={modalProps.onClose} />
+            </ModalHeader>
 
-      <ModalContent className={cl("contents")}>
-        <TabBar
-          type="top"
-          look="brand"
-          className={classes("rc-settings-tab-bar", cl("tab-bar"))}
-          selectedItem={currentTab}
-          onItemSelect={setCurrentTab}
-        >
-          {message.firstEditTimestamp.getTime() !== message.timestamp.getTime() && (
-            <TooltipContainer text="Bu düzenleme durumu günlüğe kaydedilmedi, bu nedenle görüntülenemiyor.">
-              <TabBar.Item
-                className="rc-settings-tab-bar-item"
-                id={-1}
-                disabled
-              >
-                <Timestamp
-                  className={cl("timestamp")}
-                  timestamp={message.timestamp}
-                  isEdited={true}
-                  isInline={false}
-                />
-              </TabBar.Item>
-            </TooltipContainer>
-          )}
+            <ModalContent className={cl("contents")}>
+                <TabBar
+                    type="top"
+                    look="brand"
+                    className={classes("rc-settings-tab-bar", cl("tab-bar"))}
+                    selectedItem={currentTab}
+                    onItemSelect={setCurrentTab}
+                >
+                    {message.firstEditTimestamp.getTime() !== message.timestamp.getTime() && (
+                        <TooltipContainer text="Bu düzenleme durumu günlüğe kaydedilmedi, bu nedenle görüntülenemiyor.">
+                            <TabBar.Item
+                                className="rc-settings-tab-bar-item"
+                                id={-1}
+                                disabled
+                            >
+                                <Timestamp
+                                    className={cl("timestamp")}
+                                    timestamp={message.timestamp}
+                                    isEdited={true}
+                                    isInline={false}
+                                />
+                            </TabBar.Item>
+                        </TooltipContainer>
+                    )}
 
-          {timestamps.map((timestamp, index) => (
-            <TabBar.Item
-              className="rc-settings-tab-bar-item"
-              id={index}
-            >
-              <Timestamp
-                className={cl("timestamp")}
-                timestamp={timestamp}
-                isEdited={true}
-                isInline={false}
-              />
-            </TabBar.Item>
-          ))}
-        </TabBar>
+                    {timestamps.map((timestamp, index) => (
+                        <TabBar.Item
+                            className="rc-settings-tab-bar-item"
+                            id={index}
+                        >
+                            <Timestamp
+                                className={cl("timestamp")}
+                                timestamp={timestamp}
+                                isEdited={true}
+                                isInline={false}
+                            />
+                        </TabBar.Item>
+                    ))}
+                </TabBar>
 
-        <div className={classes(CodeContainerClasses.markup, MiscClasses.messageContent, Margins.top20)}>
-          {parseEditContent(contents[currentTab], message)}
-        </div>
-      </ModalContent>
-    </ModalRoot>
-  );
+                <div className={classes(CodeContainerClasses.markup, MiscClasses.messageContent, Margins.top20)}>
+                    {parseEditContent(contents[currentTab], message)}
+                </div>
+            </ModalContent>
+        </ModalRoot>
+    );
 }
