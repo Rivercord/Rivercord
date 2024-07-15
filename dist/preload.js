@@ -1,4 +1,4 @@
-// Rivercord 5e556341
+// Rivercord bff883c8
 // Standalone: false
 // Platform: win32
 // Updater Disabled: false

@@ -11,7 +11,7 @@ export default definePlugin({
     authors: [
         Devs.TheArmagan
     ],
-    description: "Insanların son mesajlarını gösterir.",
+    description: "Insanların son mesajlarını gösterir. Olmadığınız sunucular dahil.",
     patches: [
         {
             // user popout
