@@ -54,6 +54,7 @@ function cleanMessage(msg: Message) {
     // message logger added properties
     const cloneAny = clone as any;
     delete cloneAny.editHistory;
+    delete cloneAny.firstEditTimestamp;
     delete cloneAny.deleted;
     cloneAny.attachments?.forEach(a => delete a.deleted);
 
