@@ -9,7 +9,7 @@ import definePlugin from "@utils/types";
 
 export default definePlugin({
     name: "IgnoreTerms",
-    description: "Ignore Discord's new terms of service",
+    description: "Discord'un kullanım şartlarını görmezden gel.",
     authors: [Devs.D3SOX],
     patches: [
         {
