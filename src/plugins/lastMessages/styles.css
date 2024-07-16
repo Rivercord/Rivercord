@@ -26,6 +26,7 @@
                 align-items: center;
                 gap: 4px;
                 width: fit-content;
+                cursor: pointer;
 
                 .icon {
                     background-color: #2f3136;
@@ -48,12 +49,14 @@
             .channel {
                 display: flex;
                 width: fit-content;
+                cursor: pointer;
             }
 
             .message {
                 display: flex;
                 width: fit-content;
                 flex-wrap: wrap;
+                cursor: pointer;
             }
         }
     }
