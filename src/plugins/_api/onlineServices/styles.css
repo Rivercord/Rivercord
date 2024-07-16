@@ -1,4 +1,4 @@
-.rc-online-rivercord-users {
+.rc-online-users-counter {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -6,6 +6,7 @@
     flex-direction: column;
     padding-bottom: 10px;
     color: var(--text-primary);
+    cursor: pointer;
 
     .line {
         display: flex;
@@ -16,5 +17,34 @@
 
     .number {
         font-size: 16px;
+    }
+}
+
+.rc-online-users {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding-top: 8px;
+
+    .list {
+        display: flex;
+        flex-direction: column;
+
+        .item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(245 245 245 / 10%);
+
+            .avatar {
+                width: 32px;
+                height: 32px;
+                border-radius: 50%;
+                background-color: var(--bg-secondary);
+                background-size: cover;
+                background-position: center;
+            }
+        }
     }
 }

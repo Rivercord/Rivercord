@@ -8,7 +8,7 @@ import { findStoreLazy } from "@webpack";
 import { ChannelStore, GuildStore, SelectedGuildStore } from "@webpack/common";
 
 import "./styles.css";
-import { OnlineRivercordUsers } from "./components/OnlineRivercordUsers";
+import { OnlineUsersCounter } from "./components/OnlineUsersCounter";
 
 const GuildMemberCountStore = findStoreLazy("GuildMemberCountStore") as FluxStore & Record<string, any>;
 
@@ -47,7 +47,7 @@ export default definePlugin({
 
         ServerList.addServerListElement(
             ServerListRenderPosition.Above,
-            props => <OnlineRivercordUsers />
+            props => <OnlineUsersCounter />
         );
     },
     stop() {

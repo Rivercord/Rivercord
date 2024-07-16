@@ -21,7 +21,7 @@ import esbuild from "esbuild";
 import { readdir, writeFile } from "fs/promises";
 import { join } from "path";
 
-import { BUILD_TIMESTAMP, commonOpts, exists, globPlugins, IS_DEV, IS_REPORTER, IS_STANDALONE, IS_UPDATER_DISABLED, resolvePluginName, VERSION, watch, gitHash } from "./common.mjs";
+import { BUILD_TIMESTAMP, commonOpts, exists, globPlugins, IS_DEV, IS_REPORTER, IS_STANDALONE, IS_UPDATER_DISABLED, resolvePluginName, VERSION, watch, gitHash, stringifyValues } from "./common.mjs";
 
 const defines = {
     IS_STANDALONE,
@@ -48,7 +48,8 @@ const nodeCommonOpts = {
     platform: "node",
     target: ["esnext"],
     external: ["electron", "original-fs", "~pluginNatives", ...commonOpts.external],
-    define: defines
+    define: stringifyValues(defines),
+    logLevel: "info"
 };
 
 const sourceMapFooter = s => watch ? "" : `//# sourceMappingURL=rivercord://${s}.js.map`;
@@ -104,23 +105,23 @@ const globNativesPlugin = {
 
 await Promise.all([
     // Discord Desktop main & renderer & preload
-    esbuild.build({
+    esbuild.context({
         ...nodeCommonOpts,
         entryPoints: ["src/main/index.ts"],
         outfile: "dist/patcher.js",
         footer: { js: "//# sourceURL=RivercordPatcher\n" + sourceMapFooter("patcher") },
         sourcemap,
         define: {
-            ...defines,
-            IS_DISCORD_DESKTOP: true,
-            IS_VESKTOP: false
+            ...stringifyValues(defines),
+            IS_DISCORD_DESKTOP: "true",
+            IS_VESKTOP: "false"
         },
         plugins: [
             ...nodeCommonOpts.plugins,
             globNativesPlugin
         ]
     }),
-    esbuild.build({
+    esbuild.context({
         ...commonOpts,
         entryPoints: ["src/Rivercord.ts"],
         outfile: "dist/renderer.js",
@@ -134,42 +135,42 @@ await Promise.all([
             ...commonOpts.plugins
         ],
         define: {
-            ...defines,
-            IS_DISCORD_DESKTOP: true,
-            IS_VESKTOP: false
+            ...stringifyValues(defines),
+            IS_DISCORD_DESKTOP: "true",
+            IS_VESKTOP: "false"
         }
     }),
-    esbuild.build({
+    esbuild.context({
         ...nodeCommonOpts,
         entryPoints: ["src/preload.ts"],
         outfile: "dist/preload.js",
         footer: { js: "//# sourceURL=RivercordPreload\n" + sourceMapFooter("preload") },
         sourcemap,
         define: {
-            ...defines,
-            IS_DISCORD_DESKTOP: true,
-            IS_VESKTOP: false
+            ...stringifyValues(defines),
+            IS_DISCORD_DESKTOP: "true",
+            IS_VESKTOP: "false"
         }
     }),
 
     // Rivercord Desktop main & renderer & preload
-    esbuild.build({
+    esbuild.context({
         ...nodeCommonOpts,
         entryPoints: ["src/main/index.ts"],
         outfile: "dist/rivercordDesktopMain.js",
         footer: { js: "//# sourceURL=RivercordDesktopMain\n" + sourceMapFooter("rivercordDesktopMain") },
         sourcemap,
         define: {
-            ...defines,
-            IS_DISCORD_DESKTOP: false,
-            IS_VESKTOP: true
+            ...stringifyValues(defines),
+            IS_DISCORD_DESKTOP: "false",
+            IS_VESKTOP: "true"
         },
         plugins: [
             ...nodeCommonOpts.plugins,
             globNativesPlugin
         ]
     }),
-    esbuild.build({
+    esbuild.context({
         ...commonOpts,
         entryPoints: ["src/Rivercord.ts"],
         outfile: "dist/rivercordDesktopRenderer.js",
@@ -183,28 +184,35 @@ await Promise.all([
             ...commonOpts.plugins
         ],
         define: {
-            ...defines,
-            IS_DISCORD_DESKTOP: false,
-            IS_VESKTOP: true
+            ...stringifyValues(defines),
+            IS_DISCORD_DESKTOP: "false",
+            IS_VESKTOP: "true"
         }
     }),
-    esbuild.build({
+    esbuild.context({
         ...nodeCommonOpts,
         entryPoints: ["src/preload.ts"],
         outfile: "dist/rivercordDesktopPreload.js",
         footer: { js: "//# sourceURL=RivercordPreload\n" + sourceMapFooter("rivercordDesktopPreload") },
         sourcemap,
         define: {
-            ...defines,
-            IS_DISCORD_DESKTOP: false,
-            IS_VESKTOP: true
+            ...stringifyValues(defines),
+            IS_DISCORD_DESKTOP: "false",
+            IS_VESKTOP: "true"
         }
     }),
-    writeFile("dist/git-hash.txt", gitHash, "utf8")
-]).catch(err => {
-    console.error("Build failed");
-    console.error(err.message);
-    // make ci fail
-    if (!commonOpts.watch)
-        process.exitCode = 1;
+]).then(ctxs => {
+    for (const ctx of ctxs) {
+        if (watch) {
+            ctx.watch();
+        } else {
+            ctx.rebuild().then(d => {
+                d.errors.forEach(e => console.error(e));
+                d.warnings.forEach(w => console.warn(w));
+            }).catch(console.error).finally(() => {
+                ctx.dispose();
+            });
+        }
+    }
 });
+writeFile("dist/git-hash.txt", gitHash, "utf8");

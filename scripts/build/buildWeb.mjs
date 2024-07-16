@@ -23,7 +23,7 @@ import { appendFile, mkdir, readdir, readFile, rm, writeFile } from "fs/promises
 import { join } from "path";
 import Zip from "zip-local";
 
-import { BUILD_TIMESTAMP, commonOpts, globPlugins, IS_DEV, IS_REPORTER, VERSION } from "./common.mjs";
+import { BUILD_TIMESTAMP, commonOpts, globPlugins, IS_DEV, IS_REPORTER, stringifyValues, VERSION } from "./common.mjs";
 
 /**
  * @type {esbuild.BuildOptions}
@@ -39,7 +39,7 @@ const commonOptions = {
         ...commonOpts.plugins,
     ],
     target: ["esnext"],
-    define: {
+    define: stringifyValues({
         IS_WEB: true,
         IS_EXTENSION: false,
         IS_STANDALONE: true,
@@ -50,7 +50,7 @@ const commonOptions = {
         IS_UPDATER_DISABLED: true,
         VERSION: JSON.stringify(VERSION),
         BUILD_TIMESTAMP
-    }
+    })
 };
 
 const MonacoWorkerEntryPoints = [

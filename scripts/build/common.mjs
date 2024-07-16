@@ -53,6 +53,10 @@ export const banner = {
 `.trim()
 };
 
+export function stringifyValues(o) {
+    return Object.fromEntries(Object.entries(o).map(([k, v]) => [k, JSON.stringify(v)]));
+}
+
 const PluginDefinitionNameMatcher = /definePlugin\(\{\s*(["'])?name\1:\s*(["'`])(.+?)\2/;
 /**
  * @param {string} base
@@ -295,7 +299,7 @@ export const stylePlugin = {
 export const commonOpts = {
     logLevel: "info",
     bundle: true,
-    watch,
+    // watch,
     minify: !watch,
     sourcemap: watch ? "inline" : "",
     legalComments: "linked",
