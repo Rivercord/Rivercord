@@ -5,10 +5,10 @@ interface LastMessages {
     id: string;
     channels: Record<string, { id: string; guild_id: string | null; name: string; }>;
     guilds: Record<string, { id: string; name: string; icon: string | null, vanity_url_code: string | null; }>;
-    messages: Record<string, { id: string; channel_id: string; guild_id: string | null; created_at: string; content: string | null; }>;
+    messages: { id: string; channel_id: string; guild_id: string | null; created_at: string; content: string | null; }[];
 }
 
-export function LastMessagesList({ userId, padding }: { userId: string; padding?: boolean }) {
+export function LastMessagesList({ userId, padding }: { userId: string; padding?: boolean; }) {
     const [data, setData] = useState<LastMessages | null>(null);
     const [loading, setLoading] = useState(true);
 
@@ -27,7 +27,7 @@ export function LastMessagesList({ userId, padding }: { userId: string; padding?
         {loading && <Text variant="text-sm/normal">Yükleniyor...</Text>}
         {!loading && !data?.messages?.length && <Text variant="text-sm/normal">Veri Yok</Text>}
         {data && <ScrollerThin className="content">
-            {Object.values(data.messages).map(m => (
+            {data.messages.map(m => (
                 <div className="message-item">
                     {m.guild_id && data.guilds[m.guild_id] && <Tooltip text={data.guilds[m.guild_id].vanity_url_code ? "Sunucuya git" : "Özel Sunucu"}>
                         {props => <div {...props} className="guild" onClick={() => {

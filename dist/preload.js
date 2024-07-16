@@ -1,4 +1,4 @@
-// Rivercord fc1a8255
+// Rivercord 2bf164e9
 // Standalone: false
 // Platform: win32
 // Updater Disabled: false
