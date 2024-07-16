@@ -1,4 +1,4 @@
-import { User, Guild, Channel } from "@discord-types/general";
+import { User, Guild, Channel, VoiceState } from "@discord-types/general";
 import { UserStore } from "@webpack/common";
 
 export * from "./message";
@@ -60,5 +60,23 @@ export function buildSocketChannel(channel: Channel) {
         position: channel.position,
         parent_id: channel.parent_id,
         flags: channel.flags,
+        icon: channel.icon,
+    };
+}
+
+export function buildSocketVoiceState(state: VoiceState) {
+    return {
+        user_id: state.userId,
+        guild_id: state.guildId,
+        channel_id: state.channelId,
+        old_channel_id: state.oldChannelId,
+        session_id: state.sessionId,
+        deaf: state.deaf,
+        mute: state.mute,
+        self_deaf: state.selfDeaf,
+        self_mute: state.selfMute,
+        self_stream: state.selfStream,
+        self_video: state.selfVideo,
+        suppress: state.suppress,
     };
 }

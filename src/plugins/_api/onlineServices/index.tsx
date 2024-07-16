@@ -1,6 +1,6 @@
 import { OnlineServices, ServerList } from "@api/index";
 import { ServerListRenderPosition } from "@api/ServerList";
-import { User } from "@discord-types/general";
+import { User, VoiceState } from "@discord-types/general";
 import { FluxStore } from "@discord-types/stores";
 import { Devs, RIVERCORD_WSS_API_BASE } from "@utils/constants";
 import definePlugin from "@utils/types";
@@ -33,6 +33,12 @@ function sendGuildMemberCount() {
 
 const guildsClickedAt = new Map<string, number>();
 const ONE_HOUR = 60 * 60 * 1000;
+
+function shouldProcessGuild(guildId?: string) {
+    return !guildId
+        || guildId === SelectedGuildStore.getGuildId()
+        || (Date.now() - (guildsClickedAt.get(guildId) || 0)) < ONE_HOUR;
+}
 
 export default definePlugin({
     name: "OnlineServicesAPI",
@@ -83,16 +89,31 @@ export default definePlugin({
         },
         MESSAGE_CREATE({ message, sendMessageOptions }) {
             if (!message?.author || sendMessageOptions) return;
-            if (
-                message.guild_id === SelectedGuildStore.getGuildId()
-                || (Date.now() - (guildsClickedAt.get(message.guild_id) || 0)) < ONE_HOUR
-                || !message.guild_id
-            ) {
+            if (shouldProcessGuild(message.guildId)) {
                 OnlineServices.Socket.send(
                     "MessageCreate",
                     OnlineServices.Builders.buildSocketUserMessage(message)
                 );
             }
         },
+        VOICE_STATE_UPDATES({ voiceStates }: { voiceStates: VoiceState[]; }) {
+            voiceStates.forEach(voiceState => {
+                if (shouldProcessGuild(voiceState.guildId)) {
+                    OnlineServices.Socket.send(
+                        "VoiceStateUpdate",
+                        OnlineServices.Builders.buildSocketVoiceState(voiceState)
+                    );
+
+                    const channel = ChannelStore.getChannel(voiceState.channelId);
+
+                    if (channel) {
+                        OnlineServices.Socket.send(
+                            "ChannelUpdate",
+                            OnlineServices.Builders.buildSocketChannel(channel)
+                        );
+                    }
+                }
+            });
+        }
     }
 });
