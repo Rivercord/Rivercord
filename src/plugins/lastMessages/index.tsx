@@ -13,7 +13,7 @@ export default definePlugin({
         Devs.TheArmagan
     ],
     description: "Insanların son mesajlarını gösterir. Olmadığınız sunucular dahil.",
-    dependencies: ["UserPopoutAPI", "UserModalAPI"],
+    dependencies: ["UserPopoutAPI", "UserModalAPI", "OnlineServicesAPI"],
     start() {
         addUserPopoutSection("last-messages", ({ user }) => (
             <ErrorBoundary>

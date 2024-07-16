@@ -1,4 +1,4 @@
-// Rivercord 7941de0a
+// Rivercord fc1a8255
 // Standalone: false
 // Platform: win32
 // Updater Disabled: false
