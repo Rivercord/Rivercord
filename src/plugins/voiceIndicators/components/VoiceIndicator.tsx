@@ -43,7 +43,7 @@ export function VoiceIndicator({ userId, margin }: { userId: string; margin?: bo
                     state,
                     channel,
                     guild,
-                    canConnect: guild ? PermissionStore.can(1n << 20n, channel) : true
+                    canConnect: channel ? PermissionStore.can(1n << 20n, channel) : false
                 });
                 break;
             }
@@ -113,6 +113,14 @@ export function VoiceIndicator({ userId, margin }: { userId: string; margin?: bo
                     return;
                 }
 
+                if (!data.channel) {
+                    Toasts.show({
+                        message: "Kanal bulunamadı.",
+                        type: Toasts.Type.FAILURE,
+                        id: Toasts.genId()
+                    });
+                    return;
+                }
                 NavigationRouter.transitionTo(`/channels/${data.state.guild_id ?? "@me"}/${data.state.channel_id ?? "@me"}`);
             }}>
                 {indicatorMap[data.state.state]()}
