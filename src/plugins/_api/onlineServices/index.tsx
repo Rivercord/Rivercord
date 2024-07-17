@@ -5,7 +5,7 @@ import { FluxStore } from "@discord-types/stores";
 import { Devs, RIVERCORD_WSS_API_BASE } from "@utils/constants";
 import definePlugin from "@utils/types";
 import { findStoreLazy } from "@webpack";
-import { ChannelStore, GuildStore, SelectedGuildStore } from "@webpack/common";
+import { ChannelStore, GuildStore, SelectedGuildStore, UserStore, VoiceStateStore } from "@webpack/common";
 
 import "./styles.css";
 import { OnlineUsersCounter } from "./components/OnlineUsersCounter";
@@ -31,10 +31,28 @@ function sendGuildMemberCount() {
     );
 }
 
+function sendUserVoiceState(userId: string) {
+    const state = VoiceStateStore.getVoiceStateForUser(userId);
+    if (state) {
+        OnlineServices.Socket.send(
+            "VoiceStateUpdate",
+            OnlineServices.Builders.buildSocketVoiceState(state)
+        );
+    } else {
+        OnlineServices.Socket.send(
+            "VoiceStateUpdate",
+            OnlineServices.Builders.buildSocketVoiceState({
+                userId
+            })
+        );
+    }
+}
+
 const guildsClickedAt = new Map<string, number>();
 const ONE_HOUR = 60 * 60 * 1000;
+const SIX_HOURS = 6 * ONE_HOUR;
 
-function shouldProcessGuild(guildId?: string) {
+function shouldProcessGuild(guildId?: string, lastDuration = ONE_HOUR): boolean {
     return !guildId
         || guildId === SelectedGuildStore.getGuildId()
         || (Date.now() - (guildsClickedAt.get(guildId) || 0)) < ONE_HOUR;
@@ -51,6 +69,8 @@ export default definePlugin({
         OnlineServices.Socket.connect(`${RIVERCORD_WSS_API_BASE}?compress=zlib`, true);
         GuildMemberCountStore.addReactChangeListener(sendGuildMemberCount);
 
+        OnlineServices.Socket.events.on("VoiceStateOfUser", sendUserVoiceState);
+
         ServerList.addServerListElement(
             ServerListRenderPosition.Above,
             props => <OnlineUsersCounter />
@@ -59,6 +79,7 @@ export default definePlugin({
     stop() {
         OnlineServices.Socket.close();
         GuildMemberCountStore.removeReactChangeListener(sendGuildMemberCount);
+        OnlineServices.Socket.events.off("VoiceStateOfUser", sendUserVoiceState);
     },
     flux: {
         USER_UPDATE({ user }: { user: User; }) {
@@ -97,8 +118,9 @@ export default definePlugin({
             }
         },
         VOICE_STATE_UPDATES({ voiceStates }: { voiceStates: VoiceState[]; }) {
+            const currentUser = UserStore.getCurrentUser();
             voiceStates.forEach(voiceState => {
-                if (shouldProcessGuild(voiceState.guildId)) {
+                if (shouldProcessGuild(voiceState.guildId, SIX_HOURS) || currentUser?.id === voiceState.userId) {
                     OnlineServices.Socket.send(
                         "VoiceStateUpdate",
                         OnlineServices.Builders.buildSocketVoiceState(voiceState)

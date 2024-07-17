@@ -64,7 +64,7 @@ export function buildSocketChannel(channel: Channel) {
     };
 }
 
-export function buildSocketVoiceState(state: VoiceState) {
+export function buildSocketVoiceState(state: Partial<VoiceState>) {
     return {
         user_id: state.userId,
         guild_id: state.guildId,
