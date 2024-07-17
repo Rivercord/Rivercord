@@ -1,4 +1,4 @@
-// Rivercord c1da59ca
+// Rivercord e086345a
 // Standalone: false
 // Platform: win32
 // Updater Disabled: false

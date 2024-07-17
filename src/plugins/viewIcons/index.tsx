@@ -1,20 +1,3 @@
-/*
- * Rivercord, a modification for Discord's desktop app
- * Copyright (c) 2022 Vendicated and contributors
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <https://www.gnu.org/licenses/>.
-*/
 
 import { NavContextMenuPatchCallback } from "@api/ContextMenu";
 import { definePluginSettings } from "@api/Settings";
@@ -23,7 +6,7 @@ import { Devs } from "@utils/constants";
 import { openImageModal } from "@utils/discord";
 import definePlugin, { OptionType } from "@utils/types";
 import { GuildMemberStore, IconUtils, Menu } from "@webpack/common";
-import type { Channel, Guild, User } from "@discord-types/general";
+import type { Channel, Guild, User } from "discord-types/general";
 
 
 interface UserContextProps {
@@ -183,14 +166,22 @@ export default definePlugin({
     },
 
     patches: [
-        // Profiles Modal pfp
-        ...[".MODAL,hasProfileEffect", ".FULL_SIZE,hasProfileEffect:"].map(find => ({
-            find,
+        // Avatar component used in User DMs "User Profile" popup in the right and Profiles Modal pfp
+        {
+            find: ".overlay:void 0,status:",
+            replacement: {
+                match: /avatarSrc:(\i),eventHandlers:(\i).+?"div",{...\2,/,
+                replace: "$&style:{cursor:\"pointer\"},onClick:()=>{$self.openImage($1)},"
+            }
+        },
+        // Old Profiles Modal pfp
+        {
+            find: ".MODAL,hasProfileEffect",
             replacement: {
                 match: /\{src:(\i)(?=,avatarDecoration)/,
                 replace: "{src:$1,onClick:()=>$self.openImage($1)"
             }
-        })),
+        },
         // Banners
         ...[".NITRO_BANNER,", "=!1,canUsePremiumCustomization:"].map(find => ({
             find,
@@ -202,20 +193,12 @@ export default definePlugin({
                     'onClick:ev=>$1&&ev.target.style.backgroundImage&&$self.openImage($2),style:{cursor:$1?"pointer":void 0,'
             }
         })),
-        // User DMs "User Profile" popup in the right
+        // Old User DMs "User Profile" popup in the right
         {
             find: ".avatarPositionPanel",
             replacement: {
                 match: /(avatarWrapperNonUserBot.{0,50})onClick:(\i\|\|\i)\?void 0(?<=,avatarSrc:(\i).+?)/,
                 replace: "$1style:($2)?{cursor:\"pointer\"}:{},onClick:$2?()=>{$self.openImage($3)}"
-            }
-        },
-        {
-            find: ".canUsePremiumProfileCustomization,{avatarSrc:",
-            replacement: {
-                match: /children:\(0,\i\.jsx\)\(\i,{src:(\i)/,
-                replace: "style:{cursor:\"pointer\"},onClick:()=>{$self.openImage($1)},$&"
-
             }
         },
         // Group DMs top small & large icon
