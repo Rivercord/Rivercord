@@ -1,4 +1,4 @@
-// Rivercord e23b647a
+// Rivercord 2db608b0
 // Standalone: false
 // Platform: win32
 // Updater Disabled: false

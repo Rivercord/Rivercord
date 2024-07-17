@@ -13,7 +13,7 @@ export interface StateChannel {
 export type StateString = "guildDeaf" | "deaf" | "guildMute" | "mute" | "video" | "stream" | "normal";
 
 export interface UserVoiceState {
-    created_at: string;
+    last_channel_changed_at: string;
     state: StateString;
     channel: StateChannel;
     channel_id: string;

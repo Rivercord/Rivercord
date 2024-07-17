@@ -80,7 +80,7 @@ export function VoiceIndicator({ userId, margin }: { userId: string; margin?: bo
                 {data.channel?.name || data.state.channel?.name || "Bilinmiyor"}
             </div>
             <div className="time-elapsed">
-                {moment(data.state.created_at).fromNow()}
+                {moment(data.state.last_channel_changed_at).fromNow()}
             </div>
         </div>
     }>
