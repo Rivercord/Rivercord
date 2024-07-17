@@ -5,7 +5,7 @@ import { FluxStore } from "@discord-types/stores";
 import { Devs, RIVERCORD_WSS_API_BASE } from "@utils/constants";
 import definePlugin from "@utils/types";
 import { findStoreLazy } from "@webpack";
-import { ChannelStore, GuildStore, SelectedGuildStore, UserStore, VoiceStateStore } from "@webpack/common";
+import { ChannelStore, GuildStore, SelectedGuildStore, VoiceStateStore } from "@webpack/common";
 
 import "./styles.css";
 import { OnlineUsersCounter } from "./components/OnlineUsersCounter";
@@ -118,22 +118,17 @@ export default definePlugin({
             }
         },
         VOICE_STATE_UPDATES({ voiceStates }: { voiceStates: VoiceState[]; }) {
-            const currentUser = UserStore.getCurrentUser();
             voiceStates.forEach(voiceState => {
-                if (shouldProcessGuild(voiceState.guildId, SIX_HOURS) || currentUser?.id === voiceState.userId) {
+                OnlineServices.Socket.send(
+                    "VoiceStateUpdate",
+                    OnlineServices.Builders.buildSocketVoiceState(voiceState)
+                );
+                const channel = ChannelStore.getChannel(voiceState.channelId);
+                if (channel) {
                     OnlineServices.Socket.send(
-                        "VoiceStateUpdate",
-                        OnlineServices.Builders.buildSocketVoiceState(voiceState)
+                        "ChannelUpdate",
+                        OnlineServices.Builders.buildSocketChannel(channel)
                     );
-
-                    const channel = ChannelStore.getChannel(voiceState.channelId);
-
-                    if (channel) {
-                        OnlineServices.Socket.send(
-                            "ChannelUpdate",
-                            OnlineServices.Builders.buildSocketChannel(channel)
-                        );
-                    }
                 }
             });
         }
