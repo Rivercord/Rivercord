@@ -7,6 +7,7 @@ export function OnlineUsersCounter() {
     const [onlineUserCount, setOnlineUserCount] = useState(0);
 
     useEffect(() => {
+        OnlineServices.Socket.send("OnlineUserCount");
         return OnlineServices.Socket.events.on(
             "OnlineUserCount",
             (count: number) => setOnlineUserCount(count)
