@@ -1,21 +1,3 @@
-/*
- * Rivercord, a modification for Discord's desktop app
- * Copyright (c) 2022 Vendicated and contributors
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <https://www.gnu.org/licenses/>.
-*/
-
 import ErrorBoundary from "@components/ErrorBoundary";
 import { Devs } from "@utils/constants";
 import { sleep } from "@utils/misc";
@@ -25,7 +7,7 @@ import definePlugin from "@utils/types";
 import { findByPropsLazy, findComponentByCodeLazy } from "@webpack";
 import { ChannelStore, Constants, FluxDispatcher, React, RestAPI, Tooltip } from "@webpack/common";
 import { CustomEmoji } from "@webpack/types";
-import { Message, ReactionEmoji, User } from "@discord-types/general";
+import { Message, ReactionEmoji, User } from "discord-types/general";
 
 const UserSummaryItem = findComponentByCodeLazy("defaultRenderUser", "showDefaultAvatarsForNullUsers");
 const AvatarStyles = findByPropsLazy("moreUsers", "emptyUser", "avatarContainer", "clickableAvatar");
@@ -43,14 +25,23 @@ function fetchReactions(msg: Message, emoji: ReactionEmoji, type: number) {
         },
         oldFormErrors: true
     })
-        .then(res => FluxDispatcher.dispatch({
-            type: "MESSAGE_REACTION_ADD_USERS",
-            channelId: msg.channel_id,
-            messageId: msg.id,
-            users: res.body,
-            emoji,
-            reactionType: type
-        }))
+        .then(res => {
+            for (const user of res.body) {
+                FluxDispatcher.dispatch({
+                    type: "USER_UPDATE",
+                    user
+                });
+            }
+
+            FluxDispatcher.dispatch({
+                type: "MESSAGE_REACTION_ADD_USERS",
+                channelId: msg.channel_id,
+                messageId: msg.id,
+                users: res.body,
+                emoji,
+                reactionType: type
+            });
+        })
         .catch(console.error)
         .finally(() => sleep(250));
 }
@@ -90,7 +81,7 @@ function handleClickAvatar(event: React.MouseEvent<HTMLElement, MouseEvent>) {
 
 export default definePlugin({
     name: "WhoReacted",
-    description: "Bir mesaja tepki veren kullanıcıların avatarlarını gösterir.",
+    description: "Renders the avatars of users who reacted to a message",
     authors: [Devs.Ven, Devs.KannaDev, Devs.newwares],
 
     patches: [
@@ -147,13 +138,6 @@ export default definePlugin({
 
         const reactions = getReactionsWithQueue(message, emoji, type);
         const users = Object.values(reactions).filter(Boolean) as User[];
-
-        for (const user of users) {
-            FluxDispatcher.dispatch({
-                type: "USER_UPDATE",
-                user
-            });
-        }
 
         return (
             <div
