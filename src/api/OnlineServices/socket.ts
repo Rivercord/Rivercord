@@ -30,7 +30,11 @@ spawnWorker(socketWorkerString, { name: "RivercordSocketWorker" }).then((w: Work
 
 
 export function send(eventName: string, eventData?: any, force = false) {
-    if (!worker) return pendingMessages.push(["Send", [eventName, eventData, force]]);
+    if (!worker) {
+        pendingMessages.push(["Send", [eventName, eventData, force]]);
+        if (pendingMessages.length > 100) pendingMessages.shift();
+        return;
+    }
     worker.postMessage(["Send", [eventName, eventData, force]]);
 }
 

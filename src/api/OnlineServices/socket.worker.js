@@ -125,8 +125,11 @@ class ReconnectingWebSocket extends BasicEventEmitter {
     }
 
     send(eventName, eventData, force = false) {
-        if (!force && (!this.connected || this.forcePending))
-            return this.pendingMessages.push([eventName, eventData]);
+        if (!force && (!this.connected || this.forcePending)) {
+            this.pendingMessages.push([eventName, eventData]);
+            if (this.pendingMessages.length > 100) this.pendingMessages.shift();
+            return;
+        }
 
         if (this.compress === "zlib") {
             this.socket.send(
