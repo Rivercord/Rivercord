@@ -26,7 +26,7 @@ spawnWorker(socketWorkerString, { name: "RivercordSocketWorker" }).then((w: Work
         worker.postMessage(message);
     }
     pendingMessages.length = 0;
-});
+}).catch(console.error);
 
 
 export function send(eventName: string, eventData?: any, force = false) {
