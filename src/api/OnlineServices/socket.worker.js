@@ -158,12 +158,36 @@ class ReconnectingWebSocket extends BasicEventEmitter {
 
 const socket = new ReconnectingWebSocket("zlib");
 
+const subscriptions = new Set();
+
 onmessage = event => {
     const { data } = event;
 
     switch (data[0]) {
         case "Send": {
             const [eventName, eventData, force] = data[1];
+
+            switch (eventName) {
+                case ":Subscribe": {
+                    if (subscriptions.has(eventData)) break;
+                    subscriptions.add(eventData);
+                    break;
+                }
+                case ":Subscribe:All": {
+                    for (const event of eventData) {
+                        subscriptions.add(event);
+                    }
+                    break;
+                }
+                case ":Unsubscribe": {
+                    if (!subscriptions.has(eventData)) break;
+                    subscriptions.delete(eventData);
+                    break;
+                }
+                default:
+                    break;
+            }
+
             socket.send(eventName, eventData, force);
             break;
         }
@@ -185,4 +209,9 @@ onmessage = event => {
 
 socket.on("*", (eventName, eventData) => {
     postMessage(["Message", [eventName, eventData]]);
+});
+
+socket.on(":Connected", () => {
+    socket.send(":Subscribe:All", [...subscriptions], true);
+    console.log("Subscribed to ", [...subscriptions]);
 });

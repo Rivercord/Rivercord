@@ -1,4 +1,4 @@
-import socketWorkerString from "file://./socket.worker.js?raw";
+import socketWorkerString from "file://./socket.worker.js";
 import { spawnWorker } from "@utils/workers";
 import { BasicEventEmitter } from "lib/BasicEventEmitter";
 
@@ -27,7 +27,6 @@ spawnWorker(socketWorkerString, { name: "RivercordSocketWorker" }).then((w: Work
     }
     pendingMessages.length = 0;
 }).catch(console.error);
-
 
 export function send(eventName: string, eventData?: any, force = false) {
     if (!worker) {
