@@ -1,4 +1,4 @@
-// Rivercord 7fb9f093
+// Rivercord 0159efab
 // Standalone: false
 // Platform: win32
 // Updater Disabled: false

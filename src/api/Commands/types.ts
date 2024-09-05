@@ -93,6 +93,7 @@ export interface Command {
     isRivercordCommand?: boolean;
 
     name: string;
+    untranslatedName?: string;
     displayName?: string;
     description: string;
     displayDescription?: string;

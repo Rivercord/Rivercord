@@ -46,10 +46,10 @@ export let RequiredMessageOption: Option = ReqPlaceholder;
 export const _init = function (cmds: Command[]) {
     try {
         BUILT_IN = cmds;
-        OptionalMessageOption = cmds.find(c => c.name === "shrug")!.options![0];
-        RequiredMessageOption = cmds.find(c => c.name === "me")!.options![0];
+        OptionalMessageOption = cmds.find(c => (c.untranslatedName || c.displayName) === "shrug")!.options![0];
+        RequiredMessageOption = cmds.find(c => (c.untranslatedName || c.displayName) === "me")!.options![0];
     } catch (e) {
-        console.error("Failed to load CommandsApi");
+        console.error("Failed to load CommandsApi", cmds);
     }
     return cmds;
 } as never;

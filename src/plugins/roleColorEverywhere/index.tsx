@@ -108,7 +108,7 @@ export default definePlugin({
             predicate: () => settings.store.voiceUsers,
         },
         {
-            find: ".reactorDefault",
+            find: ".USER_MENTION)",
             replacement: {
                 match: /,onContextMenu:e=>.{0,15}\((\i),(\i),(\i)\).{0,250}tag:"strong"/,
                 replace: "$&,style:{color:$self.getColor($2?.id,$1)}"
